@@ -1,0 +1,123 @@
+Dump of assembler code for function main:
+   0x0804887c <+0>:	lea    0x4(%esp),%ecx
+   0x08048880 <+4>:	and    $0xfffffff0,%esp
+   0x08048883 <+7>:	pushl  -0x4(%ecx)
+   0x08048886 <+10>:	push   %ebp
+   0x08048887 <+11>:	mov    %esp,%ebp
+   0x08048889 <+13>:	push   %ebx
+   0x0804888a <+14>:	push   %ecx
+   0x0804888b <+15>:	sub    $0x400,%esp
+   0x08048891 <+21>:	mov    %ecx,%ebx
+   0x08048893 <+23>:	mov    0x4(%ebx),%eax
+   0x08048896 <+26>:	add    $0x4,%eax
+   0x08048899 <+29>:	mov    (%eax),%eax
+   0x0804889b <+31>:	sub    $0x8,%esp
+   0x0804889e <+34>:	push   %eax
+   0x0804889f <+35>:	lea    -0x408(%ebp),%eax
+   0x080488a5 <+41>:	push   %eax
+   0x080488a6 <+42>:	call   0x80481d0
+   0x080488ab <+47>:	add    $0x10,%esp
+   0x080488ae <+50>:	mov    0x4(%ebx),%eax
+   0x080488b1 <+53>:	add    $0x4,%eax
+   0x080488b4 <+56>:	mov    (%eax),%eax
+   0x080488b6 <+58>:	sub    $0xc,%esp
+   0x080488b9 <+61>:	push   %eax
+   0x080488ba <+62>:	call   0x804ec10 <printf>
+   0x080488bf <+67>:	add    $0x10,%esp
+   0x080488c2 <+70>:	sub    $0xc,%esp
+   0x080488c5 <+73>:	push   $0xa
+   0x080488c7 <+75>:	call   0x804f120 <putchar>
+   0x080488cc <+80>:	add    $0x10,%esp
+   0x080488cf <+83>:	sub    $0xc,%esp
+   0x080488d2 <+86>:	push   $0x0
+   0x080488d4 <+88>:	call   0x804e2a0 <exit>
+End of assembler dump.
+Dump of assembler code for function putchar:
+   0x0804f120 <+0>:	push   %ebp
+   0x0804f121 <+1>:	mov    %esp,%ebp
+   0x0804f123 <+3>:	push   %edi
+   0x0804f124 <+4>:	push   %esi
+   0x0804f125 <+5>:	push   %ebx
+   0x0804f126 <+6>:	sub    $0xc,%esp
+   0x0804f129 <+9>:	mov    0x80ea4b8,%ebx
+   0x0804f12f <+15>:	mov    0x8(%ebp),%edx
+   0x0804f132 <+18>:	mov    (%ebx),%eax
+   0x0804f134 <+20>:	mov    %ebx,%ecx
+   0x0804f136 <+22>:	and    $0x8000,%eax
+   0x0804f13b <+27>:	jne    0x804f17c <putchar+92>
+   0x0804f13d <+29>:	mov    0x48(%ebx),%esi
+   0x0804f140 <+32>:	mov    %gs:0x8,%edi
+   0x0804f147 <+39>:	cmp    0x8(%esi),%edi
+   0x0804f14a <+42>:	je     0x804f1e0 <putchar+192>
+   0x0804f150 <+48>:	mov    $0x1,%ecx
+   0x0804f155 <+53>:	cmpl   $0x0,%gs:0xc
+   0x0804f15d <+61>:	je     0x804f160 <putchar+64>
+   0x0804f15f <+63>:	lock cmpxchg %ecx,(%esi)
+   0x0804f163 <+67>:	je     0x804f16c <putchar+76>
+   0x0804f165 <+69>:	lea    (%esi),%ecx
+   0x0804f167 <+71>:	call   0x806ec00 <__lll_lock_wait_private>
+   0x0804f16c <+76>:	mov    0x48(%ebx),%esi
+   0x0804f16f <+79>:	mov    0x80ea4b8,%ecx
+   0x0804f175 <+85>:	mov    %edi,0x8(%esi)
+   0x0804f178 <+88>:	addl   $0x1,0x4(%esi)
+   0x0804f17c <+92>:	mov    0x14(%ecx),%eax
+   0x0804f17f <+95>:	cmp    0x18(%ecx),%eax
+   0x0804f182 <+98>:	jae    0x804f1e8 <putchar+200>
+   0x0804f184 <+100>:	lea    0x1(%eax),%esi
+   0x0804f187 <+103>:	mov    %esi,0x14(%ecx)
+   0x0804f18a <+106>:	mov    %dl,(%eax)
+   0x0804f18c <+108>:	movzbl %dl,%edx
+   0x0804f18f <+111>:	testl  $0x8000,(%ebx)
+   0x0804f195 <+117>:	je     0x804f1a8 <putchar+136>
+   0x0804f197 <+119>:	lea    -0xc(%ebp),%esp
+   0x0804f19a <+122>:	mov    %edx,%eax
+   0x0804f19c <+124>:	pop    %ebx
+   0x0804f19d <+125>:	pop    %esi
+   0x0804f19e <+126>:	pop    %edi
+   0x0804f19f <+127>:	pop    %ebp
+   0x0804f1a0 <+128>:	ret    
+   0x0804f1a1 <+129>:	lea    0x0(%esi,%eiz,1),%esi
+   0x0804f1a8 <+136>:	mov    0x48(%ebx),%ecx
+   0x0804f1ab <+139>:	subl   $0x1,0x4(%ecx)
+   0x0804f1af <+143>:	jne    0x804f197 <putchar+119>
+   0x0804f1b1 <+145>:	movl   $0x0,0x8(%ecx)
+   0x0804f1b8 <+152>:	cmpl   $0x0,%gs:0xc
+   0x0804f1c0 <+160>:	je     0x804f1c3 <putchar+163>
+   0x0804f1c2 <+162>:	lock subl $0x1,(%ecx)
+   0x0804f1c6 <+166>:	je     0x804f1cf <putchar+175>
+   0x0804f1c8 <+168>:	lea    (%ecx),%eax
+   0x0804f1ca <+170>:	call   0x806ec30 <__lll_unlock_wake_private>
+   0x0804f1cf <+175>:	lea    -0xc(%ebp),%esp
+   0x0804f1d2 <+178>:	mov    %edx,%eax
+   0x0804f1d4 <+180>:	pop    %ebx
+   0x0804f1d5 <+181>:	pop    %esi
+   0x0804f1d6 <+182>:	pop    %edi
+   0x0804f1d7 <+183>:	pop    %ebp
+   0x0804f1d8 <+184>:	ret    
+   0x0804f1d9 <+185>:	lea    0x0(%esi,%eiz,1),%esi
+   0x0804f1e0 <+192>:	mov    %ebx,%ecx
+   0x0804f1e2 <+194>:	jmp    0x804f178 <putchar+88>
+   0x0804f1e4 <+196>:	lea    0x0(%esi,%eiz,1),%esi
+   0x0804f1e8 <+200>:	sub    $0x8,%esp
+   0x0804f1eb <+203>:	movzbl %dl,%edx
+   0x0804f1ee <+206>:	push   %edx
+   0x0804f1ef <+207>:	push   %ecx
+   0x0804f1f0 <+208>:	call   0x8053640 <__overflow>
+   0x0804f1f5 <+213>:	mov    %eax,%edx
+   0x0804f1f7 <+215>:	add    $0x10,%esp
+   0x0804f1fa <+218>:	jmp    0x804f18f <putchar+111>
+   0x0804f1fc <+220>:	mov    %eax,%ecx
+   0x0804f1fe <+222>:	testl  $0x8000,(%ebx)
+   0x0804f204 <+228>:	jne    0x804f22d <putchar+269>
+   0x0804f206 <+230>:	mov    0x48(%ebx),%edx
+   0x0804f209 <+233>:	subl   $0x1,0x4(%edx)
+   0x0804f20d <+237>:	jne    0x804f22d <putchar+269>
+   0x0804f20f <+239>:	movl   $0x0,0x8(%edx)
+   0x0804f216 <+246>:	cmpl   $0x0,%gs:0xc
+   0x0804f21e <+254>:	je     0x804f221 <putchar+257>
+   0x0804f220 <+256>:	lock subl $0x1,(%edx)
+   0x0804f224 <+260>:	je     0x804f22d <putchar+269>
+   0x0804f226 <+262>:	lea    (%edx),%eax
+   0x0804f228 <+264>:	call   0x806ec30 <__lll_unlock_wake_private>
+   0x0804f22d <+269>:	sub    $0xc,%esp
+Quit
