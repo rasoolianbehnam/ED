@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>300 Multiple Choices</title>
+</head><body>
+<h1>Multiple Choices</h1>
+The document name you requested (<code>/123/lec/ch11.pdf</code>) could not be found on this server.
+However, we found documents with names similar to the one you requested.<p>Available documents:
+<ul>
+<li><a href="/123/lec/ch01.pdf">/123/lec/ch01.pdf</a> (mistyped character)
+<li><a href="/123/lec/ch13.pdf">/123/lec/ch13.pdf</a> (mistyped character)
+<li><a href="/123/lec/ch10.pdf">/123/lec/ch10.pdf</a> (mistyped character)
+<li><a href="/123/lec/ch12.pdf">/123/lec/ch12.pdf</a> (mistyped character)
+</ul>
+</body></html>
