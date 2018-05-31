@@ -9,7 +9,7 @@ def receive_from(connection):
             if not data:
                 break
             buffer += data
-    except Exception e:
+    except Exception as e:
         print("[!!!] Exception!")
         print(e)
     return buffer
