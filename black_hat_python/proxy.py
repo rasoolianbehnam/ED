@@ -3,10 +3,10 @@ import sys
 import threading
 def receive_from(connection):
     buffer = ""
-    connection.settimeout(2)
+    connection.settimeout(5)
     try:
         while True:
-            data = connection.recv(4096)
+            data = connection.recv(1024)
             if not data:
                 break
             buffer += data
@@ -30,7 +30,7 @@ def response_handler(response):
     return response
 
 def request_handler(request):
-    return request_handler
+    return request
 
 
 def proxy_handler(client_socket, remote_host, remote_port, receive_first):
@@ -38,6 +38,7 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
     remote_socket.connect((remote_host, remote_port))
 
     if receive_first:
+        print "[*] Receiving from remote"
         remote_buffer = receive_from(remote_socket)
         hexdump(remote_buffer)
         remote_buffer = response_handler(remote_buffer)
@@ -51,7 +52,6 @@ def proxy_handler(client_socket, remote_host, remote_port, receive_first):
             print "[==>] Received %d bytes from localhost." % len(local_buffer)
             hexdump(local_buffer)
             local_buffer = request_handler(local_buffer)
-
             remote_socket.send(local_buffer)
             print "[==>] Sent to remote."
 
