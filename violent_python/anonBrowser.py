@@ -29,10 +29,10 @@ class anonBrowser(mechanize.Browser):
         if sleep:
                 time.sleep(60)
 old_socket = socket.socket
-def use_tor(value=True):
+def use_tor(value=True, port=9050):
     global old_socket
     if value:
-        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, '127.0.0.1', 9050)
+        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, '127.0.0.1', port)
         socket.socket = socks.socksocket
     else:
         socket.socket = old_socket
