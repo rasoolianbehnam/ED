@@ -11,7 +11,7 @@ from BruteParser import BruteParser
 # general settings
 user_thread = 1
 username = 'bzr0014'
-password = 'sgxv7e8h'
+password = ''
 resusme = None
 
 # target specific settings
