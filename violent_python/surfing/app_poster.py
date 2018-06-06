@@ -4,6 +4,7 @@ import cookielib
 import threading
 import sys
 import Queue
+import getpass
 
 from HTMLParser import HTMLParser
 from BruteParser import BruteParser
@@ -11,11 +12,11 @@ from BruteParser import BruteParser
 # general settings
 user_thread = 1
 username = 'bzr0014'
-password = ''
+password = getpass.getpass()
 resusme = None
 
 # target specific settings
-target_url = "https://www.cheapoair.com/"
+target_url = "http://rapidbaz.ir"
 target_post = "https://connect.secure.wellsfargo.com/auth/login/do"
 
 username_field = "j_username"
