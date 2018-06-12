@@ -1,7 +1,7 @@
 import mechanize
 import cookielib
 import getpass
-import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 username = 'behnam.rasoulian@gmail.com'
 br = mechanize.Browser()
 
@@ -20,18 +20,26 @@ br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 
 br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
 
-r = br.open('https://www.cheapoair.com/fpnext/air/remotesearch?&yt=0&from=ATL&to=WAS&fromDt=06/27/2018&toDt=06/29/2018&fromTm=1100&toTm=1100&rt=true&daan=&raan=&dst=&rst=&ad=1&se=0&ch=0&infl=0&infs=0&class=1&airpref=&preftyp=1&searchflxdt=false&IsNS=false&searchflxarpt=false&childAge=&prefT=false')
+r = br.open('https://www.imdb.com')
 html = r.read()
-print html
+#print html
 
-#soup = BeautifulSoup(html)
-#forms = soup.findAll(name='form')
-#for form in forms:
-#    print form
+for form in br.forms():
+    print form
 
-#br.form['login_email'] = username
+br.select_form(nr=0)
+br.form['q'] = 'shawshank redemption'
 #br.form['login_password'] = \
 #        getpass.getpass('Enter password for %s: '%username)
-#br.submit()
+br.submit()
 
-#print br.response().read()
+html = br.response().read()
+soup = BeautifulSoup(html)
+links = soup.findAll(name='a')
+for link in links:
+    try:
+        href = link['href']
+        if '/title/' in href:
+            print href
+    except:
+        pass
