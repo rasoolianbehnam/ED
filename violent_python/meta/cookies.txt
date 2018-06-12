@@ -1,0 +1,42 @@
+##########################################
+Firefox:
+##########################################
+id INTEGER PRIMARY KEY
+baseDomain TEXT
+originAttributes TEXT NOT NULL DEFAULT ''
+name TEXT
+value TEXT
+host TEXT
+path TEXT
+expiry INTEGER
+lastAccessed INTEGER
+creationTime INTEGER
+isSecure INTEGER
+isHttpOnly INTEGER
+inBrowserElement INTEGER DEFAULT 0
+sameSite INTEGER
+CONSTRAINT moz_uniqueid UNIQUE (name
+host
+path
+originAttributes)
+
+##########################################
+Chromium:
+##########################################
+creation_utc INTEGER NOT NULL               ===>    id
+host_key TEXT NOT NULL                      ===>    host
+name TEXT NOT NULL                          ===>    name
+value TEXT NOT NULL                         ===>    value
+path TEXT NOT NULL                          ===>    path
+expires_utc INTEGER NOT NULL                ===>    expiry        
+is_secure INTEGER NOT NULL                  ===>    isSecure 
+is_httponly INTEGER NOT NULL                        isHttpOnly 
+last_access_utc INTEGER NOT NULL                    lassAccessed    
+has_expires INTEGER NOT NULL DEFAULT 1              ??        
+is_persistent INTEGER NOT NULL DEFAULT 1                        
+priority INTEGER NOT NULL DEFAULT 1                     
+encrypted_value BLOB DEFAULT ''                     
+firstpartyonly INTEGER NOT NULL DEFAULT 0                       
+UNIQUE (host_key                        
+ name                       
+ path)                      

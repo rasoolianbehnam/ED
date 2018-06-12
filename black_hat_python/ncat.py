@@ -15,7 +15,7 @@ port                = 0
 def usage():
     print "BHP Net Tool"
     print
-    print "Usage: bhpnet.py -t target_host -p port"
+    print "Usage: ncat.py -t target_host -p port"
     print """-l --listen
     - listen on [host]:[port] for
     incoming connections"""
