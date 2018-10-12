@@ -1,10 +1,13 @@
+import urllib2
 from anonBrowser import *
 
-ab = anonBrowser(proxies=[],\
-user_agents=[('User-agent','superSecretBroswer')])
-ab.anonymize()
-print '[*] Fetching page'
-response = ab.open('http://www.gmail.com/')
+use_tor(port=9150)
+url = 'http://www.myexternalip.com/raw'
+header = {'User-Agent': "Googlebot"}
+
+request = urllib2.Request(url, headers=header)
+response = urllib2.urlopen(request)
+
 print response.read()
-for cookie in ab.cookie_jar:
-    print cookie
+
+response.close()
