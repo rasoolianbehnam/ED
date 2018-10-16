@@ -1,2 +1,2 @@
 clear && clear
-python $1
+python -i $1
