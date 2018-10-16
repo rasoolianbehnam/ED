@@ -2,7 +2,7 @@ from ctypes import *
 import time
 
 msvcrt = cdll.msvcrt
-count = 0
+counter = 0
 
 while 1:
     msvcrt.printf("Loop iteration %d!\n"%counter)
