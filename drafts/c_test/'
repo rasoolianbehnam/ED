@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <time.h>
+using namespace std;
+// Broken binarySearch because of call-by-value
+ int binarySearch( vector<int> arr, int x ) {
+     int low = 0, high = arr.size( ) - 1;
+     while( low <= high ) {
+         int mid = ( low + high ) / 2;
+         if( arr[ mid ] == x )
+         return mid;
+     else if( x < arr[ mid ] )
+         high = mid - 1;
+     else
+         low = mid + 1;
+     }
+     return -1; // not found
+ }
+
+ int binarySearch( vector<int> *arr, int x ) {
+     int low = 0, high = arr->size( ) - 1;
+     while( low <= high ) {
+         int mid = ( low + high ) / 2;
+         if( (*arr)[ mid ] == x )
+         return mid;
+     else if( x < (*arr)[ mid ] )
+         high = mid - 1;
+     else
+         low = mid + 1;
+     }
+     return -1; // not found
+ }
+ int main( ) {
+     vector<int> v;
+     vector<int>* vv = &v;
+     for( int i = 0; i < 300000; i++ )
+         v->push_back( i * i );
+     double start = clock();
+     for( int j = 1000000; j < 1050000; j++ )
+         if( binarySearch( v, j ) >= 0 )
+             cout << j << " is a perfect square" << endl;
+     double elapsed = (clock() - start) / CLOCKS_PER_SEC;
+     cout << "time passed " << elapsed << endl;
+     double start = clock();
+     for( int j = 1000000; j < 1050000; j++ )
+         if( binarySearch( vv, j ) >= 0 )
+             cout << j << " is a perfect square" << endl;
+     double elapsed = (clock() - start) / CLOCKS_PER_SEC;
+     cout << "time passed " << elapsed << endl;
+     return 0;
+ }
