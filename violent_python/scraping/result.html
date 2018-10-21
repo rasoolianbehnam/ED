@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script language="JavaScript" type="text/javascript">
+function chkbrowser () {
+
+	var winh = document.body.clientHeight || window.innerHeight;
+	var scrh = screen.height;
+	
+	//alert(winH + ' ' + scrH);
+
+	var winw = document.body.clientWidth || window.innerWidth;
+	var scrw = screen.width;
+
+	//alert(winW + ' ' + scrW);
+
+	// See if winH is larger than scrH which may indicate this
+	// calendar is set in a tall iframe.  If so, then reset winH to
+	// something smaller to make is reasonable for the scrH
+	// The .8 value is to account for browser heading and footer
+	if (winh > (scrh)) {
+		// Only case where winH is taller than scrH is when
+		// calendar is in tall iframe.  So need to adjust.
+		// Use scrH as winH instead so calendar not too tall
+		// Calendars will strecth beyond this to fit content.
+		winh = (scrh * .8);
+		//alert(winH + ' ' + scrH);
+		
+	}
+
+	// See if calendar is in an iframed page
+	var iniframe = (window.location != window.parent.location) ? 'true' : 'false';
+		
+	var url = "http://www.calendarwiz.com/calendars/calendar.php?crd=aurec&cid[]=all&PHPSESSID=e4ebeddb5164381c8ae8bd4fc3a656f1&jsenabled=1" + "&winh=" + winh + "&winw=" + winw +"&inifr=" + iniframe;
+	location.replace(url);
+	
+}
+</script>
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" >
+<meta http-equiv="Refresh" content="1;URL=http://www.calendarwiz.com/calendars/calendar.php?crd=aurec&cid[]=all&PHPSESSID=e4ebeddb5164381c8ae8bd4fc3a656f1&jsenabled=0&inifr=unknown ">
+<title>CalendarWiz Welcome</title>
+</head>
+<body onload="chkbrowser();">
+</body>
+</html>
+

@@ -10,4 +10,4 @@ file_name=$(basename $1)
 base=${file_name%.*}
 extension=${file_name##*.}
 
-gcc -g -o $base $1 && ./$base
+gcc -g -o ${base}.out $1 && ./${base}.out
