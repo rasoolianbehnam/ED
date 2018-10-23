@@ -1,3 +1,4 @@
+import sys
 import smtplib
 from email.mime.text import MIMEText
 import getpass
@@ -27,8 +28,9 @@ def sendGmail(user, pwd="", to="", subject="", text=""):
     
 def sendAumail(user, pwd, to, subject="", text="", attachment=None, From=None):
     if attachment:
-        msg = MIMEMultipart()
+        msg = MIMEMultipart('mixed')
         msg.attach(attachment)
+        msg.attach(MIMEText(text, 'plain'))
     else:
         msg = MIMEText(text)
     msg['From'] = user
@@ -53,12 +55,16 @@ def sendAumail(user, pwd, to, subject="", text="", attachment=None, From=None):
         print "[-] Sending Failed.",
         print e
  
-attachment = create_attachment('run.sh')
+subject = sys.argv[1]
+text = sys.argv[2]
+attachment=None
+if len(sys.argv) > 3:
+    attachment = create_attachment(sys.argv[3])
 gmail_user = 'behnam.rasoulian@gmail.com'
 auburn_user = 'bzr0014@tigermail.auburn.edu'
 password = getpass.getpass("Please enter password: ")
 to = 'bzr0014@auburn.edu'
-subject = "test"
-text = "text"
 sendAumail(auburn_user, password, to, subject=subject,\
         text=text, attachment=attachment)
+
+print text

