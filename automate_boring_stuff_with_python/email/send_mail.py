@@ -29,7 +29,11 @@ def sendGmail(user, pwd="", to="", subject="", text=""):
 def sendAumail(user, pwd, to, subject="", text="", attachment=None, From=None):
     if attachment:
         msg = MIMEMultipart('mixed')
-        msg.attach(attachment)
+        if isinstance(attachment, list):
+            for att in attachment:
+                msg.attach(att)
+        elif isinstance(attachment, str):
+            msg.attach(attachment)
         msg.attach(MIMEText(text, 'plain'))
     else:
         msg = MIMEText(text)
@@ -54,17 +58,18 @@ def sendAumail(user, pwd, to, subject="", text="", attachment=None, From=None):
     except Exception, e:
         print "[-] Sending Failed.",
         print e
- 
-subject = sys.argv[1]
-text = sys.argv[2]
-attachment=None
-if len(sys.argv) > 3:
-    attachment = create_attachment(sys.argv[3])
-gmail_user = 'behnam.rasoulian@gmail.com'
-auburn_user = 'bzr0014@tigermail.auburn.edu'
-password = getpass.getpass("Please enter password: ")
-to = 'bzr0014@auburn.edu'
-sendAumail(auburn_user, password, to, subject=subject,\
-        text=text, attachment=attachment)
 
-print text
+if __name__=='__main__':
+    subject = sys.argv[1]
+    text = sys.argv[2]
+    attachment=None
+    if len(sys.argv) > 3:
+        attachment = create_attachment(sys.argv[3])
+    gmail_user = 'behnam.rasoulian@gmail.com'
+    auburn_user = 'szh0102@tigermail.auburn.edu'
+    password = getpass.getpass("Please enter password: ")
+    to = 'bzr0014@auburn.edu'
+    sendAumail(auburn_user, password, to, subject=subject,\
+            text=text, attachment=attachment)
+
+    print text
