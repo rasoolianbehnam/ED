@@ -1,0 +1,5 @@
+/home/bzr0014/drafts/csharp/hello_proj/mardas/mardas/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/bzr0014/drafts/csharp/hello_proj/mardas/mardas/bin/Debug/mardas.exe.mdb
+/home/bzr0014/drafts/csharp/hello_proj/mardas/mardas/bin/Debug/mardas.exe
+/home/bzr0014/drafts/csharp/hello_proj/mardas/mardas/obj/x86/Debug/mardas.exe
+/home/bzr0014/drafts/csharp/hello_proj/mardas/mardas/obj/x86/Debug/mardas.exe.mdb
