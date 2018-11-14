@@ -5,59 +5,130 @@ import java.util.*;
 import java.util.concurrent.*;
 public class Download {
     private static class DownloadThread implements Callable<Void> {
-        Queue<String> q;
-        HashMap<String,String> headers;
+        private static final int MAX_TRIES = 15;
+        private Queue<String> q;
+        private HashMap<String,String> headers;
+        private static HashMap<String, Integer> tryCounts;
+        public void cleanup(String urlText) {
+            int count;
+            synchronized (tryCounts) {
+                count = hashGet(tryCounts, urlText, 0) ;
+                tryCounts.put(urlText, count+1);
+            }
+            if (count < MAX_TRIES) {
+                synchronized (q) {
+                    q.add(urlText);
+                }
+            } else logErr("[!] Giving up on " + urlText + ".");
+        }
+
+        public void cleanup(File f) {
+            f.delete();
+        }
+        public void cleanup(InputStream in) {
+            try {
+                in.close();
+            } catch (IOException e) {
+                logErr("[!] Couldn't close input Stream");
+            }
+        }
+        public void cleanup(OutputStream out) {
+            try {
+                out.close();
+            } catch (IOException e) {
+                logErr("[!] Couldn't close Output Stream");
+            }
+        }
+
         public DownloadThread(Queue<String> qIn, HashMap<String,String> headersIn) {
             this.q = qIn;
             this.headers = headersIn;
+            tryCounts = new HashMap<String, Integer>();
         }
         public Void call() {
+            String urlText = null;
+            String fileName = null;
+            BufferedOutputStream fos = null;
+            InputStream result = null;
             URL url = null;
+            URLConnection uc = null;
+            File output = null;
             while (true) {
+                synchronized (q) {
+                    urlText = q.poll();
+                }
+                if (urlText == null) {
+                    break;
+                }
                 try {
-                    String urlText;
-                    synchronized (q) {
-                        urlText = q.poll();
-                    }
-                    if (urlText == null) {
-                        break;
-                    }
                     url = new URL(urlText);
-                    URLConnection uc = url.openConnection();
-                    String fileName = getFileName(url);
-                    File output = new File(fileName);
-                    if (output.exists()) {
-                        synchronized (System.out) {
-                            log("File " + fileName + " already exists.");
-                        }
-                        continue;
-                    }
-                    BufferedOutputStream fos= new BufferedOutputStream(
-                            new FileOutputStream(output));
-                    for (String key : headers.keySet()) {
-                        //log(key + " : " + headers.get(key));
-                        uc.setRequestProperty(key, headers.get(key));
-                    }
-
-                    log("[*] Downloading file " + fileName + ".");
-                    InputStream result = new BufferedInputStream(
-                            uc.getInputStream());
+                } catch (MalformedURLException e) {
+                    logErr("[!] Malformed URL: " + urlText);
+                    cleanup(urlText);
+                    continue;
+                }
+                try {
+                    uc = url.openConnection();
+                } catch (IOException e) {
+                    logErr("[!] Cannot create connection");
+                    cleanup(urlText);
+                    continue;
+                }
+                fileName = getFileName(url);
+                for (String key : headers.keySet()) {
+                    //log(key + " : " + headers.get(key));
+                    uc.setRequestProperty(key, headers.get(key));
+                }
+                try {
+                    result = new BufferedInputStream( uc.getInputStream());
                     //StringBuilder sb = new StringBuilder();
-                    int input;
+                } catch (IOException e) {
+                    logErr("[!] Cannot get stream.");
+                    cleanup(urlText);
+                    continue;
+                }
+                output = new File(fileName);
+                if (output.exists()) {
+                    synchronized (System.out) {
+                        log("File " + fileName + " already exists.");
+                    }
+                    continue;
+                }
+                log("[*] Downloading file " + fileName + ".");
+                try {
+                    fos = new BufferedOutputStream(
+                            new FileOutputStream(output));
+                } catch (FileNotFoundException e) {
+                    logErr("[!] File not Found!");
+                    cleanup(urlText);
+                    continue;
+                }
+
+                int input;
+                try {
                     while ((input = result.read()) != -1) {
                         //sb.append((char) input);
                         fos.write(input);
                     }
-                    synchronized (System.out) {
-                        log("[*] Finished Downloading from " + url + ".");
-                    }
                 } catch (IOException e) {
-                    if (url != null)
-                        synchronized (System.out) {
-                            log("[!] Problem downloading from " + url + ".");
-                        }
+                    logErr("[!] Problem with writing to file.");
+                    cleanup(urlText);
+                    cleanup(fos);
+                    cleanup(result);
+                    cleanup(output);
+                    continue;
+                }
+                synchronized (System.out) {
+                    log("[*] Finished Downloading from " + fileName + ".");
+                }
+                try {
+                    fos.close();
+                    result.close();
+                } catch (IOException e) {
+                    logErr("[!] Problem closing streams!");
                 }
             }
+            Thread.currentThread().interrupt();
             return null;
         }
     };
@@ -78,7 +149,7 @@ public class Download {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         try {
             String curlText = args[0];
-            String maxNum;
+            String maxNum = "0";
             int numThreads = 1;
             //log(curlText);
             int indexOfHeader = curlText.indexOf("-H");
@@ -108,8 +179,9 @@ public class Download {
             log(urlTemplate);
             //log(fileNameTemplate);
             Queue<String> q = new LinkedList<String>();
-            for (int i=1; i < Integer.parseInt(number_part)+1; i++) {
-                q.add(String.format(urlTemplate, i));
+            for (int i=0; i < Integer.parseInt(maxNum)+1; i++) {
+                if(!(new File(String.format(fileNameTemplate, i)).exists()))
+                    q.add(String.format(urlTemplate, i));
             }
             ExecutorService executor = Executors.newFixedThreadPool(numThreads);
             ArrayList<Future<Void>> tasks = new ArrayList<Future<Void>>();
@@ -129,5 +201,15 @@ public class Download {
     }
     public static void log(String text) {
         System.out.println(text);
+    }
+    public static void logErr(String text) {
+        System.err.println(text);
+    }
+
+    public static <T, S> S hashGet(HashMap<T,S> hash, T key, S defaultValue) {
+       S value = hash.get(key);
+       if (value == null)
+           return defaultValue;
+       return value;
     }
 }
