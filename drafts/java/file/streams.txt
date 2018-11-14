@@ -1,0 +1,67 @@
+public abstract class OutputStream
+    public abstract void write(int b) throws IOException
+    public void write(byte[] data) throws IOException
+    public void write(byte[] data, int offset, int length)
+    throws IOException
+    public void flush() throws IOException
+    public void close() throws IOException
+FileOutputStream
+BufferedOutputStream
+DataOutputStream
+    public final boolean readBoolean() throws IOException
+    public final byte readByte() throws IOException
+    public final char readChar() throws IOException
+    public final short readShort() throws IOException
+    public final int readInt() throws IOException
+    public final long readLong() throws IOException
+    public final float readFloat() throws IOException
+    public final double readDouble() throws IOException
+    public final String readUTF() throws IOException
+    //For reading data written by C program
+    public final int readUnsignedByte() throws IOException
+    public final int readUnsignedShort() throws IOException
+    //
+    public final int read(byte[] input) throws IOException
+    public final int read(byte[] input, int offset, int length) throws IOException
+    public final void readFully(byte[] input) throws IOException
+    public final void readFully(byte[] input, int offset, int length) throws IOException
+    //DON'T USE THE FOLLOWING
+    public final String readLine() throws IOException 
+printStream //DON'T USE!!
+
+public abstract class InputStream
+    public abstract int read() throws IOException
+    public int read(byte[] input) throws IOException
+    public int read(byte[] input, int offset, int length) throws IOException
+    public long skip(long n) throws IOException
+    public int available() throws IOException
+    public void close() throws IOException
+FileInputStream
+BufferedInputStream
+
+public abstract class Writer {
+    protected Writer()
+    protected Writer(Object lock)
+    public abstract void write(char[] text, int offset, int length) throws IOException
+    public void write(int c) throws IOException
+    public void write(char[] text) throws IOException
+    public void write(String s) throws IOException
+    public void write(String s, int offset, int length) throws IOException
+    public abstract void flush() throws IOException
+    public abstract void close() throws IOException
+}
+public class OutputStreamWriter
+
+public abstract class Reader() {
+    protected Reader()
+    protected Reader(Object lock)
+    public abstract int read(char[] text, int offset, int length) throws IOException
+    public int read() throws IOException
+    public int read(char[] text) throws IOException
+    public long skip(long n) throws IOException
+    public boolean ready()
+    public boolean markSupported()
+    public void mark(int readAheadLimit) throws IOException
+    public void reset() throws IOException
+    public abstract void close() throws IOException
+}

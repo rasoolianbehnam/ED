@@ -1,0 +1,2 @@
+/home/bzr0014/drafts/csharp/hello_proj/raghas/raghas/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/bzr0014/drafts/csharp/hello_proj/raghas/raghas/obj/x86/Debug/.NETFramework,Version=v4.5.1.AssemblyAttribute.cs

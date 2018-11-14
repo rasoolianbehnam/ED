@@ -1,0 +1,3140 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CANAPE.Net</name>
+    </assembly>
+    <members>
+        <member name="T:CANAPE.Net.Clients.ChainProxyClient">
+            <summary>
+            A proxy client which will try and connect with multiple different clients until one succeeds
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.ChainProxyClient.#ctor(CANAPE.Net.Clients.ProxyClient[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="clients">List of clients</param>
+        </member>
+        <member name="M:CANAPE.Net.Clients.ChainProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect the client
+            </summary>
+            <param name="token">The proxy token</param>
+            <param name="logger">The proxy logger instance</param>
+            <param name="meta">The proxy meta data</param>
+            <param name="globalMeta">The proxy global meta data</param>
+            <param name="properties">The proxy property bag</param>
+            <returns>The connected adapter</returns>
+        </member>
+        <member name="M:CANAPE.Net.Clients.ChainProxyClient.Bind(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Bind the client
+            </summary>
+            <param name="token">The proxy token</param>
+            <param name="logger">The proxy logger instance</param>
+            <param name="meta">The proxy meta data</param>
+            <param name="globalMeta">The proxy global meta data</param>
+            <param name="properties">The proxy property bag</param>
+            <returns>The connected adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Clients.FilteredIpProxyClient">
+            <summary>
+            An IP proxy client which will direct connect from a list of filters, otherwise it will fail
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.FilteredIpProxyClient.#ctor(System.Text.RegularExpressions.Regex[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="filters">List of filters</param>
+        </member>
+        <member name="M:CANAPE.Net.Clients.FilteredIpProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Clients.FixedIpProxyClient">
+            <summary>
+            An IP client which only goes to a fixed location
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.FixedIpProxyClient.#ctor(System.String,System.Int32,CANAPE.Net.Tokens.IpProxyToken.IpClientType,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="hostname">The hostname to connect to</param>
+            <param name="port">The port to connect to</param>
+            <param name="clientType">The type of connection to make</param>
+            <param name="ipv6">Indicates whether to use ipv6</param>
+        </member>
+        <member name="M:CANAPE.Net.Clients.FixedIpProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Clients.HttpProxyClient">
+            <summary>
+            HTTP Proxy client
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.HttpProxyClient.#ctor(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>        
+            <param name="hostname">Hostname to connect to</param>
+            <param name="port">Port</param>
+            <param name="ipv6">True for IPv6</param>
+        </member>
+        <member name="M:CANAPE.Net.Clients.HttpProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Clients.IpProxyClient">
+            <summary>
+            Proxy client to make a direct IP connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.IpProxyClient.GetDescription(CANAPE.Net.Tokens.IpProxyToken)">
+            <summary>
+            Get a description of the token
+            </summary>
+            <param name="token">The token</param>
+            <returns>The string description</returns>
+        </member>
+        <member name="M:CANAPE.Net.Clients.IpProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="M:CANAPE.Net.Clients.IpProxyClient.Bind(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Bind to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Clients.ProxyClient">
+            <summary>
+            Proxy client connection class
+            </summary>    
+        </member>
+        <member name="M:CANAPE.Net.Clients.ProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>        
+            <returns>The connected data adapter</returns>
+        </member>
+        <member name="M:CANAPE.Net.Clients.ProxyClient.Bind(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Bind to the required service with the token
+            </summary> 
+            <param name="token">The token recevied from proxy</param>
+            <param name="globalMeta">The global meta</param>
+            <param name="logger">The logger</param>
+            <param name="meta">The meta</param>
+            <param name="properties">Property bag to add any information to</param>
+            <returns>The connected data adapter</returns>        
+        </member>
+        <member name="T:CANAPE.Net.Clients.SocksProxyClient">
+            <summary>
+            A ProxyClient to connect to a socks proxy
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Clients.SocksProxyClient.SupportedVersion">
+            <summary>
+            Supported versions for SOCKS proxy client
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Clients.SocksProxyClient.SupportedVersion.Version5">
+            <summary>
+            Version 5
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Clients.SocksProxyClient.SupportedVersion.Version4">
+            <summary>
+            Version 4 or 4a (depending on value of _sendHostName)
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Clients.SocksProxyClient.#ctor(System.String,System.Int32,System.Boolean,CANAPE.Net.Clients.SocksProxyClient.SupportedVersion,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="hostname">The hostname/ip of the socks server</param>
+            <param name="port">The port of the socks server</param>
+            <param name="ipv6">True to try and use IPv6 (if available)</param>
+            <param name="version">Specify the supported versions</param>
+            <param name="sendHostName">True to send the hostname to the socks server</param>
+        </member>
+        <member name="M:CANAPE.Net.Clients.SocksProxyClient.Connect(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connection to the socks server
+            </summary>
+            <param name="token">The proxy token</param>
+            <param name="logger">Logger</param>
+            <param name="globalMeta">Global meta</param>
+            <param name="meta">Meta</param>
+            <param name="properties">Property bag to populate</param>
+            <returns>A connected data adapter, or null if not available</returns>
+            <exception cref="T:System.Net.Sockets.SocketException">Throw if cannot connect</exception>
+            <exception cref="T:System.ArgumentException">Throw if invalid operation occurs</exception>
+            <exception cref="T:System.IO.EndOfStreamException">Throw if stream ends before reading all data</exception>
+        </member>
+        <member name="T:CANAPE.Net.DataAdapters.BoundDataAdapter">
+            <summary>
+            A data adapter which is backed by a bound connection (e.g. a listening TCP socket)
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.BoundDataAdapter.DoConnect(System.Int32)">
+            <summary>
+            Do connection
+            </summary>
+            <param name="timeout">Timeout in seconds</param>
+            <returns>The conneced adapter</returns>
+        </member>
+        <member name="P:CANAPE.Net.DataAdapters.BoundDataAdapter.IsConnected">
+            <summary>
+            Indicate whether adapter is connected
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.BoundDataAdapter.Connect(System.Int32)">
+            <summary>
+            Connect the adapter
+            </summary>
+            <param name="timeout">Timeout in seconds</param>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.BoundDataAdapter.Read">
+            <summary>
+            Read a data frame
+            </summary>
+            <returns>The frame, null on eos</returns>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.BoundDataAdapter.Write(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Write data adapter
+            </summary>
+            <param name="data">The frame to write</param>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.BoundDataAdapter.OnDispose(System.Boolean)">
+            <summary>
+            On dispose
+            </summary>
+            <param name="disposing">True disposing</param>
+        </member>
+        <member name="T:CANAPE.Net.DataAdapters.IpBoundDataAdapter">
+            <summary>
+            Data adapter bound to an IP address
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.DataAdapters.IpBoundDataAdapter.Endpoint">
+            <summary>
+            The IP endpoint
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.DataAdapters.TcpListenerDataAdapter">
+            <summary>
+            Bound data adapter backed by a TCP listener
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.DataAdapters.TcpListenerDataAdapter.Listener">
+            <summary>
+            Get the listener
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.DataAdapters.TcpListenerDataAdapter.Endpoint">
+            <summary>
+            Get the listening endpoint
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.TcpListenerDataAdapter.#ctor(System.Net.IPEndPoint)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="bindAddress">The bind endpoint address</param>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.TcpListenerDataAdapter.DoConnect(System.Int32)">
+            <summary>
+            Do connection
+            </summary>
+            <param name="timeout">Timeout for connection in seconds</param>
+            <returns>The connected adapter</returns>
+            <exception cref="T:System.TimeoutException">Thrown if imeout</exception>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.TcpListenerDataAdapter.OnDispose(System.Boolean)">
+            <summary>
+            Dispose
+            </summary>
+            <param name="disposing">True if disposing</param>
+        </member>
+        <member name="T:CANAPE.Net.DataAdapters.UdpServerDataAdapter">
+            <summary>
+            Data adapter for a UDP server
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.UdpServerDataAdapter.#ctor(CANAPE.Net.Listeners.UdpNetworkListener,System.Net.IPEndPoint)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="listener">The network listener</param>
+            <param name="ep">The destination endpoint</param>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.UdpServerDataAdapter.Read">
+            <summary>
+            Read a frame from the adapter
+            </summary>
+            <returns>The frame</returns>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.UdpServerDataAdapter.Write(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Write a frame to the adapter
+            </summary>
+            <param name="frame">The frame</param>
+        </member>
+        <member name="M:CANAPE.Net.DataAdapters.UdpServerDataAdapter.OnDispose(System.Boolean)">
+            <summary>
+            Called on dispose
+            </summary>
+            <param name="disposing">True if disposing</param>
+        </member>
+        <member name="T:CANAPE.Net.Filters.IpProxyFilter">
+            <summary>
+            Proxy filter for IP connections
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.IpProxyFilter.Address">
+            <summary>
+            The hostname or IP address to filter on 
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.IpProxyFilter.Port">
+            <summary>
+            The UDP/TCP port
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.IpProxyFilter.RedirectAddress">
+            <summary>
+            Address to redirect to (null or empty means no redirect)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.IpProxyFilter.RedirectPort">
+            <summary>
+            Port to redirect to (0 means no redirect)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.IpProxyFilter.ClientType">
+            <summary>
+            The type of IP connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Filters.IpProxyFilter.Apply(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger)">
+            <summary>
+            Apply the proxy filter to a token
+            </summary>
+            <param name="token">The tokeb</param>
+            <param name="logger">A logger to log data to</param>
+        </member>
+        <member name="M:CANAPE.Net.Filters.IpProxyFilter.Match(CANAPE.Net.Tokens.ProxyToken)">
+            <summary>
+            Check if the token matches this filter
+            </summary>
+            <param name="token">The token to match</param>
+            <returns>True if it matches</returns>
+        </member>
+        <member name="M:CANAPE.Net.Filters.IpProxyFilter.ToString">
+            <summary>
+            Overridden ToString method
+            </summary>
+            <returns>Returns a string</returns>
+        </member>
+        <member name="T:CANAPE.Net.Filters.LayerMergePolicy">
+            <summary>
+            An enumeration which indicates the layer merge policy
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Filters.LayerMergePolicy.Suffix">
+            <summary>
+            Add the layers to the end of the current list
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Filters.LayerMergePolicy.Prefix">
+            <summary>
+            Add the layers to the beginning of the current list
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Filters.LayerMergePolicy.Replace">
+            <summary>
+            Replace the layers entirely
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Filters.ProxyFilter">
+            <summary>
+            Basic class for filtering proxy connections
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Graph">
+            <summary>
+            A netgraph to use for this connection (if null then use the default)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Client">
+            <summary>
+            A proxy client to use for this connection (if null then use default)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Layers">
+            <summary>
+            Array of network layers to apply to this connection on a match
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.MergePolicy">
+            <summary>
+            Policy for how layers are merged together
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Block">
+            <summary>
+            Indicates this filter should block the matched connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Disabled">
+            <summary>
+            Indicates this filter is currently disabled
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Filters.ProxyFilter.Bound">
+            <summary>
+            Indicates this filter will only match bound tokens
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Filters.ProxyFilter.Match(CANAPE.Net.Tokens.ProxyToken)">
+            <summary>
+            Overridable method to determine if this token matches
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Filters.ProxyFilter.Apply(CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="T:CANAPE.Net.Layers.BaseNetworkLayer`2">
+             <summary>
+            Base network layer class, makes implementation slightly simpler
+             </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.Token">
+            <summary>
+            Proxy token for this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.Logger">
+            <summary>
+            Logger for this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.Meta">
+            <summary>
+            Meta data associated with this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.GlobalMeta">
+            <summary>
+            Global meta data associated with this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.Properties">
+            <summary>
+            Property bag associated with connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.BaseNetworkLayer`2.Binding">
+            <summary>
+            Current binding mode
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.BaseNetworkLayer`2.OnConnect(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Called on layer setup, allows you to override the clients and server adapters if needed
+            </summary>
+            <param name="client">Reference to the client adapter</param>
+            <param name="server">References to the server adapter</param>
+            <param name="binding">The current binding</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.BaseNetworkLayer`2.Negotiate(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Negotiate method
+            </summary>
+            <param name="server">Server adapter</param>
+            <param name="client">Client adapter</param>
+            <param name="token">The associated proxy token</param>
+            <param name="logger">The associated logger</param>
+            <param name="meta">The associated meta dictionary</param>
+            <param name="globalMeta">The assocaited global meta dictionary</param>
+            <param name="properties">Property bag</param>
+            <param name="defaultBinding">Default layer binding mode</param>
+        </member>
+        <member name="T:CANAPE.Net.Layers.DataParserNetworkLayer">
+            <summary>
+            Data parser network layer.
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CANAPE.Net.Layers.DataParserNetworkLayer"/> class.
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientClose">
+            <summary>
+            Clients the close.
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ReadInbound(CANAPE.Utils.DataReader)">
+            <summary>
+            Reads the inbound.
+            </summary>
+            <returns>The inbound.</returns>
+            <param name="reader">Reader.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientCanTimeout">
+            <summary>
+            Clients the can timeout.
+            </summary>
+            <returns><c>true</c>, if can timeout was cliented, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientGetTimeout">
+            <summary>
+            Clients the get timeout.
+            </summary>
+            <returns>The get timeout.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientSetTimeout(System.Int32)">
+            <summary>
+            Clients the set timeout.
+            </summary>
+            <param name="timeout">Timeout.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerCanTimeout">
+            <summary>
+            Servers the can timeout.
+            </summary>
+            <returns><c>true</c>, if can timeout was servered, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerGetTimeout">
+            <summary>
+            Servers the get timeout.
+            </summary>
+            <returns>The get timeout.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerSetTimeout(System.Int32)">
+            <summary>
+            Servers the set timeout.
+            </summary>
+            <param name="timeout">Timeout.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientRead">
+            <summary>
+            Clients the read.
+            </summary>
+            <returns>The read.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.WriteOutbound(CANAPE.DataFrames.DataFrame,CANAPE.Utils.DataWriter)">
+            <summary>
+            Writes the outbound.
+            </summary>
+            <param name="frame">Frame.</param>
+            <param name="writer">Writer.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ClientWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Clients the write.
+            </summary>
+            <param name="frame">Frame.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.NegotiateProtocol(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Negotiates the protocol.
+            </summary>
+            <returns><c>true</c>, if protocol was negotiated, <c>false</c> otherwise.</returns>
+            <param name="outboundStream">Outbound stream.</param>
+            <param name="inboundStream">Inbound stream.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.NegotiateProtocol(System.IO.Stream,System.IO.Stream,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Negotiates the protocol.
+            </summary>
+            <returns><c>true</c>, if protocol was negotiated, <c>false</c> otherwise.</returns>
+            <param name="outboundStream">Outbound stream.</param>
+            <param name="inboundStream">Inbound stream.</param>
+            <param name="binding">Binding.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.OnConnect(System.IO.Stream,System.IO.Stream,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Ons the connect.
+            </summary>
+            <returns><c>true</c>, if connect was oned, <c>false</c> otherwise.</returns>
+            <param name="clientStream">Client stream.</param>
+            <param name="serverStream">Server stream.</param>
+            <param name="binding">Binding.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerClose">
+            <summary>
+            Servers the close.
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ReadOutbound(CANAPE.Utils.DataReader)">
+            <summary>
+            Reads the outbound.
+            </summary>
+            <returns>The outbound.</returns>
+            <param name="reader">Reader.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerRead">
+            <summary>
+            Servers the read.
+            </summary>
+            <returns>The read.</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.WriteInbound(CANAPE.DataFrames.DataFrame,CANAPE.Utils.DataWriter)">
+            <summary>
+            Writes the inbound.
+            </summary>
+            <param name="frame">Frame.</param>
+            <param name="writer">Writer.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DataParserNetworkLayer.ServerWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Servers the write.
+            </summary>
+            <param name="frame">Frame.</param>
+        </member>
+        <member name="T:CANAPE.Net.Layers.DynamicNetworkLayer">
+            <summary>
+            A network layer for dynamic code
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ReadClientFrames(CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Override to supply a generator which reads frames from client endpoint
+            </summary>
+            <param name="client">The client data adapter</param>
+            <returns>An enumerator of data frames</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ReadServerFrames(CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Override to supply a generate which read frames from server endpoint
+            </summary>
+            <param name="server">The server data adapter</param>
+            <returns>An enumerator of server frames</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.WriteClientFrame(CANAPE.DataAdapters.IDataAdapter,CANAPE.DataFrames.DataFrame)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+            <param name="frame"></param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.WriteServerFrame(CANAPE.DataAdapters.IDataAdapter,CANAPE.DataFrames.DataFrame)">
+            <summary>
+            
+            </summary>
+            <param name="server"></param>
+            <param name="frame"></param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ClientWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            
+            </summary>
+            <param name="frame"></param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ClientRead">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ClientClose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ServerWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            
+            </summary>
+            <param name="frame"></param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ServerRead">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.ServerClose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicNetworkLayer.OnConnect(CANAPE.DataAdapters.IDataAdapter,CANAPE.DataAdapters.IDataAdapter,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+            <param name="server"></param>
+            <param name="binding"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.DynamicStreamNetworkLayer">
+            <summary>
+            A network layer based on a streams
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicStreamNetworkLayer.OnConnect(System.IO.Stream,System.IO.Stream,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Method to implement for taking stream data
+            </summary>
+            <param name="clientStream"></param>
+            <param name="serverStream"></param>
+            <param name="binding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.DynamicStreamNetworkLayer.OnConnect(CANAPE.DataAdapters.IDataAdapter,CANAPE.DataAdapters.IDataAdapter,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Method called on Connect
+            </summary>
+            <param name="client">The client adapter</param>
+            <param name="server">The server adapter</param>
+            <param name="binding">Binding mode</param>
+        </member>
+        <member name="T:CANAPE.Net.Layers.MatchMode">
+            <summary>
+            Match mode for entry
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.MatchMode.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.MatchMode.Equal">
+            <summary>
+            Equal match
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.MatchMode.Glob">
+            <summary>
+            Simple glob match
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.MatchMode.Regex">
+            <summary>
+            Regex match
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Layers.HttpMatchEntry">
+            <summary>
+            Entry for a HTTP match
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpMatchEntry.Match">
+            <summary>
+            The match string
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpMatchEntry.Mode">
+            <summary>
+            The mode of the match
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpMatchEntry.IgnoreCase">
+            <summary>
+            Whether case should be ignored
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpMatchEntry.#ctor(System.String,CANAPE.Net.Layers.MatchMode)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="match">Match string</param>
+            <param name="mode">Match mode</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpMatchEntry.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpMatchEntry.ToString">
+            <summary>
+            Overridden ToString
+            </summary>
+            <returns>The string</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpMatchEntry.IsMatch(System.String)">
+            <summary>
+            Checks for a match
+            </summary>
+            <param name="value">The string to match against</param>
+            <returns>True if a match</returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.HttpLayerConfigEntry">
+            <summary>
+            Entry for a single HTTP configuration
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.PathMatch">
+            <summary>
+            Matcher for a path
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.MethodMatch">
+            <summary>
+            Matcher for a method
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.ContentTypeMatch">
+            <summary>
+            Match for content-type
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.RequestStreamBody">
+            <summary>
+            If true request body will be streamed rather than buffered up
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.ResponseStreamBody">
+            <summary>
+            If true response body will be streamed rather than buffered up
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpLayerConfigEntry.ConvertToChunked">
+            <summary>
+            Convert HTTP/1.1 content-length format response to chunked encoding (for easier manipulation)
+            Only applicable if StreamBody has been set, otherwise the entire body is buffered anyway
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpLayerConfigEntry.IsMatch(CANAPE.Net.Protocols.Parser.HttpRequestHeader)">
+            <summary>
+            Does this entry match the request
+            </summary>
+            <param name="request">The request</param>
+            <returns>True if it matches</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpLayerConfigEntry.IsMatch(CANAPE.Net.Protocols.Parser.HttpRequestHeader,CANAPE.Net.Protocols.Parser.HttpResponseHeader)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpLayerConfigEntry.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpLayerConfigEntry.ToString">
+            <summary>
+            Overridden ToString
+            </summary>
+            <returns>The string</returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.HttpNetworkLayer">
+            <summary>
+            Class for HTTP network layer
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayer.#ctor">
+            <summary>
+            Constructor, default configuration
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayer.#ctor(CANAPE.Net.Layers.HttpNetworkLayerConfig)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="config">Layer configuration</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayer.Negotiate(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            
+            </summary>
+            <param name="server"></param>
+            <param name="client"></param>
+            <param name="token"></param>
+            <param name="logger"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="properties"></param>
+            <param name="defaultBinding"></param>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayer.Binding">
+            <summary>
+            Current binding mode
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Layers.HttpNetworkLayerConfig">
+            <summary>
+            Configuration class for HTTP network layer, TODO: Implement filter set to configure this for specific requests
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.ConfigEntries">
+            <summary>
+            Array of configuration entries
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.DefaultEntry">
+            <summary>
+            The default configuration if no specific match
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.BufferedRequestMaxLength">
+            <summary>
+            Sets a maximum length for a buffered stream, anything above will be converted to chunked. &lt;= 0 indicates no limit
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.BufferedResponseMaxLength">
+            <summary>
+            Sets a maximum length for a buffered stream, anything above will be converted to chunked. &lt;= 0 indicates no limit
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.RequestStreamChunkSize">
+            <summary>
+            Specify how big a chunk to read in per chunk when in streaming mode, set to 0 to disable which
+            will send data with no buffering, this is advisory, it won't work in chunked encoding, 
+            and you might have short reads sometimes
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.RequestStrictParsing">
+            <summary>
+            If true then applies stricter parsing on the data, will cause more requests to fail
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.ResponseStreamChunkSize">
+            <summary>
+            Specify how big a chunk to read in per chunk when in streaming mode, set to 0 to disable which
+            will send data with no buffering, this is advisory, it won't work in chunked encoding, 
+            and you might have short reads sometimes
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.ResponseStrictParsing">
+            <summary>
+            If true then applies stricter parsing on the data, will cause more requests to fail
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.HttpNetworkLayerConfig.Handle100Continue">
+            <summary>
+            Automatically handle 100 continues (remove from request, remove from response)
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayerConfig.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayerConfig.GetEntry(CANAPE.Net.Protocols.Parser.HttpRequestHeader)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.HttpNetworkLayerConfig.GetEntry(CANAPE.Net.Protocols.Parser.HttpRequestHeader,CANAPE.Net.Protocols.Parser.HttpResponseHeader)">
+            <summary>
+            
+            </summary>
+            <param name="request"></param>
+            <param name="response"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.INetworkLayer">
+            <summary>
+            An interface to describe a network layer negotiator
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.INetworkLayer.Negotiate(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Method to negotiate the layer
+            </summary>
+            <param name="server">Reference to the server adapter, can change the adapter</param>
+            <param name="client">Reference to the client adapter, can change the adapter</param>
+            <param name="token">A token which is associated with this connection</param>
+            <param name="logger">Logger object</param>
+            <param name="globalMeta">Global meta dictionary</param>
+            <param name="meta">Meta dictionary</param>
+            <param name="properties">The property bag to add any connection information to</param>
+            <param name="defaultBinding">Indicates the current default binding mode, layers are free to ignore (at their peril)</param>
+        </member>
+        <member name="P:CANAPE.Net.Layers.INetworkLayer.Binding">
+            <summary>
+            The binding mode for the layer if different from default
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Layers.INetworkLayerFactory">
+            <summary>
+            A factory for a network layer
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.INetworkLayerFactory.CreateLayer(CANAPE.Utils.Logger)">
+            <summary>
+            Create an instance of the layer
+            </summary>
+            <param name="logger">A logger to use when creating the layer</param>
+            <returns>The created layer</returns>
+        </member>
+        <member name="P:CANAPE.Net.Layers.INetworkLayerFactory.Description">
+            <summary>
+            Get a descriptive name for this layer factory
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.INetworkLayerFactory.Binding">
+            <summary>
+            Get or set the network layer binding mode
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.INetworkLayerFactory.Disabled">
+            <summary>
+            Get or set layer is disabled
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.INetworkLayerFactory.Clone">
+            <summary>
+            Clone the factory
+            </summary>
+            <returns>The cloned factory</returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.NetworkLayerBinding">
+            <summary>
+            An enumeration which indicates how to bind network layers, this is advisory and can be ignored by implementations
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.NetworkLayerBinding.Default">
+            <summary>
+            The default binding, what ever the network choses as it default
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.NetworkLayerBinding.Client">
+            <summary>
+            Binds client only layer
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.NetworkLayerBinding.Server">
+            <summary>
+            Binds server only layer
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Layers.NetworkLayerBinding.ClientAndServer">
+            <summary>
+            Binds client and server layers
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Layers.NetworkLayerFactoryExtensions">
+            <summary>
+            Extension methods for network layer factories
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.NetworkLayerFactoryExtensions.CreateLayers(System.Collections.Generic.IEnumerable{CANAPE.Net.Layers.INetworkLayerFactory},CANAPE.Utils.Logger)">
+            <summary>
+            Create an array of layers from a list of factories
+            </summary>
+            <param name="layers">The list of layers</param>
+            <param name="logger">Logger to use when creating</param>
+            <returns>The list of network layers</returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.TlsNetworkLayer">
+            <summary>
+            A layer class to implement a SSL network
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayer.#ctor(CANAPE.Net.Layers.TlsNetworkLayerConfig)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="config">Layer configuration</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayer.Negotiate(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Tokens.ProxyToken,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            
+            </summary>
+            <param name="server"></param>
+            <param name="client"></param>
+            <param name="token"></param>
+            <param name="logger"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="properties"></param>
+            <param name="defaultBinding"></param>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayer.Binding">
+            <summary>
+            Get or set the binding mode used
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Layers.TlsNetworkLayerConfig">
+            <summary>
+            The configuration of an SSL Network Layer
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayerConfig.#ctor(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CANAPE.Net.Layers.SslNetworkLayerConfig"/> class.
+            </summary>
+            <param name="disableClient">If set to <c>true</c> disable client.</param>
+            <param name="disableServer">If set to <c>true</c> disable server.</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayerConfig.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.Enabled">
+            <summary>
+            Whether SSL is enabled at all
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.ClientCertificates">
+            <summary>
+            List of client certificates
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.ServerCertificate">
+            <summary>
+            The server certificate (if not in auto mode). Will be used in preference
+            to the auto generated ServerCertificateSubject
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.ServerCertificateSubject">
+            <summary>
+            The server certificate subject, will generate a certificate on the fly.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.SpecifyServerCert">
+            <summary>
+            Specifies the server cert (makes ServerCertificate valid)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.VerifyServerCertificate">
+            <summary>
+            Specifed whether the remote server certificate is verified
+            Should default to false as this is for testing only
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.ClientProtocol">
+            <summary>
+            The client protocol, if SslProtocols.None then doesn't enable SSL
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.ServerProtocol">
+            <summary>
+            The server protocol, if SslProtocols.None then doesn't enable SSL
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.RequireClientCertificate">
+            <summary>
+            Whether a client certificate is required or not, whether it then
+            matters what it sends depends on VerifyClientCertificate
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.VerifyClientCertificate">
+            <summary>
+            Specifed whether the client certificate is verified
+            Should default to false as this is for testing only
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Layers.TlsNetworkLayerConfig.Timeout">
+            <summary>
+            Timeout for the SSL connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayerConfig.Clone">
+            <summary>
+            Simple deep clone method
+            </summary>
+            <returns>The cloned configuration</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.TlsNetworkLayerConfig.ToString">
+            <summary>
+            ToString override
+            </summary>
+            <returns>A textual description</returns>
+        </member>
+        <member name="T:CANAPE.Net.Layers.WrappedNetworkLayer`2">
+            <summary>
+            Simpler dynamic base network layer class, makes it easier to implement in a class and for python
+            </summary>
+            <typeparam name="T">Type of configuration</typeparam>
+            <typeparam name="R">Type to reference configuration</typeparam>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Method to override writing for a wrapped client adapter
+            </summary>
+            <param name="frame">The wraper to write</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientRead">
+            <summary>
+            Method to override reading for a wrapped client adapter
+            </summary>
+            <returns>A data frame read from the adapter, null on end of stream</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientClose">
+            <summary>
+            Method to override closing for a wrapped client adapter
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientSetTimeout(System.Int32)">
+            <summary>
+            Method to override setting a timeout for a wrapped client adapter
+            </summary>
+            <param name="timeout">The timeout in milliseconds</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientGetTimeout">
+            <summary>
+            Method to override getting a timeout for a wrapped client adapter
+            </summary>
+            <returns>The timeout in milliseconds</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ClientCanTimeout">
+            <summary>
+            Method to override indicating whether we can timeout or not
+            </summary>
+            <returns>True indicates a timeout can be set</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerWrite(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Method to override writing for a wrapped server adapter
+            </summary>
+            <param name="frame">The frame to write</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerRead">
+            <summary>
+            Method to override reading for a wrapped server adapter
+            </summary>
+            <returns>A data frame read from the adapter, null on end of stream</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerSetTimeout(System.Int32)">
+            <summary>
+            Method to override setting a timeout for a wrapped server adapter
+            </summary>
+            <param name="timeout">The timeout in milliseconds</param>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerGetTimeout">
+            <summary>
+            Method to override getting a timeout for a wrapped client adapter
+            </summary>
+            <returns>The timeout in milliseconds</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerCanTimeout">
+            <summary>
+            Method to override indicating whether we can timeout or not
+            </summary>
+            <returns>True indicates a timeout can be set</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.ServerClose">
+            <summary>
+            Method to override closing for a wrapped server adapter
+            </summary>        
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.OnConnect(CANAPE.DataAdapters.IDataAdapter,CANAPE.DataAdapters.IDataAdapter,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Called on layer setup, allows you to override the clients and server adapters if needed
+            </summary>
+            <param name="client">Reference to the client adapter</param>
+            <param name="server">References to the server adapter</param>
+            <param name="binding">The current binding</param>
+            <returns>Returns true if the connection should continue</returns>
+        </member>
+        <member name="M:CANAPE.Net.Layers.WrappedNetworkLayer`2.OnConnect(CANAPE.DataAdapters.IDataAdapter@,CANAPE.DataAdapters.IDataAdapter@,CANAPE.Net.Layers.NetworkLayerBinding)">
+            <summary>
+            Method called on Connect
+            </summary>
+            <param name="client">The client adapter</param>
+            <param name="server">The server adapter</param>
+            <param name="binding">Binding mode</param>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.AggregateNetworkListener">
+            <summary>
+            A network listener which can aggregate 2 different listeners together
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Listeners.AggregateNetworkListener.Left">
+            <summary>
+            Get the left listener
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Listeners.AggregateNetworkListener.Right">
+            <summary>
+            Get the right listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.AggregateNetworkListener.#ctor(CANAPE.Net.Listeners.INetworkListener,CANAPE.Net.Listeners.INetworkListener)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="left">The left listener</param>
+            <param name="right">The right listener</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.AggregateNetworkListener.Start">
+            <summary>
+            Start the listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.AggregateNetworkListener.Stop">
+            <summary>
+            Stop the listener
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.Listeners.AggregateNetworkListener.ClientConnected">
+            <summary>
+            Client connected event
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.AggregateNetworkListener.Dispose">
+            <summary>
+            Dispose method
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.AggregateNetworkListener.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return the listener information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.ClientConnectedEventArgs">
+            <summary>
+            Event arguments for when a client connects
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Listeners.ClientConnectedEventArgs.DataAdapter">
+            <summary>
+            The data adapter associated with the connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Listeners.ClientConnectedEventArgs.Properties">
+            <summary>
+            Any other associated data from the listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ClientConnectedEventArgs.#ctor(CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="adapter"></param>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.INetworkListener">
+            <summary>
+            Generic interface for a network listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.INetworkListener.Start">
+            <summary>
+            Start the listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.INetworkListener.Stop">
+            <summary>
+            Stop the listener
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.Listeners.INetworkListener.ClientConnected">
+            <summary>
+            Event called when a client connects
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.ManualNetworkListener">
+            <summary>
+            A network listener you can create arbitrary connections for
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.#ctor(System.String)">
+            <summary>
+            Constructor with name
+            </summary>
+            <param name="name">The name of the listener</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.Listeners.ManualNetworkListener.ClientConnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.CreateConnection(CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="da"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.#ctor(CANAPE.Utils.Logger)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.ManualNetworkListener.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return the listener information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.TcpNetworkListener">
+            <summary>
+            Network listener implement for a TCP server
+            TODO: Add two listeners for both v4 and v6 endpoints, maybe just make that the default?
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Listeners.TcpNetworkListener.EndPoint">
+            <summary>
+            Listener endpoint
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.#ctor(System.Net.IPEndPoint,CANAPE.Utils.Logger,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="bindAddress">The address to bind to</param>
+            <param name="logger">Logger to report errors to</param>
+            <param name="nodelay">Set whether the socket will have nagle algorithm disabled</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.#ctor(System.Boolean,System.Boolean,System.Int32,CANAPE.Utils.Logger,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="anyBind">True to bind to all addresses, otherwise just localhost</param>
+            <param name="ipv6">Whether to use IPv6</param>
+            <param name="port">The TCP port</param>
+            <param name="logger">Logger to report errors to</param>
+            <param name="nodelay">Set whether the socket will have nagle algorithm disabled</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.#ctor(System.Boolean,System.Boolean,CANAPE.Utils.Logger,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="anyBind">True to bind to all addresses, otherwise just localhost</param>
+            <param name="ipv6">Whether to use IPv6</param>        
+            <param name="logger">Logger to report errors to</param>
+            <param name="nodelay">Set whether the socket will have nagle algorithm disabled</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.Start">
+            <summary>
+            Start the listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.Stop">
+            <summary>
+            Stop the listener
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.Listeners.TcpNetworkListener.ClientConnected">
+            <summary>
+            Event called when a client connects
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.Dispose">
+            <summary>
+            Dispose the object
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.TcpNetworkListener.ToString">
+            <summary>
+            Implements ToString
+            </summary>
+            <returns>Description of listener</returns>
+        </member>
+        <member name="T:CANAPE.Net.Listeners.UdpNetworkListener">
+            <summary>
+            This class implements a mechanism to multiplex connections to UDP sockets (which are inherently stateless)
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.#ctor(System.Net.IPEndPoint,System.Net.IPAddress[],System.Boolean,CANAPE.Utils.Logger)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="bindAddress">The address to bind to</param>
+            <param name="broadcast">Set whether the socket is broadcast enabled</param>
+            <param name="multicastGroups">A list of multicast groups to join</param>
+            <param name="logger">Logger to report errors to</param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.#ctor(System.Boolean,System.Boolean,System.Int32,System.Boolean,CANAPE.Utils.Logger)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="anyBind"></param>
+            <param name="ipv6"></param>
+            <param name="port"></param>
+            <param name="broadcast"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.#ctor(System.Boolean,System.Boolean,System.Boolean,CANAPE.Utils.Logger)">
+            <summary>
+            Constructor, bind to a random port
+            </summary>
+            <param name="anyBind"></param>
+            <param name="ipv6"></param>
+            <param name="broadcast"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.Read(System.Net.IPEndPoint)">
+            <summary>
+            
+            </summary>
+            <param name="ep"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.CloseConnection(System.Net.IPEndPoint)">
+            <summary>
+            
+            </summary>
+            <param name="ep"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.Write(System.Byte[],System.Net.IPEndPoint)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <param name="ep"></param>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.Start">
+            <summary>
+            Start the listener
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.Stop">
+            <summary>
+            Stop the listener
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.Listeners.UdpNetworkListener.ClientConnected">
+            <summary>
+            Event called when a client connects
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.Dispose">
+            <summary>
+            Dispose the object
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Listeners.UdpNetworkListener.ToString">
+            <summary>
+            Implements ToString
+            </summary>
+            <returns>Description of listener</returns>
+        </member>
+        <member name="T:CANAPE.Net.NetServiceException">
+            <summary>
+            Class to handle network service exceptions
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.NetServiceException.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.NetServiceException.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">Message</param>
+        </member>
+        <member name="M:CANAPE.Net.NetServiceException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="message">Message</param>
+            <param name="innerException">Inner exception</param>
+        </member>
+        <member name="T:CANAPE.Net.PacketLogEventArgs">
+            <summary>
+            Arguments for filter log packet event
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.PacketLogEventArgs.Packet">
+            <summary>
+            The packet to be logged
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.PacketLogEventArgs.Filter">
+            <summary>
+            Set to true if to be filtered
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.PacketLogEventArgs.Graph">
+            <summary>
+            The graph associated with this packet
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.PacketLogEventArgs.#ctor(CANAPE.Utils.LogPacket,CANAPE.Nodes.NetGraph)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="packet">The packet being logged</param>
+            <param name="graph">The graph associated with this packet</param>
+        </member>
+        <member name="T:CANAPE.Net.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ConnectionHistoryEntry_ToString">
+            <summary>
+              Looks up a localized string similar to Network: {0}, Id: {1}, StartTime: {2}, EndTime: {3}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.FixedProxyServer_ToString">
+            <summary>
+              Looks up a localized string similar to Fixed Proxy Server.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.FullHttpProxyServer_InvalidAuthLine">
+            <summary>
+              Looks up a localized string similar to Invalid Proxy-Authorization header received.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.FullHttpProxyServer_InvalidBase64Auth">
+            <summary>
+              Looks up a localized string similar to Invalid base64 in authentication header.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.FullHttpProxyServer_InvalidUsernamePasswordString">
+            <summary>
+              Looks up a localized string similar to Invalid username:password string in basic authentication header.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.FullHttpProxyServer_OnlySupportBasicAuth">
+            <summary>
+              Looks up a localized string similar to Only support basic authentication for proxy.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpNetworkLayer_CannotParserResponseNotRequestMade">
+            <summary>
+              Looks up a localized string similar to Cannot parse response as no HTTP request was made.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyClient_ErrorOnConnect">
+            <summary>
+              Looks up a localized string similar to HTTP proxy server sent error {0} in response to CONNECT {1}:{2}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyClient_ErrorReconnecting">
+            <summary>
+              Looks up a localized string similar to Error reconnecting to HTTP proxy.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyClient_InvalidProxyToken">
+            <summary>
+              Looks up a localized string similar to Invalid proxy token passed.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyClient_InvalidResponse">
+            <summary>
+              Looks up a localized string similar to Invalid response from HTTP proxy.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyClient_NoResponse">
+            <summary>
+              Looks up a localized string similar to Server sent no response.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyServer_InvalidConnect">
+            <summary>
+              Looks up a localized string similar to Invalid HTTP CONNECT port &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyServer_InvalidRequest">
+            <summary>
+              Looks up a localized string similar to Invalid HTTP proxy request &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyServer_InvalidUrl">
+            <summary>
+              Looks up a localized string similar to Invalid URL passed for HTTP request &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.HttpProxyServer_ToString">
+            <summary>
+              Looks up a localized string similar to HTTP Proxy Server.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.IpNetworkListener_ToStringFormat">
+            <summary>
+              Looks up a localized string similar to {0} {1}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.IpProxyClient_InvalidTokenType">
+            <summary>
+              Looks up a localized string similar to Invalid client type in proxy token.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.IpProxyFilter_ToString">
+            <summary>
+              Looks up a localized string similar to Address = {0}, Port = {1}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.LayerSectionNode_InvalidGraph">
+            <summary>
+              Looks up a localized string similar to Subgraph must have a client and server node.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ManualNetworkListener_Anonymous">
+            <summary>
+              Looks up a localized string similar to Anonymous Listener.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ManualNetworkListener_CreateLogString">
+            <summary>
+              Looks up a localized string similar to Created new manual connection.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.NetworkServerService_MultipleServerNodes">
+            <summary>
+              Looks up a localized string similar to More than one server node in graph.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.NetworkServerService_NoServerNode">
+            <summary>
+              Looks up a localized string similar to No server node specified.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.NetworkServiceBase_ConnectionClosed">
+            <summary>
+              Looks up a localized string similar to Connection {0} closed.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.NetworkServiceBase_ConnectionEstablished">
+            <summary>
+              Looks up a localized string similar to Connection {0} established.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.NetworkServiceBase_CouldNotStartService">
+            <summary>
+              Looks up a localized string similar to Could not start service.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ProxyNetworkService_ConnectionFiltered">
+            <summary>
+              Looks up a localized string similar to Proxy connection was filtered.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ProxyNetworkService_InvalidGraph">
+            <summary>
+              Looks up a localized string similar to Need at least 1 client and 1 server node to start a connection.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ProxyNetworkService_MatchedFilter">
+            <summary>
+              Looks up a localized string similar to Matched on filter {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ProxyNetworkService_ToStringFormat">
+            <summary>
+              Looks up a localized string similar to Listener ({0}), Server ({1}).
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ReverseHttpProxyServer_ToString">
+            <summary>
+              Looks up a localized string similar to HTTP Reverse Proxy Server.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ScriptProxyClient_InvalidServer">
+            <summary>
+              Looks up a localized string similar to Invalid system proxy string {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ScriptProxyClient_InvalidToken">
+            <summary>
+              Looks up a localized string similar to Invalid token type.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ScriptProxyClient_InvalidType">
+            <summary>
+              Looks up a localized string similar to Invalid system proxy type {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.ScriptProxyClient_ScriptReturned">
+            <summary>
+              Looks up a localized string similar to Proxy script returned &apos;{0}&apos; for URL &apos;{1}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_CouldNotGetHost">
+            <summary>
+              Looks up a localized string similar to Could not find address for host.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_EosInDomain">
+            <summary>
+              Looks up a localized string similar to End of stream while reading domain length.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidAddrType">
+            <summary>
+              Looks up a localized string similar to Invalid address type, cannot read out rest of SOCKS data.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidProxyToken">
+            <summary>
+              Looks up a localized string similar to Invalid proxy token passed, address is not v4 or v6.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidProxyToken2">
+            <summary>
+              Looks up a localized string similar to Invalid proxy token passed, cannot send any connection details.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidProxyToken3">
+            <summary>
+              Looks up a localized string similar to Invalid proxy token passed.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidV5Response">
+            <summary>
+              Looks up a localized string similar to Received invalid response from SOCKSv5 server.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyClient_InvalidV5Response2">
+            <summary>
+              Looks up a localized string similar to Received invalid response from SOCKSv5 server {0:X}/{1:X}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_IsSupportedError">
+            <summary>
+              Looks up a localized string similar to IsSupported said we supporting this version but it isn&apos;t one we do.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_NewV4ConnectionLog">
+            <summary>
+              Looks up a localized string similar to SocksProxy: New SOCKS v4 connection.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_NewV5ConnectionLog">
+            <summary>
+              Looks up a localized string similar to SocksProxy: New SOCKS v5 connection.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_ToString">
+            <summary>
+              Looks up a localized string similar to SOCKS Proxy Server.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_UnsupportedTokenVersion">
+            <summary>
+              Looks up a localized string similar to Unsupported SOCKS version in token &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_UnsupportedVersionLog">
+            <summary>
+              Looks up a localized string similar to Unsupported SOCKS version &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_V4AUsed">
+            <summary>
+              Looks up a localized string similar to SOCKv4a protocol used.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_V4ConnectionLog">
+            <summary>
+              Looks up a localized string similar to SOCKSv4 connection to {0}:{1}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SocksProxyServer_V5ConnectionLog">
+            <summary>
+              Looks up a localized string similar to SOCKSv5 connection to {0}:{1}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SslNetworkLayer_CannotGetServerCertificate">
+            <summary>
+              Looks up a localized string similar to Could not get server certificate.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SslNetworkLayer_ClientConnectLog">
+            <summary>
+              Looks up a localized string similar to Connected to SSL server with Protocol {0} Subject &apos;{1}&apos; IsSigned {2} IsMutuallyAuthenticated {3} IsEncrypted {4}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SslNetworkLayer_ClientLogString">
+            <summary>
+              Looks up a localized string similar to Connected SSL client with Protocol {0} IsSigned {1} IsMutuallyAuthenticated {2} IsEncrypted {3}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.SslNetworkLayerConfig_ToString">
+            <summary>
+              Looks up a localized string similar to SSL Layer: Enabled {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.TcpNetworkListener_AutoBind">
+            <summary>
+              Looks up a localized string similar to TCP listener bound to {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.TcpNetworkListener_ConnectionLogString">
+            <summary>
+              Looks up a localized string similar to Connection received from {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.UdpNetworkListener_AutoBind">
+            <summary>
+              Looks up a localized string similar to UDP listener bound to {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.UdpNetworkListener_ConnectionLogString">
+            <summary>
+              Looks up a localized string similar to Connection received from {0}.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Properties.Resources.UdpNetworkListener_NoUdpConnection">
+            <summary>
+              Looks up a localized string similar to No UDP connection available.
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.ConnectionEventArgs">
+            <summary>
+            Event arguments for a new connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ConnectionEventArgs.Graph">
+            <summary>
+            The newly connected graph
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ConnectionEventArgs.Description">
+            <summary>
+            Gets the network description.
+            </summary>
+            <value>The description of the network.</value>
+        </member>
+        <member name="M:CANAPE.Net.ConnectionEventArgs.#ctor(CANAPE.Nodes.NetGraph)">
+            <summary>
+            
+            </summary>
+            <param name="graph"></param>
+        </member>
+        <member name="T:CANAPE.Net.ProxyNetworkService">
+            <summary>
+            Implementation of a proxy service
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return the service information</returns>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.#ctor(CANAPE.Net.Listeners.INetworkListener,CANAPE.NodeFactories.NetGraphFactory,CANAPE.Utils.Logger,CANAPE.Nodes.MetaDictionary,CANAPE.Net.Servers.ProxyServer,CANAPE.Net.Clients.ProxyClient,CANAPE.Net.Filters.ProxyFilter[],System.Int32,System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="listener"></param>
+            <param name="factory"></param>
+            <param name="logger"></param>
+            <param name="globalMeta"></param>
+            <param name="proxyServer"></param>
+            <param name="proxyClient"></param>
+            <param name="filters"></param>
+            <param name="defaultTimeout"></param>
+            <param name="afterdata"></param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.ConnectClient(CANAPE.DataAdapters.IDataAdapter,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Connect client
+            </summary>
+            <param name="baseAdapter"></param>
+            <param name="connProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.ReconnectClientTcp(CANAPE.Nodes.NetGraph,System.String,System.Int32)">
+            <summary>
+            Reconnect a client using TCP
+            </summary>
+            <param name="graph">The network graph to reconnect</param>
+            <param name="hostname">The hostname</param>
+            <param name="port">The TCP port</param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.ReconnectClientUdp(CANAPE.Nodes.NetGraph,System.String,System.Int32)">
+            <summary>
+            Reconnect a client using UDP
+            </summary>
+            <param name="graph">The network graph to reconnect</param>
+            <param name="hostname">The hostname</param>
+            <param name="port">The UDP port</param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.ReconnectClient(CANAPE.Nodes.NetGraph,CANAPE.Net.Tokens.ProxyToken)">
+            <summary>
+            
+            </summary>
+            <param name="graph"></param>
+            <param name="token"></param>        
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.OnClientConnected(System.Object,CANAPE.Net.Listeners.ClientConnectedEventArgs)">
+            <summary>
+            Method called when a new client connects
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.CreateNetGraph(CANAPE.NodeFactories.NetGraphFactory,CANAPE.Nodes.MetaDictionary,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Create the netgraph for a connection
+            </summary>
+            <param name="factory">The netgraph factory</param>
+            <param name="meta">Current meta data</param>
+            <param name="properties">Property bag</param>
+            <returns>The created graph</returns>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.OnNewConnection(CANAPE.Nodes.NetGraph)">
+            <summary>
+            Method called for a new connection
+            </summary>
+            <param name="graph">The new connection graph</param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.Start">
+            <summary>
+            Start the network service
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.Stop">
+            <summary>
+            Stop the service immediately
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.Stop(System.Int32)">
+            <summary>
+            Stop the service, waiting for a period of time for before shutdown
+            </summary>
+            <param name="timeout">The number of milliseconds to wait, 0 for immediate shutdown, &lt; 0 for infinite wait</param>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.Active">
+            <summary>
+            Indicates the service is active
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.Connections">
+            <summary>
+            Get list of open connections
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.Listener">
+            <summary>
+            Get or set the listener object for this service
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.CloseConnection(CANAPE.Nodes.NetGraph)">
+            <summary>
+            Close a connection
+            </summary>
+            <param name="graph">The graph to close</param>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.SetTimeout(CANAPE.Nodes.NetGraph,System.Int32,System.Boolean)">
+            <summary>
+            Set a timeout on a connection
+            </summary>
+            <param name="graph">The graph to set the timeout on</param>
+            <param name="timeout">The timeout value in milliseconds</param>
+            <param name="afterdata">True to timeout after last data received, otherwise absolute</param>
+        </member>
+        <member name="E:CANAPE.Net.ProxyNetworkService.NewConnectionEvent">
+            <summary>
+            Event for when a new connection is created
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.ProxyNetworkService.LogPacketEvent">
+            <summary>
+            Event for when a packet is logged, this allows something to filter out or capture packets before
+            being logged to the service
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.ProxyNetworkService.EditPacketEvent">
+            <summary>
+            Event for when a packet needs to be edited
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.ProxyNetworkService.CloseConnectionEvent">
+            <summary>
+            Event for a when a connection is closed
+            </summary>
+        </member>
+        <member name="E:CANAPE.Net.ProxyNetworkService.ServiceStoppedEvent">
+            <summary>
+            Event called if the service is stopped
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.DefaultBinding">
+            <summary>
+            Indicates the default binding mode for the service
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.ConnectionHistory">
+            <summary>
+            Get connection history for this service.
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.ProxyNetworkService.Packets">
+            <summary>
+            Get log of packets captured by this service.
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.GetLayerBinding(CANAPE.Nodes.NetGraph)">
+            <summary>
+            Helper method to get the layer binding from the graph
+            </summary>
+            <param name="graph">The graph</param>
+            <returns>The network layer binding, if no service returns default</returns>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.AddSubService(CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            Add a sub service to the service. This will start the service
+            </summary>
+            <param name="service">The service to add, should not be started</param>
+            <remarks>This method takes possession of the service</remarks>
+        </member>
+        <member name="M:CANAPE.Net.ProxyNetworkService.RemoveSubService(CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            Remove an existing sub service
+            </summary>
+            <param name="service">The sub service to remove</param>
+        </member>
+        <member name="T:CANAPE.Net.Servers.FixedProxyServer">
+            <summary>
+            A proxy server which generates a fixed IP address token on connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FixedProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            
+            </summary>
+            <param name="adapter"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FixedProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FixedProxyServer.#ctor(CANAPE.Utils.Logger,System.String,System.Int32,CANAPE.Net.Tokens.IpProxyToken.IpClientType,System.Boolean,CANAPE.Net.Layers.INetworkLayerFactory[])">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="hostName"></param>
+            <param name="port"></param>
+            <param name="clientType"></param>
+            <param name="ipv6"></param>
+            <param name="layers"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FixedProxyServer.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return to string information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Servers.FullHttpProxyServer">
+            <summary>
+            Full HTTP proxy server implementation    
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FullHttpProxyServer.#ctor(CANAPE.Net.Servers.HttpProxyServerConfig,CANAPE.Utils.Logger)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">The logger</param>
+            <param name="config">Configuration for the server</param>
+        </member>
+        <member name="T:CANAPE.Net.Servers.FullHttpProxyServer.HttpProxyDataAdapter">
+            <summary>
+            Just a defined type so the service can recognize it coming through
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FullHttpProxyServer.HttpProxyClientDataAdapter.Write(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Write the specified frame.
+            </summary>
+            <param name="frame">The frame to write.</param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FullHttpProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            
+            </summary>
+            <param name="adapter"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FullHttpProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.FullHttpProxyServer.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return to string information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Servers.HttpProxyServerConfig">
+            <summary>
+            Configuration for HTTP proxy
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.Version10Proxy">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:CANAPE.Net.Servers.HttpProxyServerConfig"/>
+            version10 proxy.
+            </summary>
+            <value><c>true</c> if version10 proxy; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.SslConfig">
+            <summary>
+            Gets or sets the ssl config.
+            </summary>
+            <value>The ssl config.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.RequireAuth">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:CANAPE.Net.Servers.HttpProxyServerConfig"/>
+            require auth.
+            </summary>
+            <value><c>true</c> if require auth; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.ProxyUsername">
+            <summary>
+            Gets or sets the proxy username.
+            </summary>
+            <value>The proxy username.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.ProxyPassword">
+            <summary>
+            Gets or sets the proxy password.
+            </summary>
+            <value>The proxy password.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.AuthRealm">
+            <summary>
+            Gets or sets the auth realm.
+            </summary>
+            <value>The auth realm.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.DebugLog">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:CANAPE.Net.Servers.HttpProxyServerConfig"/> debug log.
+            </summary>
+            <value><c>true</c> if debug log; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CANAPE.Net.Servers.HttpProxyServerConfig.ConnectionRetries">
+            <summary>
+            Specify the number of times we will retry to connect a connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.HttpProxyServerConfig.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Servers.PassThroughProxyServer">
+            <summary>
+            Basic proxy client which does nothing but accept an adapter connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.PassThroughProxyServer.#ctor(CANAPE.Utils.Logger)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger">Logger instance</param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.PassThroughProxyServer.#ctor(CANAPE.Utils.Logger,System.Collections.Generic.IEnumerable{CANAPE.Net.Layers.INetworkLayerFactory})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logger"></param>
+            <param name="layers"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.PassThroughProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            Accept connection (just returns a default token)
+            </summary>
+            <param name="adapter">The server adapter</param>
+            <param name="globalMeta"></param>
+            <param name="meta"></param>
+            <param name="service"></param>        
+            <returns>The proxy token</returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.PassThroughProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Complete the client connection, just returns the original adapter
+            </summary>
+            <param name="token">The proxy token</param>
+            <param name="client"></param>
+            <param name="globalMeta"></param>
+            <param name="meta"></param>
+            <param name="service"></param>        
+            <returns>The data adapter</returns>
+        </member>
+        <member name="T:CANAPE.Net.Servers.ProxyServer">
+            <summary>
+            Base interface for a listening proxy
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Servers.ProxyServer._logger">
+            <summary>
+            Logger instance
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ProxyServer.#ctor(CANAPE.Utils.Logger)">
+            <summary>
+            Protected constructor
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            Accept a new proxy connection
+            </summary>
+            <param name="adapter">The data adapter to use</param>
+            <param name="globalMeta">Global meta object</param>
+            <param name="meta">Meta object</param>
+            <param name="service">The service which contains this server</param>
+            <returns>A object which implements IProxyToken</returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Complete the proxy connection by passing back the token and getting a new IDataAdapter
+            </summary>
+            <param name="token">The token returned from client</param>
+            <param name="globalMeta">Global meta object</param>
+            <param name="meta">Meta object</param>
+            <param name="service">The service which contains this server</param>
+            <param name="client">The client adapter which was created</param>
+            <returns>The final data adapter, should be used for further work</returns>
+        </member>
+        <member name="T:CANAPE.Net.Servers.ReverseHttpProxyServer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ReverseHttpProxyServer.#ctor(CANAPE.Net.Servers.HttpProxyServerConfig,CANAPE.Utils.Logger)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ReverseHttpProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            
+            </summary>
+            <param name="adapter"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ReverseHttpProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="meta"></param>
+            <param name="globalMeta"></param>
+            <param name="service"></param>
+            <param name="client"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.ReverseHttpProxyServer.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return to string information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Servers.SocksProxyServer">
+            <summary>
+            Class to implement a SOCKS proxy server
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Servers.SocksProxyServer.SupportedVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Servers.SocksProxyServer.SupportedVersion.All">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Servers.SocksProxyServer.SupportedVersion.Version4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Servers.SocksProxyServer.SupportedVersion.Version5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Servers.SocksProxyServer.#ctor(CANAPE.Utils.Logger,CANAPE.Net.Servers.SocksProxyServer.SupportedVersion)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+            <param name="supportedVersion"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.SocksProxyServer.#ctor(CANAPE.Utils.Logger)">
+            <summary>
+            
+            </summary>
+            <param name="logger"></param>
+        </member>
+        <member name="M:CANAPE.Net.Servers.SocksProxyServer.Accept(CANAPE.DataAdapters.IDataAdapter,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService)">
+            <summary>
+            
+            </summary>
+            <param name="adapter"></param>
+            <param name="globalMeta"></param>
+            <param name="meta"></param>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.SocksProxyServer.Complete(CANAPE.Net.Tokens.ProxyToken,CANAPE.Nodes.MetaDictionary,CANAPE.Nodes.MetaDictionary,CANAPE.Net.ProxyNetworkService,CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="client"></param>
+            <param name="globalMeta"></param>
+            <param name="meta"></param>
+            <param name="service"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Servers.SocksProxyServer.ToString">
+            <summary>
+            ToString implementation
+            </summary>
+            <returns>Return to string information</returns>
+        </member>
+        <member name="T:CANAPE.Net.Tokens.HttpProxyToken">
+            <summary>
+            Token for a HTTP proxy
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.Adapter">
+            <summary>
+            The stream for the connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.Connect">
+            <summary>
+            Is this a CONNECT verb
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.Headers">
+            <summary>
+            The original HTTP request headers (minus request line)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.Url">
+            <summary>
+            The URL associated with this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.Response">
+            <summary>
+            Somewhere to smuggle back the response from a HTTP proxy client (for CONNECT)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.HttpProxyToken.IsHTTPProxyClient">
+            <summary>
+            Indicates that the client is also to a HTTP proxy (stop the server transforming data)
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Tokens.IpProxyToken">
+            <summary>
+            Proxy token which indicates an IP address is requested
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Tokens.IpProxyToken.IpClientType">
+            <summary>
+            Type of client connection
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.IpProxyToken.IpClientType.Tcp">
+            <summary>
+            TCP Type
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.IpProxyToken.IpClientType.Udp">
+            <summary>
+            UDP Type
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.Address">
+            <summary>
+            Destination address
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.Port">
+            <summary>
+            Desintation port
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.Hostname">
+            <summary>
+            Destination hostname
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.ClientType">
+            <summary>
+            Client type
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.Ipv6">
+            <summary>
+            Whether to attempt IPv6 connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.OriginalAddress">
+            <summary>
+            The original address at time of construction
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.OriginalPort">
+            <summary>
+            The original port at time of construction
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.IpProxyToken.OriginalHostname">
+            <summary>
+            The original hostname at time of construction
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.IpProxyToken.PopulateBag(CANAPE.Utils.PropertyBag)">
+            <summary>
+            
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.IpProxyToken.#ctor(System.Net.IPAddress,System.String,System.Int32,CANAPE.Net.Tokens.IpProxyToken.IpClientType,System.Boolean)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="address"></param>
+            <param name="hostname"></param>
+            <param name="port"></param>
+            <param name="clientType"></param>
+            <param name="ipv6"></param>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.IpProxyToken.CreateTcpToken(System.String,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+            <param name="ipv6"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.IpProxyToken.CreateUdpToken(System.String,System.Int32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+            <param name="ipv6"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CANAPE.Net.Tokens.NetStatusCodes">
+            <summary>
+            Enumeration of network status codes for use in the network connections
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.NetStatusCodes.Success">
+            <summary>
+            Indicates the connection was successful
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.NetStatusCodes.NameLookup">
+            <summary>
+            Indicates failed to look up a name
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.NetStatusCodes.ConnectFailure">
+            <summary>
+            Indicates failure to connect
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.NetStatusCodes.AuthenticationRequired">
+            <summary>
+            Indicates that authentication was requested
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Tokens.NetStatusCodes.Blocked">
+            <summary>
+            Indicates connection blocked
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Tokens.ProxyToken">
+            <summary>
+            Base class for proxy tokens
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.ProxyToken.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.Status">
+            <summary>
+            Status of connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.NetworkDescription">
+            <summary>
+            Gets a textual description of the network
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.Graph">
+            <summary>
+            Allows the filter to change the default netgraph to something else
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.Client">
+            <summary>
+            Allows the filter to change the default proxy client
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.Layers">
+            <summary>
+            Array of network layers to apply to this connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.State">
+            <summary>
+            Save some extra general state informations
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Tokens.ProxyToken.Bind">
+            <summary>
+            Indicates whether this token is for connecting or bindings
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.ProxyToken.PopulateBag(CANAPE.Utils.PropertyBag)">
+            <summary>
+            An overridable method to populate the property bag with information about this token
+            </summary>
+            <param name="properties"></param>      
+        </member>
+        <member name="M:CANAPE.Net.Tokens.ProxyToken.OnDispose(System.Boolean)">
+            <summary>
+            Overridable method to dispose any resources
+            </summary>
+            <param name="finalize">Whether this is running in the finalizer or not</param>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.ProxyToken.Finalize">
+            <summary>
+            Finalizer
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Tokens.ProxyToken.Dispose">
+            <summary>
+            Dispose the token
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Utils.ConnectionHistoryEntry">
+            <summary>
+            A class which maintains information about a historical connection
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.ConnectionHistoryEntry.NetworkDescription">
+            <summary>
+            Textual description of network
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.ConnectionHistoryEntry.NetId">
+            <summary>
+            The network guid (which corresponds to packets logged)
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.ConnectionHistoryEntry.StartTime">
+            <summary>
+            The connection start time
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.ConnectionHistoryEntry.EndTime">
+            <summary>
+            The connection end time
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.ConnectionHistoryEntry.Properties">
+            <summary>
+            Properties for the connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.ConnectionHistoryEntry.#ctor(System.String,System.Guid,System.DateTime,System.DateTime)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="networkDescription">Network description</param>
+            <param name="netId">Network ID</param>
+            <param name="startTime">Start time of connection</param>
+            <param name="endtime">End time of connection</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.ConnectionHistoryEntry.ToString">
+            <summary>
+            Override for ToString
+            </summary>
+            <returns>The connection entry details</returns>
+        </member>
+        <member name="T:CANAPE.Net.Utils.LogPacketCollection">
+            <summary>
+            Class to hold a collection of packets
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.#ctor(System.Collections.Generic.IEnumerable{CANAPE.Utils.LogPacket})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="packets">List of log packets</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.GetPacketsForTag(System.String)">
+            <summary>
+            Get a list of packets for a tag name
+            </summary>
+            <param name="tag">The tag name</param>
+            <returns>The list of packets</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.GetPacketsForNetwork(System.Guid)">
+            <summary>
+            Get a list of packets for a network connection
+            </summary>
+            <param name="netId">The network ID</param>
+            <returns>The list of packets</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.GetPacketsForNetwork(System.String)">
+            <summary>
+            Get the packets for a network id
+            </summary>
+            <param name="netId">The network id</param>
+            <returns>The list of network packets</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.GetNetworkIds">
+            <summary>
+            Get the list of network ids in this log
+            </summary>        
+            <returns>The list of network ids</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.WriteToFile(System.String,System.Func{CANAPE.Utils.LogPacket,System.Boolean})">
+            <summary>
+            Writes to file.
+            </summary>
+            <param name="filename">Filename.</param>
+            <param name="predicate">Predicate.</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.WriteToFile(System.String,System.String)">
+            <summary>
+            Writes to file only a specific tag.
+            </summary>
+            <param name="filename">Filename.</param>
+            <param name="tag">Tag.</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.WriteToFile(System.String)">
+            <summary>
+            Writes to file only a specific tag.
+            </summary>
+            <param name="filename">Filename.</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.LogPacketCollection.ReadFromFile(System.String)">
+            <summary>
+            Reads from file.
+            </summary>
+            <returns>The from file.</returns>
+            <param name="filename">Filename.</param>
+        </member>
+        <member name="T:CANAPE.Net.Utils.NetGraphBuilder">
+            <summary>
+            Class to build a netgraph factory for ease of use with no GUI
+            </summary>
+        </member>
+        <member name="F:CANAPE.Net.Utils.NetGraphBuilder._graphFactory">
+            <summary>
+            Factory
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.MatchLine(CANAPE.NodeFactories.NetGraphFactory.GraphLineEntry,CANAPE.NodeFactories.BaseNodeFactory,CANAPE.NodeFactories.BaseNodeFactory)">
+            <summary>
+            Method to determine if either of these nodes matches this line segment
+            </summary>
+            <param name="line"></param>
+            <param name="nodea"></param>
+            <param name="nodeb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.#ctor(CANAPE.NodeFactories.NetGraphFactory)">
+            <summary>
+            Constructor which takes an existing factory
+            </summary>
+            <param name="factory">The factory</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddServer(System.String,System.Guid)">
+            <summary>
+            Add a server node
+            </summary>
+            <param name="label">The node label</param>
+            <param name="guid">Guid of node</param>
+            <returns>The server endpoint factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddServer(System.String)">
+            <summary>
+            Add a server node
+            </summary>
+            <param name="label">The node label</param>
+            <returns>The server endpoint factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddClient(System.String,System.Guid)">
+            <summary>
+            Add a client node
+            </summary>
+            <param name="label">Label</param>
+            <param name="guid">Guid of node</param>
+            <returns>The client endpoint factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddClient(System.String)">
+            <summary>
+            Add a client node
+            </summary>
+            <param name="label">Label</param>        
+            <returns>The client endpoint factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLog(System.String,System.Guid,CANAPE.Utils.ColorValue,System.String,System.Boolean)">
+            <summary>
+            Add a log node
+            </summary>
+            <param name="label">Label of the node</param>
+            <param name="color">Color of the logged packet data</param>
+            <param name="tag">Arbitrary string tag</param>
+            <param name="convertToBytes">Whether to convert all logged packets to bytes only</param>
+            <param name="guid">Guid of node</param>
+            <returns>The log packet node factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLog(System.String)">
+            <summary>
+            Add a log node
+            </summary>
+            <param name="label">Label of the node</param>
+            <returns>The log packet node factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddEdit(System.String,System.Guid,CANAPE.Utils.ColorValue,System.String)">
+            <summary>
+            Adds the edit.
+            </summary>
+            <returns>The edit.</returns>
+            <param name="label">Label.</param>
+            <param name="guid">GUID.</param>
+            <param name="color">Color.</param>
+            <param name="tag">Tag.</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddEdit(System.String)">
+            <summary>
+            Adds the edit.
+            </summary>
+            <returns>The edit.</returns>
+            <param name="label">Label.</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddNode``1(``0)">
+            <summary>
+            Add an arbitrary node
+            </summary>
+            <param name="factory">The node factory to add</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.DeleteLine(CANAPE.NodeFactories.BaseNodeFactory)">
+            <summary>
+            Delete any line which touches this node
+            </summary>
+            <param name="factory">The node to delete lines from</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.DeleteLine(CANAPE.NodeFactories.BaseNodeFactory,CANAPE.NodeFactories.BaseNodeFactory)">
+            <summary>
+            Delete the line between two nodes
+            </summary>
+            <param name="nodea">The node factory for the first node</param>
+            <param name="nodeb">The node factory for the second node</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.DeleteNode(CANAPE.NodeFactories.BaseNodeFactory)">
+            <summary>
+            Delete a node
+            </summary>
+            <param name="factory">The node to delete</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLines(System.Boolean,CANAPE.NodeFactories.BaseNodeFactory[])">
+            <summary>
+            Add lines between multiple nodes
+            </summary>
+            <param name="nodes">List of nodes to link</param>
+            <param name="circular">If true then last node is also linked back to start (for 3 nodes or more)</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLines(CANAPE.NodeFactories.BaseNodeFactory[])">
+            <summary>
+            Add lines between multiple nodes
+            </summary>
+            <param name="nodes">List of nodes to link</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLine(CANAPE.NodeFactories.BaseNodeFactory,CANAPE.NodeFactories.BaseNodeFactory)">
+            <summary>
+            Add a line between two nodes
+            </summary>
+            <param name="nodea">The starting node</param>
+            <param name="nodeb">The endoing node</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLine(CANAPE.NodeFactories.BaseNodeFactory,CANAPE.NodeFactories.BaseNodeFactory,System.String,System.Boolean)">
+            <summary>
+            Add a line between two nodes
+            </summary>
+            <param name="nodea">The starting node</param>
+            <param name="nodeb">The endoing node</param>
+            <param name="pathName">The line name</param>
+            <param name="weak">Indicates the line is weak</param>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.AddLine(CANAPE.NodeFactories.BaseNodeFactory,CANAPE.NodeFactories.BaseNodeFactory,System.String)">
+            <summary>
+            Add a line between two nodes
+            </summary>
+            <param name="nodea">The starting node</param>
+            <param name="nodeb">The endoing node</param>
+            <param name="pathName">The line name</param>        
+        </member>
+        <member name="P:CANAPE.Net.Utils.NetGraphBuilder.Factory">
+            <summary>
+            Get the netgraph factory
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.CreateDefaultProxyGraph">
+            <summary>
+            Create a default proxy graph factory 
+            </summary>
+            <returns>The new factory</returns>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetGraphBuilder.CreateDefaultProxyGraph(System.String)">
+            <summary>
+            Create a default proxy graph factory
+            </summary>
+            <param name="name">A name to associate with the graph</param>
+            <returns>The new factory</returns>
+        </member>
+        <member name="T:CANAPE.Net.Utils.NetUtils">
+            <summary>
+            Some simple utilities for network code
+            </summary>
+        </member>
+        <member name="M:CANAPE.Net.Utils.NetUtils.PopulateBagFromSocket(System.Net.Sockets.Socket,CANAPE.Utils.PropertyBag)">
+            <summary>
+            Populate a property bag from a socket
+            </summary>
+            <param name="sock">The socket</param>
+            <param name="properties">The property bag</param>
+        </member>
+        <member name="P:CANAPE.Net.Utils.NetUtils.OSSupportsIPv4">
+            <summary>
+            Method to get whether OS supports IPv4 here for compatibility with Mono
+            </summary>
+        </member>
+        <member name="P:CANAPE.Net.Utils.NetUtils.OSSupportsIPv6">
+            <summary>
+            Method to get whether OS supports IPv6 here for compatibility with Mono
+            </summary>
+        </member>
+        <member name="T:CANAPE.Net.Templates.CredentialsEntry">
+            <summary>
+            Entry for stored credentials
+            </summary>
+        </member>
+        <member name="T:CANAPE.DataAdapters.FixHttpConnectionDataAdapter">
+            <summary>
+            Class to fix a HTTP proxy connection
+            </summary>
+        </member>
+        <member name="M:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.#ctor(CANAPE.DataAdapters.IDataAdapter)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="adapter">The data adapter to wrap</param>        
+        </member>
+        <member name="M:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.Read">
+            <summary>
+            Read a data frame
+            </summary>
+            <returns>The data frame, null on end of file</returns>
+        </member>
+        <member name="M:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.Write(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Write to the data adapter
+            </summary>
+            <param name="frame">The frame to write</param>
+        </member>
+        <member name="P:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.Description">
+            <summary>
+            Get a string description
+            </summary>
+        </member>
+        <member name="P:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.ReadTimeout">
+            <summary>
+            Get or set the read timeout
+            </summary>
+        </member>
+        <member name="M:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.Dispose">
+            <summary>
+            Dispose of the data adapter
+            </summary>
+        </member>
+        <member name="P:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.CanTimeout">
+            <summary>
+            Indicates if data adapter can timeout
+            </summary>
+        </member>
+        <member name="M:CANAPE.DataAdapters.FixHttpConnectionDataAdapter.Reconnect">
+            <summary>
+            Reconnect data adapter
+            </summary>
+        </member>
+        <member name="T:CANAPE.DataAdapters.TcpClientDataAdapter">
+            <summary>
+            Data adapter for a TCP client object
+            </summary>
+        </member>
+        <member name="P:CANAPE.DataAdapters.TcpClientDataAdapter.Socket">
+            <summary>
+            Get the client socket associated with this adapter
+            </summary>
+        </member>
+        <member name="M:CANAPE.DataAdapters.TcpClientDataAdapter.#ctor(System.Net.Sockets.TcpClient,System.String)">
+            <summary>
+            Construct the client data adapter
+            </summary>
+            <param name="clientSocket">The client socket object</param>
+            <param name="description">Description of the adapter</param>
+        </member>
+        <member name="M:CANAPE.DataAdapters.TcpClientDataAdapter.#ctor(System.Net.Sockets.TcpClient)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="clientSocket">The socket</param>
+        </member>
+        <member name="M:CANAPE.DataAdapters.TcpClientDataAdapter.OnDispose(System.Boolean)">
+            <summary>
+            Perform close
+            </summary>
+        </member>
+        <member name="T:CANAPE.DataAdapters.UdpClientDataAdapter">
+            <summary>
+            Adapter to wrap a UdpClient
+            </summary>
+        </member>
+        <member name="M:CANAPE.DataAdapters.UdpClientDataAdapter.#ctor(System.Net.Sockets.UdpClient,System.String,System.Net.IPEndPoint)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="client">The UDP client</param>
+            <param name="hostname">The hostname to connected to</param>
+            <param name="endpoint">The end point to connect to.</param>
+        </member>
+        <member name="M:CANAPE.DataAdapters.UdpClientDataAdapter.Read">
+            <summary>
+            Read a frame from the UDP client
+            </summary>
+            <returns>A data frame, null on error</returns>
+        </member>
+        <member name="M:CANAPE.DataAdapters.UdpClientDataAdapter.Write(CANAPE.DataFrames.DataFrame)">
+            <summary>
+            Write a data frame to the client
+            </summary>
+            <param name="frame">The frame to write</param>
+        </member>
+        <member name="M:CANAPE.DataAdapters.UdpClientDataAdapter.OnDispose(System.Boolean)">
+            <summary>
+            Method called when disposing
+            </summary>
+            <param name="disposing">True for disposing, false for finalizing</param>
+        </member>
+    </members>
+</doc>
