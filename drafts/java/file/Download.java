@@ -41,12 +41,14 @@ public class Download {
             String zero_part = m.group(1);
             String number_part = m.group(2);
             String replaceString;
-            if (zero_part.length()) 
-
+            replaceString = "%d";
+            if (zero_part.length() > 0) 
+                replaceString = String.format("%%0%dd", zero_part.length()+number_part.length());
+            log("Replace String: " + replaceString);
             log(zero_part);
             log(number_part);
-            log(m.replaceFirst(zero_part + number_part));
-            log(fileName);
+            String fileNameTemplate = m.replaceFirst(replaceString);
+            log(fileNameTemplate);
             //if (maxNum.startsWith("0")
             //File output = new File(fileName);
             //BufferedOutputStream fos= new BufferedOutputStream(
