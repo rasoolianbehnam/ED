@@ -22,7 +22,7 @@ case $extension in
     pdflatex $1 && bibtex $filename.aux
     ;;
 "java")
-    javac *.java && java $filename "curl 'https://cnnios-f.akamaihd.net/i/cnn/big/world/2016/08/19/mexico-search-for-el-chapo-son-romo-pkg.cnn_718241_ios_,440,650,840,1240,3000,5500,.mp4.csmil/segment(006)_4_av.ts?null=0' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Origin: https://www.cnn.com' -H 'Connection: keep-alive' -H 'DNT: 1'"
+    javac *.java && java $filename "curl 'https://cnnios-f.akamaihd.net/i/cnn/big/world/2016/08/19/mexico-search-for-el-chapo-son-romo-pkg.cnn_718241_ios_,440,650,840,1240,3000,5500,.mp4.csmil/segment(6)_3_av.ts?null=0' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Origin: https://www.cnn.com' -H 'Connection: keep-alive' -H 'DNT: 1'" 0 4
     ;;
 *)
     echo "Extension not supported..."
