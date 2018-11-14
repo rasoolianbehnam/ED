@@ -3,6 +3,7 @@ import java.io.*;
 public class Download {
     public static void main(String[] args) {
         try {
+            String curl_text = args[0];
             File output = new File("google.html");
             BufferedOutputStream fos= new BufferedOutputStream(
                     new FileOutputStream(output));
