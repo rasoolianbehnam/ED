@@ -9,7 +9,7 @@ public class HelloWorld {
         CLibrary INSTANCE = (CLibrary)Native.loadLibrary("pcap", CLibrary.class);
         String pcap_lookupdev(char[] device);
         Pointer pcap_open_live(String device, int size, int a, int b, char[] errbuf);
-        char[] pcap_next(Pointer pcap_handle, Pcap_pkthdr header);
+        String pcap_next(Pointer pcap_handle, Pcap_pkthdr header);
     }
     public static void main(String args[]) {
         char buff[] = new char[100];
@@ -27,14 +27,21 @@ public class HelloWorld {
         System.out.println("Success fully opened pcap with pointer: " + pcap_handle);
         Pcap_pkthdr header = new Pcap_pkthdr();
         //System.out.println(header.getFieldList());
-        char packet[];
+        //char packet[];
+        String packet;
         for (int i=0 ; i < 3; i++) {
             try {
-                //packet = CLibrary.INSTANCE.pcap_next(pcap_handle, header);
-                //System.out.printf("Got a %d byte packet\n", header.len);
+                packet = CLibrary.INSTANCE.pcap_next(pcap_handle, header);
+                if (packet == null) {
+                    System.out.println("mardas");
+                } else {
+                //System.out.printf("Got a %d char packet\n", header.len);
                 //System.out.println(new String(packet));
+                System.out.println(packet);
+                }
             } catch (Exception e) {
                 System.out.println("error");
+                e.printStackTrace();
             }
         }
     }

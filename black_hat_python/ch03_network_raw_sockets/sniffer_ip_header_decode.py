@@ -90,7 +90,7 @@ try:
             if icmp_header.code == 3 and icmp_header.type == 3:
                 if IPAddress(ip_header.src_address) in IPNetwork(subnet):
                     if raw_buffer[len(raw_buffer)-len(magic_message):] == magic_message:
-                        print "host Up: %s" % ip_header.src_address
+                        print("host Up: %s" % ip_header.src_address)
 
 except KeyboardInterrupt:
     if os.name == 'nt':
