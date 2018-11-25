@@ -13,11 +13,11 @@ public class DecodeSniff {
     public interface CLibrary extends Library {
         CLibrary INSTANCE = (CLibrary)Native.loadLibrary("pcap", CLibrary.class);
         interface Cback extends Callback {
-            int invoke(Pointer handle, Pcap_pkthdr_apple header, Pointer packet);
+            int invoke(Pointer handle, Pcap_pkthdr header, Pointer packet);
         }
         String pcap_lookupdev(char[] device);
         Pointer pcap_open_live(String device, int size, int a, int b, char[] errbuf);
-        Pointer pcap_next(Pointer pcap_handle, Pcap_pkthdr_apple header);
+        Pointer pcap_next(Pointer pcap_handle, Pcap_pkthdr header);
         void pcap_loop(Pointer pcap_handle, int num, Cback Mardas, String mardas);
         void pcap_close(Pointer pcap_handle);
     }
@@ -156,7 +156,10 @@ public class DecodeSniff {
             System.exit(0);
         }
         System.out.println("Success fully opened pcap with pointer: " + pcap_handle);
-        Pcap_pkthdr_apple header = new Pcap_pkthdr_apple();
+        Pcap_pkthdr header;
+        if (System.getProperty("os.name").toLowerCase().startsWith("mac"))
+            header = new Pcap_pkthdr_apple();
+        else header = new Pcap_pkthdr();
         //System.out.println(header.getFieldList());
         //char packet[];
         Pointer packet;
@@ -189,7 +192,7 @@ public class DecodeSniff {
         //        return 0;
         //    }
 
-            public int invoke(Pointer handle, Pcap_pkthdr_apple header, Pointer pkt) {
+            public int invoke(Pointer handle, Pcap_pkthdr header, Pointer pkt) {
                 int len = header.len;
                 StringBuilder sb = new StringBuilder();
                 System.out.printf("Got a %d char packet\n", len);
