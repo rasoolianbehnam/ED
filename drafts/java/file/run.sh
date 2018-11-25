@@ -22,7 +22,7 @@ case $extension in
     pdflatex $1 && bibtex $filename.aux
     ;;
 "java")
-    javac *.java && java $filename "curl 'https://hawk.streamvid.co/tsfiles/CAIIHFHA/1080K/2018/IHFCHCCC/10/FBDFDFAB/30/DABECFEE/83999-(006).ts' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0' -H 'Accept: */*' -H 'Accept-Language: en-US,en;q=0.5' --compressed -H 'Referer: https://streamvid.co/player/temXADwgQAf0NrX/' -H 'Origin: https://streamvid.co' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'TE: Trailers'" 10 4
+    javac *.java && java $filename "curl 'https://zeus.streamvid.co/tsfiles/IEADDEBI/1080K/2018/EGFIAAHB/01/CEDHDGIE/07/EFFBGACB/01911-(001).ts' -H 'origin: https://streamvid.co' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.104' -H 'accept: */*' -H 'referer: https://streamvid.co/player/HLRvDF4a4OEpmkT/' -H 'authority: zeus.streamvid.co' --compressed" 658 5
     ;;
 *)
     echo "Extension not supported..."

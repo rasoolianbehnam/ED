@@ -149,6 +149,7 @@ public class Download {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         try {
             String curlText = args[0];
+            System.out.println(curlText);
             String maxNum = "0";
             int numThreads = 1;
             //log(curlText);
@@ -193,10 +194,8 @@ public class Download {
                 task.get();
             }
             executor.shutdown();
-        }
-        catch(IOException e) {
-           System.out.println("[!] Cannot open connection!"); 
-           e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("mardas");
         }
     }
     public static void log(String text) {
