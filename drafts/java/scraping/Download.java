@@ -87,10 +87,18 @@ public class Download {
 
 
                 fileName = getFileName(url);
+
                 for (String key : headers.keySet()) {
                     //log(key + " : " + headers.get(key));
                     uc.setRequestProperty(key, headers.get(key));
                 }
+
+                for (String key : uc.getRequestProperties().keySet()) {
+                    System.out.println(key + ":" + uc.getRequestProperty(key));
+                }
+
+                //System.out.println("Encoding: " + uc.getContentEncoding());
+
                 result = getInputStream(uc);
                 
                 if (result == null) {
@@ -98,6 +106,8 @@ public class Download {
                     cleanup(urlText);
                     continue;
                 }
+
+
                 output = new File(fileName);
                 if (output.exists()) {
                     synchronized (System.out) {
@@ -224,6 +234,10 @@ public class Download {
             System.out.println("using gzip");
             return out;
         } catch(IOException e) {}
+        //try {
+        //    out = new InputStreamReader(new InflaterInputStream(uc.getInputStream(), new Inflater(true)));
+        //    return out;
+        //} catch(IOException e) {}
         try {
             out = new InputStreamReader(new BufferedInputStream(uc.getInputStream()));
             return out;
