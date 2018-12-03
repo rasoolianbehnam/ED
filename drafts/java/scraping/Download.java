@@ -3,6 +3,8 @@ import java.io.*;
 import java.util.regex.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.zip.*;
+
 public class Download {
     private static class DownloadThread implements Callable<Void> {
         private static final int MAX_TRIES = 15;
@@ -25,7 +27,7 @@ public class Download {
         public void cleanup(File f) {
             f.delete();
         }
-        public void cleanup(InputStream in) {
+        public void cleanup(InputStreamReader in) {
             try {
                 in.close();
             } catch (IOException e) {
@@ -49,7 +51,7 @@ public class Download {
             String urlText = null;
             String fileName = null;
             BufferedOutputStream fos = null;
-            InputStream result = null;
+            InputStreamReader result = null;
             URL url = null;
             URLConnection uc = null;
             File output = null;
@@ -62,28 +64,37 @@ public class Download {
                 }
                 try {
                     url = new URL(urlText);
+                    System.out.println("URL: " + urlText);
                 } catch (MalformedURLException e) {
                     logErr("[!] Malformed URL: " + urlText);
                     cleanup(urlText);
                     continue;
                 }
+
+
                 try {
                     uc = url.openConnection();
+                    //String mardas = uc.getContentEncoding();
+                    //if (mardas != null) 
+                    //    synchronized(System.out) {
+                    //        System.out.println(mardas);
+                    //    }
                 } catch (IOException e) {
                     logErr("[!] Cannot create connection");
                     cleanup(urlText);
                     continue;
                 }
+
+
                 fileName = getFileName(url);
                 for (String key : headers.keySet()) {
                     //log(key + " : " + headers.get(key));
                     uc.setRequestProperty(key, headers.get(key));
                 }
-                try {
-                    result = new BufferedInputStream( uc.getInputStream());
-                    //StringBuilder sb = new StringBuilder();
-                } catch (IOException e) {
-                    logErr("[!] Cannot get stream.");
+                result = getInputStream(uc);
+                
+                if (result == null) {
+                    logErr("[!] Cannot get stream. Result is null.");
                     cleanup(urlText);
                     continue;
                 }
@@ -180,7 +191,7 @@ public class Download {
             log(urlTemplate);
             //log(fileNameTemplate);
             Queue<String> q = new LinkedList<String>();
-            for (int i=0; i < Integer.parseInt(maxNum)+1; i++) {
+            for (int i=1; i < Integer.parseInt(maxNum)+1; i++) {
                 if(!(new File(String.format(fileNameTemplate, i)).exists()))
                     q.add(String.format(urlTemplate, i));
             }
@@ -203,6 +214,21 @@ public class Download {
     }
     public static void logErr(String text) {
         System.err.println(text);
+    }
+    public static InputStreamReader getInputStream(URLConnection uc) {
+        InputStreamReader out = null;
+        int i = 0;
+        boolean notSet = true;
+        try {
+            out = new InputStreamReader(new GZIPInputStream(uc.getInputStream()));
+            System.out.println("using gzip");
+            return out;
+        } catch(IOException e) {}
+        try {
+            out = new InputStreamReader(new BufferedInputStream(uc.getInputStream()));
+            return out;
+        } catch(IOException e) {}
+        return out;
     }
 
     public static <T, S> S hashGet(HashMap<T,S> hash, T key, S defaultValue) {
