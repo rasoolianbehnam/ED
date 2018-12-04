@@ -62,19 +62,21 @@ def main():
 
     ths = []
     for i in range(num_threads):
-        th = threading.Thread(target=download_thread, args=(url_template, file_name_template))
+        th = threading.Thread(target=download_thread, args=(url_template, file_name_template, headers))
         ths.append(th)
         th.start()
-    while True:
-        try:
-            time.sleep(1)
-        except KeyboardInterrupt as kex:
-            shutdown_flag.clear()
-            print("Exitting gracefully...")
-            for th in ths:
-                th.join()
-            print("done!")
-            break
+    try:
+        for i, th in enumerate(ths):
+            th.join()
+            print "Thread %d finished"%i
+    except KeyboardInterrupt as kex:
+        shutdown_flag.clear()
+        print("Exitting gracefully...")
+        for i, th in enumerate(ths):
+            th.join()
+            print "Thread %d finished"%i
+        print("done!")
+        sys.exit(0)
 
 def download_thread(url_template, file_name_template, headers=None):
     global trials
