@@ -2147,9 +2147,9 @@ static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_P
   /* "pcap.pyx":82
  *         #        print("This is odd! Packet is null.")
  * 
- *         pcap_loop(pcap_handle, 15, pcap_handler_cb, NULL)             # <<<<<<<<<<<<<<
+ *         pcap_loop(pcap_handle, -1, pcap_handler_cb, NULL)             # <<<<<<<<<<<<<<
  */
-  (void)(pcap_loop(__pyx_v_pcap_handle, 15, __pyx_f_4pcap_pcap_handler_cb, NULL));
+  (void)(pcap_loop(__pyx_v_pcap_handle, -1, __pyx_f_4pcap_pcap_handler_cb, NULL));
 
   /* "pcap.pyx":48
  *     def __cint__(self):

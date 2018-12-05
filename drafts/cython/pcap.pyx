@@ -79,4 +79,4 @@ cdef class Pcap:
         #    else:
         #        print("This is odd! Packet is null.")
 
-        pcap_loop(pcap_handle, 15, pcap_handler_cb, NULL)
+        pcap_loop(pcap_handle, -1, pcap_handler_cb, NULL)
