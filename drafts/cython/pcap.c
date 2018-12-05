@@ -836,11 +836,78 @@ static const char *__pyx_f[] = {
   "stringsource",
 };
 
+/* "libpcap.pxd":1
+ * ctypedef unsigned char u_char             # <<<<<<<<<<<<<<
+ * ctypedef struct pcap_pkthdr:
+ *     char ts[16]
+ */
+typedef unsigned char __pyx_t_7libpcap_u_char;
+
 /*--- Type declarations ---*/
 struct __pyx_obj_4pcap_Pcap;
+struct __pyx_t_7libpcap_pcap_pkthdr;
+typedef struct __pyx_t_7libpcap_pcap_pkthdr __pyx_t_7libpcap_pcap_pkthdr;
+struct __pyx_t_7libpcap_Ethernet;
+typedef struct __pyx_t_7libpcap_Ethernet __pyx_t_7libpcap_Ethernet;
+struct __pyx_t_7libpcap_Ip;
+typedef struct __pyx_t_7libpcap_Ip __pyx_t_7libpcap_Ip;
 
-/* "pcap.pyx":18
- *     #        int num_loops, pcap_handler handler, unsigned char *err);
+/* "libpcap.pxd":2
+ * ctypedef unsigned char u_char
+ * ctypedef struct pcap_pkthdr:             # <<<<<<<<<<<<<<
+ *     char ts[16]
+ *     unsigned int caplen
+ */
+struct __pyx_t_7libpcap_pcap_pkthdr {
+  char ts[16];
+  unsigned int caplen;
+  unsigned int len;
+};
+
+/* "libpcap.pxd":7
+ *     unsigned int len
+ * 
+ * ctypedef struct Ethernet:             # <<<<<<<<<<<<<<
+ *     u_char ether_src_addr[6]
+ *     u_char ether_dst_addr[6]
+ */
+struct __pyx_t_7libpcap_Ethernet {
+  __pyx_t_7libpcap_u_char ether_src_addr[6];
+  __pyx_t_7libpcap_u_char ether_dst_addr[6];
+  unsigned short ether_type;
+};
+
+/* "libpcap.pxd":12
+ *     unsigned short ether_type
+ * 
+ * ctypedef struct Ip:             # <<<<<<<<<<<<<<
+ *     unsigned char ip_version_and_header_length;
+ *     unsigned char ip_tos;
+ */
+struct __pyx_t_7libpcap_Ip {
+  unsigned char ip_version_and_header_length;
+  unsigned char ip_tos;
+  unsigned short ip_len;
+  unsigned short ip_id;
+  unsigned short ip_frag_offset;
+  unsigned char ip_ttl;
+  unsigned char ip_type;
+  unsigned short ip_checksum;
+  unsigned char ip_src_addr[4];
+  unsigned char ip_dest_addr[4];
+};
+
+/* "libpcap.pxd":24
+ *     unsigned char ip_dest_addr[4]
+ * 
+ * ctypedef void (*pcap_handler) (u_char * args, const pcap_pkthdr *header, const u_char *packet)             # <<<<<<<<<<<<<<
+ * 
+ * cdef extern from "pcap.h":
+ */
+typedef void (*__pyx_t_7libpcap_pcap_handler)(__pyx_t_7libpcap_u_char *, __pyx_t_7libpcap_pcap_pkthdr const *, __pyx_t_7libpcap_u_char const *);
+
+/* "pcap.pyx":45
+ *         print("This is odd! Packet is null.")
  * 
  * cdef class Pcap:             # <<<<<<<<<<<<<<
  *     def __cint__(self):
@@ -854,7 +921,7 @@ struct __pyx_obj_4pcap_Pcap {
 
 
 struct __pyx_vtabstruct_4pcap_Pcap {
-  PyObject *(*main)(struct __pyx_obj_4pcap_Pcap *);
+  PyObject *(*main)(struct __pyx_obj_4pcap_Pcap *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_4pcap_Pcap *__pyx_vtabptr_4pcap_Pcap;
 
@@ -932,13 +999,11 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_GetAttrStr(PyObject* obj, PyObject
 /* GetBuiltinName.proto */
 static PyObject *__Pyx_GetBuiltinName(PyObject *name);
 
-/* PyErrExceptionMatches.proto */
-#if CYTHON_FAST_THREAD_STATE
-#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
-#else
-#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
-#endif
+/* SliceObject.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
+        PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** py_start, PyObject** py_stop, PyObject** py_slice,
+        int has_cstart, int has_cstop, int wraparound);
 
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
@@ -974,6 +1039,71 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
 #define __Pyx_ErrFetchInState(tstate, type, value, tb)  PyErr_Fetch(type, value, tb)
 #define __Pyx_ErrRestore(type, value, tb)  PyErr_Restore(type, value, tb)
 #define __Pyx_ErrFetch(type, value, tb)  PyErr_Fetch(type, value, tb)
+#endif
+
+/* WriteUnraisableException.proto */
+static void __Pyx_WriteUnraisable(const char *name, int clineno,
+                                  int lineno, const char *filename,
+                                  int full_traceback, int nogil);
+
+/* PyCFunctionFastCall.proto */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
+#else
+#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
+#endif
+
+/* PyFunctionFastCall.proto */
+#if CYTHON_FAST_PYCALL
+#define __Pyx_PyFunction_FastCall(func, args, nargs)\
+    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs);
+#else
+#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
+#endif
+#define __Pyx_BUILD_ASSERT_EXPR(cond)\
+    (sizeof(char [1 - 2*!(cond)]) - 1)
+#ifndef Py_MEMBER_SIZE
+#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
+#endif
+  static size_t __pyx_pyframe_localsplus_offset = 0;
+  #include "frameobject.h"
+  #define __Pxy_PyFrame_Initialize_Offsets()\
+    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
+     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
+  #define __Pyx_PyFrame_GetLocalsplus(frame)\
+    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
+#endif
+
+/* PyObjectCall.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
+#else
+#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
+#endif
+
+/* PyObjectCallMethO.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
+#endif
+
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
+/* PyObjectCallNoArg.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+#else
+#define __Pyx_PyObject_CallNoArg(func) __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL)
+#endif
+
+/* PyErrExceptionMatches.proto */
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err);
+#else
+#define __Pyx_PyErr_ExceptionMatches(err)  PyErr_ExceptionMatches(err)
 #endif
 
 /* GetAttr.proto */
@@ -1021,53 +1151,8 @@ static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 /* ImportFrom.proto */
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
 
-/* PyCFunctionFastCall.proto */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject *__Pyx_PyCFunction_FastCall(PyObject *func, PyObject **args, Py_ssize_t nargs);
-#else
-#define __Pyx_PyCFunction_FastCall(func, args, nargs)  (assert(0), NULL)
-#endif
-
-/* PyFunctionFastCall.proto */
-#if CYTHON_FAST_PYCALL
-#define __Pyx_PyFunction_FastCall(func, args, nargs)\
-    __Pyx_PyFunction_FastCallDict((func), (args), (nargs), NULL)
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs);
-#else
-#define __Pyx_PyFunction_FastCallDict(func, args, nargs, kwargs) _PyFunction_FastCallDict(func, args, nargs, kwargs)
-#endif
-#define __Pyx_BUILD_ASSERT_EXPR(cond)\
-    (sizeof(char [1 - 2*!(cond)]) - 1)
-#ifndef Py_MEMBER_SIZE
-#define Py_MEMBER_SIZE(type, member) sizeof(((type *)0)->member)
-#endif
-  static size_t __pyx_pyframe_localsplus_offset = 0;
-  #include "frameobject.h"
-  #define __Pxy_PyFrame_Initialize_Offsets()\
-    ((void)__Pyx_BUILD_ASSERT_EXPR(sizeof(PyFrameObject) == offsetof(PyFrameObject, f_localsplus) + Py_MEMBER_SIZE(PyFrameObject, f_localsplus)),\
-     (void)(__pyx_pyframe_localsplus_offset = ((size_t)PyFrame_Type.tp_basicsize) - Py_MEMBER_SIZE(PyFrameObject, f_localsplus)))
-  #define __Pyx_PyFrame_GetLocalsplus(frame)\
-    (assert(__pyx_pyframe_localsplus_offset), (PyObject **)(((char *)(frame)) + __pyx_pyframe_localsplus_offset))
-#endif
-
-/* PyObjectCall.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw);
-#else
-#define __Pyx_PyObject_Call(func, arg, kw) PyObject_Call(func, arg, kw)
-#endif
-
 /* PyObjectCall2Args.proto */
 static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* PyObjectCallMethO.proto */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg);
-#endif
-
-/* PyObjectCallOneArg.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
 /* RaiseException.proto */
 static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
@@ -1143,21 +1228,17 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object);
 static void __Pyx_AddTraceback(const char *funcname, int c_line,
                                int py_line, const char *filename);
 
-/* Print.proto */
-static int __Pyx_Print(PyObject*, PyObject *, int);
-#if CYTHON_COMPILING_IN_PYPY || PY_MAJOR_VERSION >= 3
-static PyObject* __pyx_print = 0;
-static PyObject* __pyx_print_kwargs = 0;
-#endif
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
+
+/* CIntToPy.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_int(unsigned int value);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE long __Pyx_PyInt_As_long(PyObject *);
-
-/* PrintOne.proto */
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o);
 
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
@@ -1181,35 +1262,46 @@ static int __Pyx_check_binary_version(void);
 /* InitStrings.proto */
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
-static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_Pcap *__pyx_v_self); /* proto*/
+static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_Pcap *__pyx_v_self, int __pyx_skip_dispatch); /* proto*/
+
+/* Module declarations from 'libpcap' */
 
 /* Module declarations from 'pcap' */
 static PyTypeObject *__pyx_ptype_4pcap_Pcap = 0;
+static char *__pyx_f_4pcap_inet_ntoa(unsigned char *); /*proto*/
+static char *__pyx_f_4pcap_eth_to_str(unsigned char *); /*proto*/
+static void __pyx_f_4pcap_pcap_handler_cb(__pyx_t_7libpcap_u_char *, __pyx_t_7libpcap_pcap_pkthdr const *, __pyx_t_7libpcap_u_char const *); /*proto*/
 static PyObject *__pyx_f_4pcap___pyx_unpickle_Pcap__set_state(struct __pyx_obj_4pcap_Pcap *, PyObject *); /*proto*/
 #define __Pyx_MODULE_NAME "pcap"
 extern int __pyx_module_is_main_pcap;
 int __pyx_module_is_main_pcap = 0;
 
 /* Implementation of 'pcap' */
-static PyObject *__pyx_builtin_range;
+static PyObject *__pyx_builtin_print;
+static const char __pyx_k_[] = "";
+static const char __pyx_k_d[] = "%d.";
+static const char __pyx_k__4[] = "\t";
+static const char __pyx_k_02x[] = "%02x:";
 static const char __pyx_k_end[] = "end";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_Pcap[] = "Pcap";
 static const char __pyx_k_dict[] = "__dict__";
-static const char __pyx_k_file[] = "file";
-static const char __pyx_k_main[] = "__main__";
+static const char __pyx_k_main[] = "main";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_pcap[] = "pcap";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_print[] = "print";
-static const char __pyx_k_range[] = "range";
 static const char __pyx_k_import[] = "__import__";
+static const char __pyx_k_main_2[] = "__main__";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_update[] = "update";
+static const char __pyx_k_IP_dst_s[] = "IP dst: %s";
+static const char __pyx_k_IP_src_s[] = "IP src: %s";
 static const char __pyx_k_getstate[] = "__getstate__";
 static const char __pyx_k_pyx_type[] = "__pyx_type";
 static const char __pyx_k_setstate[] = "__setstate__";
+static const char __pyx_k_ipaddress[] = "ipaddress";
 static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
@@ -1218,29 +1310,48 @@ static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "stringsource";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
-static const char __pyx_k_pcap_lookupdev[] = "pcap_lookupdev";
+static const char __pyx_k_Ethernet_dst_s[] = "Ethernet dst: %s";
+static const char __pyx_k_Ethernet_src_s[] = "Ethernet src: %s";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_pcap_open_live_s[] = "pcap_open_live %s";
 static const char __pyx_k_pyx_unpickle_Pcap[] = "__pyx_unpickle_Pcap";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_Sniffing_on_device_s[] = "Sniffing on device %s\n";
+static const char __pyx_k_Got_a_packet_of_length_d[] = "Got a packet of length %d";
+static const char __pyx_k_Received_packet_of_size_d[] = "Received packet of size %d";
+static const char __pyx_k_This_is_odd_Packet_is_null[] = "This is odd! Packet is null.";
+static const char __pyx_k_This_is_odd_header_is_null[] = "This is odd! header is null";
+static const char __pyx_k_Problem_at_pcap_lookupdev_s[] = "Problem at pcap_lookupdev: %s";
 static const char __pyx_k_Incompatible_checksums_s_vs_0xd4[] = "Incompatible checksums (%s vs 0xd41d8cd = ())";
+static PyObject *__pyx_kp_s_;
+static PyObject *__pyx_kp_s_02x;
+static PyObject *__pyx_kp_s_Ethernet_dst_s;
+static PyObject *__pyx_kp_s_Ethernet_src_s;
+static PyObject *__pyx_kp_s_Got_a_packet_of_length_d;
+static PyObject *__pyx_kp_s_IP_dst_s;
+static PyObject *__pyx_kp_s_IP_src_s;
 static PyObject *__pyx_kp_s_Incompatible_checksums_s_vs_0xd4;
 static PyObject *__pyx_n_s_Pcap;
 static PyObject *__pyx_n_s_PickleError;
+static PyObject *__pyx_kp_s_Problem_at_pcap_lookupdev_s;
+static PyObject *__pyx_kp_s_Received_packet_of_size_d;
 static PyObject *__pyx_kp_s_Sniffing_on_device_s;
+static PyObject *__pyx_kp_s_This_is_odd_Packet_is_null;
+static PyObject *__pyx_kp_s_This_is_odd_header_is_null;
+static PyObject *__pyx_kp_s__4;
 static PyObject *__pyx_n_s_cline_in_traceback;
+static PyObject *__pyx_kp_s_d;
 static PyObject *__pyx_n_s_dict;
 static PyObject *__pyx_n_s_end;
-static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_n_s_import;
+static PyObject *__pyx_n_s_ipaddress;
 static PyObject *__pyx_n_s_main;
+static PyObject *__pyx_n_s_main_2;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_new;
 static PyObject *__pyx_n_s_pcap;
-static PyObject *__pyx_n_s_pcap_lookupdev;
 static PyObject *__pyx_kp_s_pcap_open_live_s;
 static PyObject *__pyx_n_s_pickle;
 static PyObject *__pyx_n_s_print;
@@ -1251,7 +1362,6 @@ static PyObject *__pyx_n_s_pyx_state;
 static PyObject *__pyx_n_s_pyx_type;
 static PyObject *__pyx_n_s_pyx_unpickle_Pcap;
 static PyObject *__pyx_n_s_pyx_vtable;
-static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
@@ -1261,21 +1371,576 @@ static PyObject *__pyx_kp_s_stringsource;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_pf_4pcap_4Pcap___cint__(CYTHON_UNUSED struct __pyx_obj_4pcap_Pcap *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4pcap_4Pcap_2__reduce_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4pcap_4Pcap_4__setstate_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4pcap_4Pcap_2main(struct __pyx_obj_4pcap_Pcap *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4pcap_4Pcap_4__reduce_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4pcap_4Pcap_6__setstate_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_4pcap___pyx_unpickle_Pcap(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4pcap_Pcap(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_222419149;
-static PyObject *__pyx_tuple_;
-static PyObject *__pyx_codeobj__2;
+static PyObject *__pyx_int_neg_1;
+static PyObject *__pyx_slice__2;
+static PyObject *__pyx_tuple__3;
+static PyObject *__pyx_tuple__5;
+static PyObject *__pyx_tuple__6;
+static PyObject *__pyx_tuple__7;
+static PyObject *__pyx_codeobj__8;
 /* Late includes */
 
-/* "pcap.pyx":19
+/* "pcap.pyx":7
+ * #from cpython.mem cimport PyMem_Malloc, PyMem_Realloc, PyMem_Free
+ * #from libc.stdlib cimport malloc, free
+ * cdef char* inet_ntoa(unsigned char address[4]):             # <<<<<<<<<<<<<<
+ *     cdef int i
+ *     out = ""
+ */
+
+static char *__pyx_f_4pcap_inet_ntoa(unsigned char *__pyx_v_address) {
+  int __pyx_v_i;
+  PyObject *__pyx_v_out = NULL;
+  char *__pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  char *__pyx_t_2;
+  char *__pyx_t_3;
+  char *__pyx_t_4;
+  char *__pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  __Pyx_RefNannySetupContext("inet_ntoa", 0);
+
+  /* "pcap.pyx":9
+ * cdef char* inet_ntoa(unsigned char address[4]):
+ *     cdef int i
+ *     out = ""             # <<<<<<<<<<<<<<
+ *     for i in address[:4]:
+ *         if i < 0:
+ */
+  __Pyx_INCREF(__pyx_kp_s_);
+  __pyx_v_out = __pyx_kp_s_;
+
+  /* "pcap.pyx":10
+ *     cdef int i
+ *     out = ""
+ *     for i in address[:4]:             # <<<<<<<<<<<<<<
+ *         if i < 0:
+ *             i += 256
+ */
+  __pyx_t_1 = __Pyx_PyBytes_FromStringAndSize(((const char*)__pyx_v_address) + 0, 4 - 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyBytes_AS_STRING(__pyx_t_1);
+  __pyx_t_4 = (__pyx_t_3 + PyBytes_GET_SIZE(__pyx_t_1));
+  for (__pyx_t_5 = __pyx_t_3; __pyx_t_5 < __pyx_t_4; __pyx_t_5++) {
+    __pyx_t_2 = __pyx_t_5;
+    __pyx_v_i = (__pyx_t_2[0]);
+
+    /* "pcap.pyx":11
+ *     out = ""
+ *     for i in address[:4]:
+ *         if i < 0:             # <<<<<<<<<<<<<<
+ *             i += 256
+ *         out += "%d."%i
+ */
+    __pyx_t_6 = ((__pyx_v_i < 0) != 0);
+    if (__pyx_t_6) {
+
+      /* "pcap.pyx":12
+ *     for i in address[:4]:
+ *         if i < 0:
+ *             i += 256             # <<<<<<<<<<<<<<
+ *         out += "%d."%i
+ *     return out[:-1]
+ */
+      __pyx_v_i = (__pyx_v_i + 0x100);
+
+      /* "pcap.pyx":11
+ *     out = ""
+ *     for i in address[:4]:
+ *         if i < 0:             # <<<<<<<<<<<<<<
+ *             i += 256
+ *         out += "%d."%i
+ */
+    }
+
+    /* "pcap.pyx":13
+ *         if i < 0:
+ *             i += 256
+ *         out += "%d."%i             # <<<<<<<<<<<<<<
+ *     return out[:-1]
+ * 
+ */
+    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_d, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = PyNumber_InPlaceAdd(__pyx_v_out, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF_SET(__pyx_v_out, __pyx_t_7);
+    __pyx_t_7 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pcap.pyx":14
+ *             i += 256
+ *         out += "%d."%i
+ *     return out[:-1]             # <<<<<<<<<<<<<<
+ * 
+ * cdef char* eth_to_str(unsigned char address[6]):
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_out, 0, -1L, NULL, NULL, &__pyx_slice__2, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_AsWritableString(__pyx_t_1); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 14, __pyx_L1_error)
+  __pyx_r = __pyx_t_2;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "pcap.pyx":7
+ * #from cpython.mem cimport PyMem_Malloc, PyMem_Realloc, PyMem_Free
+ * #from libc.stdlib cimport malloc, free
+ * cdef char* inet_ntoa(unsigned char address[4]):             # <<<<<<<<<<<<<<
+ *     cdef int i
+ *     out = ""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_WriteUnraisable("pcap.inet_ntoa", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_out);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pcap.pyx":16
+ *     return out[:-1]
+ * 
+ * cdef char* eth_to_str(unsigned char address[6]):             # <<<<<<<<<<<<<<
+ *     cdef int i
+ *     out = ""
+ */
+
+static char *__pyx_f_4pcap_eth_to_str(unsigned char *__pyx_v_address) {
+  int __pyx_v_i;
+  PyObject *__pyx_v_out = NULL;
+  char *__pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  char *__pyx_t_2;
+  char *__pyx_t_3;
+  char *__pyx_t_4;
+  char *__pyx_t_5;
+  int __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  __Pyx_RefNannySetupContext("eth_to_str", 0);
+
+  /* "pcap.pyx":18
+ * cdef char* eth_to_str(unsigned char address[6]):
+ *     cdef int i
+ *     out = ""             # <<<<<<<<<<<<<<
+ *     for i in address[:6]:
+ *         if i < 0:
+ */
+  __Pyx_INCREF(__pyx_kp_s_);
+  __pyx_v_out = __pyx_kp_s_;
+
+  /* "pcap.pyx":19
+ *     cdef int i
+ *     out = ""
+ *     for i in address[:6]:             # <<<<<<<<<<<<<<
+ *         if i < 0:
+ *             i += 256
+ */
+  __pyx_t_1 = __Pyx_PyBytes_FromStringAndSize(((const char*)__pyx_v_address) + 0, 6 - 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = PyBytes_AS_STRING(__pyx_t_1);
+  __pyx_t_4 = (__pyx_t_3 + PyBytes_GET_SIZE(__pyx_t_1));
+  for (__pyx_t_5 = __pyx_t_3; __pyx_t_5 < __pyx_t_4; __pyx_t_5++) {
+    __pyx_t_2 = __pyx_t_5;
+    __pyx_v_i = (__pyx_t_2[0]);
+
+    /* "pcap.pyx":20
+ *     out = ""
+ *     for i in address[:6]:
+ *         if i < 0:             # <<<<<<<<<<<<<<
+ *             i += 256
+ *         out += "%02x:"%i
+ */
+    __pyx_t_6 = ((__pyx_v_i < 0) != 0);
+    if (__pyx_t_6) {
+
+      /* "pcap.pyx":21
+ *     for i in address[:6]:
+ *         if i < 0:
+ *             i += 256             # <<<<<<<<<<<<<<
+ *         out += "%02x:"%i
+ *     return out[:-1]
+ */
+      __pyx_v_i = (__pyx_v_i + 0x100);
+
+      /* "pcap.pyx":20
+ *     out = ""
+ *     for i in address[:6]:
+ *         if i < 0:             # <<<<<<<<<<<<<<
+ *             i += 256
+ *         out += "%02x:"%i
+ */
+    }
+
+    /* "pcap.pyx":22
+ *         if i < 0:
+ *             i += 256
+ *         out += "%02x:"%i             # <<<<<<<<<<<<<<
+ *     return out[:-1]
+ * 
+ */
+    __pyx_t_7 = __Pyx_PyInt_From_int(__pyx_v_i); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __pyx_t_8 = __Pyx_PyString_Format(__pyx_kp_s_02x, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_7 = PyNumber_InPlaceAdd(__pyx_v_out, __pyx_t_8); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+    __Pyx_DECREF_SET(__pyx_v_out, __pyx_t_7);
+    __pyx_t_7 = 0;
+  }
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pcap.pyx":23
+ *             i += 256
+ *         out += "%02x:"%i
+ *     return out[:-1]             # <<<<<<<<<<<<<<
+ * 
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetSlice(__pyx_v_out, 0, -1L, NULL, NULL, &__pyx_slice__2, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_AsWritableString(__pyx_t_1); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_r = __pyx_t_2;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "pcap.pyx":16
+ *     return out[:-1]
+ * 
+ * cdef char* eth_to_str(unsigned char address[6]):             # <<<<<<<<<<<<<<
+ *     cdef int i
+ *     out = ""
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_XDECREF(__pyx_t_8);
+  __Pyx_WriteUnraisable("pcap.eth_to_str", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_out);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pcap.pyx":25
+ *     return out[:-1]
+ * 
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):             # <<<<<<<<<<<<<<
+ *     print("Received packet of size %d"%header.len)
+ *     if header is not NULL:
+ */
+
+static void __pyx_f_4pcap_pcap_handler_cb(CYTHON_UNUSED __pyx_t_7libpcap_u_char *__pyx_v_args, __pyx_t_7libpcap_pcap_pkthdr const *__pyx_v_header, __pyx_t_7libpcap_u_char const *__pyx_v_packet) {
+  __pyx_t_7libpcap_Ethernet *__pyx_v_eth;
+  __pyx_t_7libpcap_Ip *__pyx_v_ip;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
+  __Pyx_RefNannySetupContext("pcap_handler_cb", 0);
+
+  /* "pcap.pyx":26
+ * 
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):
+ *     print("Received packet of size %d"%header.len)             # <<<<<<<<<<<<<<
+ *     if header is not NULL:
+ *         print("Got a packet of length %d"%header.len)
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_header->len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Received_packet_of_size_d, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pcap.pyx":27
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):
+ *     print("Received packet of size %d"%header.len)
+ *     if header is not NULL:             # <<<<<<<<<<<<<<
+ *         print("Got a packet of length %d"%header.len)
+ *     else:
+ */
+  __pyx_t_3 = ((__pyx_v_header != NULL) != 0);
+  if (__pyx_t_3) {
+
+    /* "pcap.pyx":28
+ *     print("Received packet of size %d"%header.len)
+ *     if header is not NULL:
+ *         print("Got a packet of length %d"%header.len)             # <<<<<<<<<<<<<<
+ *     else:
+ *         print("This is odd! header is null")
+ */
+    __pyx_t_1 = __Pyx_PyInt_From_unsigned_int(__pyx_v_header->len); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Got_a_packet_of_length_d, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "pcap.pyx":27
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):
+ *     print("Received packet of size %d"%header.len)
+ *     if header is not NULL:             # <<<<<<<<<<<<<<
+ *         print("Got a packet of length %d"%header.len)
+ *     else:
+ */
+    goto __pyx_L3;
+  }
+
+  /* "pcap.pyx":30
+ *         print("Got a packet of length %d"%header.len)
+ *     else:
+ *         print("This is odd! header is null")             # <<<<<<<<<<<<<<
+ *         return
+ *     if packet is not NULL:
+ */
+  /*else*/ {
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "pcap.pyx":31
+ *     else:
+ *         print("This is odd! header is null")
+ *         return             # <<<<<<<<<<<<<<
+ *     if packet is not NULL:
+ *         eth = <Ethernet *> packet;
+ */
+    goto __pyx_L0;
+  }
+  __pyx_L3:;
+
+  /* "pcap.pyx":32
+ *         print("This is odd! header is null")
+ *         return
+ *     if packet is not NULL:             # <<<<<<<<<<<<<<
+ *         eth = <Ethernet *> packet;
+ *         print("Ethernet src: %s"%(eth_to_str(eth.ether_src_addr)), end='\t')
+ */
+  __pyx_t_3 = ((__pyx_v_packet != NULL) != 0);
+  if (__pyx_t_3) {
+
+    /* "pcap.pyx":33
+ *         return
+ *     if packet is not NULL:
+ *         eth = <Ethernet *> packet;             # <<<<<<<<<<<<<<
+ *         print("Ethernet src: %s"%(eth_to_str(eth.ether_src_addr)), end='\t')
+ *         print("Ethernet dst: %s"%(eth_to_str(eth.ether_dst_addr)))
+ */
+    __pyx_v_eth = ((__pyx_t_7libpcap_Ethernet *)__pyx_v_packet);
+
+    /* "pcap.pyx":34
+ *     if packet is not NULL:
+ *         eth = <Ethernet *> packet;
+ *         print("Ethernet src: %s"%(eth_to_str(eth.ether_src_addr)), end='\t')             # <<<<<<<<<<<<<<
+ *         print("Ethernet dst: %s"%(eth_to_str(eth.ether_dst_addr)))
+ * 
+ */
+    __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_f_4pcap_eth_to_str(__pyx_v_eth->ether_src_addr)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Ethernet_src_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_end, __pyx_kp_s__4) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "pcap.pyx":35
+ *         eth = <Ethernet *> packet;
+ *         print("Ethernet src: %s"%(eth_to_str(eth.ether_src_addr)), end='\t')
+ *         print("Ethernet dst: %s"%(eth_to_str(eth.ether_dst_addr)))             # <<<<<<<<<<<<<<
+ * 
+ *         ip = <Ip *>(packet + 14)
+ */
+    __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_f_4pcap_eth_to_str(__pyx_v_eth->ether_dst_addr)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Ethernet_dst_s, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "pcap.pyx":37
+ *         print("Ethernet dst: %s"%(eth_to_str(eth.ether_dst_addr)))
+ * 
+ *         ip = <Ip *>(packet + 14)             # <<<<<<<<<<<<<<
+ *         print("IP src: %s"%inet_ntoa(ip.ip_src_addr), end='')
+ *         print("\t", end='')
+ */
+    __pyx_v_ip = ((__pyx_t_7libpcap_Ip *)(__pyx_v_packet + 14));
+
+    /* "pcap.pyx":38
+ * 
+ *         ip = <Ip *>(packet + 14)
+ *         print("IP src: %s"%inet_ntoa(ip.ip_src_addr), end='')             # <<<<<<<<<<<<<<
+ *         print("\t", end='')
+ *         print("IP dst: %s"%inet_ntoa(ip.ip_dest_addr), end='')
+ */
+    __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_f_4pcap_inet_ntoa(__pyx_v_ip->ip_src_addr)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_IP_src_s, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_end, __pyx_kp_s_) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "pcap.pyx":39
+ *         ip = <Ip *>(packet + 14)
+ *         print("IP src: %s"%inet_ntoa(ip.ip_src_addr), end='')
+ *         print("\t", end='')             # <<<<<<<<<<<<<<
+ *         print("IP dst: %s"%inet_ntoa(ip.ip_dest_addr), end='')
+ *         print()
+ */
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_end, __pyx_kp_s_) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__5, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+    /* "pcap.pyx":40
+ *         print("IP src: %s"%inet_ntoa(ip.ip_src_addr), end='')
+ *         print("\t", end='')
+ *         print("IP dst: %s"%inet_ntoa(ip.ip_dest_addr), end='')             # <<<<<<<<<<<<<<
+ *         print()
+ *     else:
+ */
+    __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_f_4pcap_inet_ntoa(__pyx_v_ip->ip_dest_addr)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_IP_dst_s, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
+    __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_end, __pyx_kp_s_) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "pcap.pyx":41
+ *         print("\t", end='')
+ *         print("IP dst: %s"%inet_ntoa(ip.ip_dest_addr), end='')
+ *         print()             # <<<<<<<<<<<<<<
+ *     else:
+ *         print("This is odd! Packet is null.")
+ */
+    __pyx_t_4 = __Pyx_PyObject_CallNoArg(__pyx_builtin_print); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+    /* "pcap.pyx":32
+ *         print("This is odd! header is null")
+ *         return
+ *     if packet is not NULL:             # <<<<<<<<<<<<<<
+ *         eth = <Ethernet *> packet;
+ *         print("Ethernet src: %s"%(eth_to_str(eth.ether_src_addr)), end='\t')
+ */
+    goto __pyx_L4;
+  }
+
+  /* "pcap.pyx":43
+ *         print()
+ *     else:
+ *         print("This is odd! Packet is null.")             # <<<<<<<<<<<<<<
+ * 
+ * cdef class Pcap:
+ */
+  /*else*/ {
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  }
+  __pyx_L4:;
+
+  /* "pcap.pyx":25
+ *     return out[:-1]
+ * 
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):             # <<<<<<<<<<<<<<
+ *     print("Received packet of size %d"%header.len)
+ *     if header is not NULL:
+ */
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_WriteUnraisable("pcap.pcap_handler_cb", __pyx_clineno, __pyx_lineno, __pyx_filename, 1, 0);
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+}
+
+/* "pcap.pyx":46
  * 
  * cdef class Pcap:
  *     def __cint__(self):             # <<<<<<<<<<<<<<
  *         pass
- *     cdef main(self):
+ *     cpdef main(self):
  */
 
 /* Python wrapper */
@@ -1303,174 +1968,243 @@ static PyObject *__pyx_pf_4pcap_4Pcap___cint__(CYTHON_UNUSED struct __pyx_obj_4p
   return __pyx_r;
 }
 
-/* "pcap.pyx":21
+/* "pcap.pyx":48
  *     def __cint__(self):
  *         pass
- *     cdef main(self):             # <<<<<<<<<<<<<<
- *         cdef pcap_pkthdr *header
- *         #header = <mardas> malloc(sizeof(pcap_pkthdr))
+ *     cpdef main(self):             # <<<<<<<<<<<<<<
+ *         cdef pcap_pkthdr header
+ *         cdef const u_char *packet
  */
 
-static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_Pcap *__pyx_v_self) {
-  pcap_pkthdr *__pyx_v_header;
-  CYTHON_UNUSED unsigned char const *__pyx_v_packet;
+static PyObject *__pyx_pw_4pcap_4Pcap_3main(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_Pcap *__pyx_v_self, int __pyx_skip_dispatch) {
   char __pyx_v_errbuff[0x64];
   char *__pyx_v_device;
   pcap_t *__pyx_v_pcap_handle;
-  long __pyx_v_i;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
+  PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  long __pyx_t_4;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_t_5;
   __Pyx_RefNannySetupContext("main", 0);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely((Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0) || (Py_TYPE(((PyObject *)__pyx_v_self))->tp_flags & (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)))) {
+    #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+    static PY_UINT64_T tp_dict_version = 0, obj_dict_version = 0;
+    if (likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict && tp_dict_version == __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) && (!Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset || obj_dict_version == __PYX_GET_DICT_VERSION(_PyObject_GetDictPtr(((PyObject *)__pyx_v_self))))));
+    else {
+      PY_UINT64_T type_dict_guard = (likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict)) ? __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) : 0;
+      #endif
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_main); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_4pcap_4Pcap_3main)) {
+        __Pyx_XDECREF(__pyx_r);
+        __Pyx_INCREF(__pyx_t_1);
+        __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+        if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+            __Pyx_INCREF(__pyx_t_4);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_3, function);
+          }
+        }
+        __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __pyx_r = __pyx_t_2;
+        __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        goto __pyx_L0;
+      }
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+      tp_dict_version = likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) ? __PYX_GET_DICT_VERSION(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dict) : 0;
+      obj_dict_version = likely(Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset) ? __PYX_GET_DICT_VERSION(_PyObject_GetDictPtr(((PyObject *)__pyx_v_self))) : 0;
+      if (unlikely(type_dict_guard != tp_dict_version)) {
+        tp_dict_version = obj_dict_version = 0;
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP
+    }
+    #endif
+  }
 
-  /* "pcap.pyx":29
- *         cdef char *device
- *         cdef pcap_t *pcap_handle
+  /* "pcap.pyx":57
+ *         cdef Ip *ip;
+ *         cdef int i, j
  *         device = pcap_lookupdev(errbuff)             # <<<<<<<<<<<<<<
  *         if device is NULL:
- *             print("pcap_lookupdev")
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)
  */
   __pyx_v_device = pcap_lookupdev(__pyx_v_errbuff);
 
-  /* "pcap.pyx":30
- *         cdef pcap_t *pcap_handle
+  /* "pcap.pyx":58
+ *         cdef int i, j
  *         device = pcap_lookupdev(errbuff)
  *         if device is NULL:             # <<<<<<<<<<<<<<
- *             print("pcap_lookupdev")
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)
  *         print("Sniffing on device %s\n"%device)
  */
-  __pyx_t_1 = ((__pyx_v_device == NULL) != 0);
-  if (__pyx_t_1) {
+  __pyx_t_5 = ((__pyx_v_device == NULL) != 0);
+  if (__pyx_t_5) {
 
-    /* "pcap.pyx":31
+    /* "pcap.pyx":59
  *         device = pcap_lookupdev(errbuff)
  *         if device is NULL:
- *             print("pcap_lookupdev")             # <<<<<<<<<<<<<<
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)             # <<<<<<<<<<<<<<
  *         print("Sniffing on device %s\n"%device)
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)
  */
-    if (__Pyx_PrintOne(0, __pyx_n_s_pcap_lookupdev) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_errbuff); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Problem_at_pcap_lookupdev_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pcap.pyx":30
- *         cdef pcap_t *pcap_handle
+    /* "pcap.pyx":58
+ *         cdef int i, j
  *         device = pcap_lookupdev(errbuff)
  *         if device is NULL:             # <<<<<<<<<<<<<<
- *             print("pcap_lookupdev")
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)
  *         print("Sniffing on device %s\n"%device)
  */
   }
 
-  /* "pcap.pyx":32
+  /* "pcap.pyx":60
  *         if device is NULL:
- *             print("pcap_lookupdev")
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)
  *         print("Sniffing on device %s\n"%device)             # <<<<<<<<<<<<<<
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)
  *         if pcap_handle is NULL:
  */
-  __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_v_device); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_device); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_Sniffing_on_device_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyString_Format(__pyx_kp_s_Sniffing_on_device_s, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_PrintOne(0, __pyx_t_3) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pcap.pyx":33
- *             print("pcap_lookupdev")
+  /* "pcap.pyx":61
+ *             print("Problem at pcap_lookupdev: %s"%errbuff)
  *         print("Sniffing on device %s\n"%device)
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)             # <<<<<<<<<<<<<<
  *         if pcap_handle is NULL:
- *             print("pcap_open_live %s", errbuff)
+ *             print("pcap_open_live %s"%errbuff)
  */
   __pyx_v_pcap_handle = pcap_open_live(__pyx_v_device, 0x1000, 1, 0, __pyx_v_errbuff);
 
-  /* "pcap.pyx":34
+  /* "pcap.pyx":62
  *         print("Sniffing on device %s\n"%device)
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)
  *         if pcap_handle is NULL:             # <<<<<<<<<<<<<<
- *             print("pcap_open_live %s", errbuff)
+ *             print("pcap_open_live %s"%errbuff)
  * 
  */
-  __pyx_t_1 = ((__pyx_v_pcap_handle == NULL) != 0);
-  if (__pyx_t_1) {
+  __pyx_t_5 = ((__pyx_v_pcap_handle == NULL) != 0);
+  if (__pyx_t_5) {
 
-    /* "pcap.pyx":35
+    /* "pcap.pyx":63
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)
  *         if pcap_handle is NULL:
- *             print("pcap_open_live %s", errbuff)             # <<<<<<<<<<<<<<
+ *             print("pcap_open_live %s"%errbuff)             # <<<<<<<<<<<<<<
  * 
- *         for i in range(3):
+ *         #for i in range(15):
  */
-    __pyx_t_3 = __Pyx_PyObject_FromString(__pyx_v_errbuff); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_FromString(__pyx_v_errbuff); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyString_Format(__pyx_kp_s_pcap_open_live_s, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_INCREF(__pyx_kp_s_pcap_open_live_s);
-    __Pyx_GIVEREF(__pyx_kp_s_pcap_open_live_s);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_kp_s_pcap_open_live_s);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-    __pyx_t_3 = 0;
-    if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pcap.pyx":34
+    /* "pcap.pyx":62
  *         print("Sniffing on device %s\n"%device)
  *         pcap_handle = pcap_open_live(device, 4096, 1, 0, errbuff)
  *         if pcap_handle is NULL:             # <<<<<<<<<<<<<<
- *             print("pcap_open_live %s", errbuff)
+ *             print("pcap_open_live %s"%errbuff)
  * 
  */
   }
 
-  /* "pcap.pyx":37
- *             print("pcap_open_live %s", errbuff)
+  /* "pcap.pyx":82
+ *         #        print("This is odd! Packet is null.")
  * 
- *         for i in range(3):             # <<<<<<<<<<<<<<
- *             print i
- *             packet = pcap_next(pcap_handle, header)
+ *         pcap_loop(pcap_handle, 15, pcap_handler_cb, NULL)             # <<<<<<<<<<<<<<
  */
-  for (__pyx_t_4 = 0; __pyx_t_4 < 3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
+  (void)(pcap_loop(__pyx_v_pcap_handle, 15, __pyx_f_4pcap_pcap_handler_cb, NULL));
 
-    /* "pcap.pyx":38
- * 
- *         for i in range(3):
- *             print i             # <<<<<<<<<<<<<<
- *             packet = pcap_next(pcap_handle, header)
- */
-    __pyx_t_2 = __Pyx_PyInt_From_long(__pyx_v_i); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_PrintOne(0, __pyx_t_2) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "pcap.pyx":39
- *         for i in range(3):
- *             print i
- *             packet = pcap_next(pcap_handle, header)             # <<<<<<<<<<<<<<
- */
-    __pyx_v_packet = pcap_next(__pyx_v_pcap_handle, __pyx_v_header);
-  }
-
-  /* "pcap.pyx":21
+  /* "pcap.pyx":48
  *     def __cint__(self):
  *         pass
- *     cdef main(self):             # <<<<<<<<<<<<<<
- *         cdef pcap_pkthdr *header
- *         #header = <mardas> malloc(sizeof(pcap_pkthdr))
+ *     cpdef main(self):             # <<<<<<<<<<<<<<
+ *         cdef pcap_pkthdr header
+ *         cdef const u_char *packet
  */
 
   /* function exit code */
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_AddTraceback("pcap.Pcap.main", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4pcap_4Pcap_3main(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_4pcap_4Pcap_3main(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("main (wrapper)", 0);
+  __pyx_r = __pyx_pf_4pcap_4Pcap_2main(((struct __pyx_obj_4pcap_Pcap *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4pcap_4Pcap_2main(struct __pyx_obj_4pcap_Pcap *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  __Pyx_RefNannySetupContext("main", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_4pcap_4Pcap_main(__pyx_v_self, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pcap.Pcap.main", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -1484,19 +2218,19 @@ static PyObject *__pyx_f_4pcap_4Pcap_main(CYTHON_UNUSED struct __pyx_obj_4pcap_P
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4pcap_4Pcap_3__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_4pcap_4Pcap_3__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4pcap_4Pcap_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_4pcap_4Pcap_5__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4pcap_4Pcap_2__reduce_cython__(((struct __pyx_obj_4pcap_Pcap *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4pcap_4Pcap_4__reduce_cython__(((struct __pyx_obj_4pcap_Pcap *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4pcap_4Pcap_2__reduce_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self) {
+static PyObject *__pyx_pf_4pcap_4Pcap_4__reduce_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -1710,19 +2444,19 @@ static PyObject *__pyx_pf_4pcap_4Pcap_2__reduce_cython__(struct __pyx_obj_4pcap_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4pcap_4Pcap_5__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_4pcap_4Pcap_5__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4pcap_4Pcap_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_4pcap_4Pcap_7__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4pcap_4Pcap_4__setstate_cython__(((struct __pyx_obj_4pcap_Pcap *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4pcap_4Pcap_6__setstate_cython__(((struct __pyx_obj_4pcap_Pcap *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4pcap_4Pcap_4__setstate_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4pcap_4Pcap_6__setstate_cython__(struct __pyx_obj_4pcap_Pcap *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2153,8 +2887,9 @@ static void __pyx_tp_dealloc_4pcap_Pcap(PyObject *o) {
 
 static PyMethodDef __pyx_methods_4pcap_Pcap[] = {
   {"__cint__", (PyCFunction)__pyx_pw_4pcap_4Pcap_1__cint__, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4pcap_4Pcap_3__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4pcap_4Pcap_5__setstate_cython__, METH_O, 0},
+  {"main", (PyCFunction)__pyx_pw_4pcap_4Pcap_3main, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4pcap_4Pcap_5__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4pcap_4Pcap_7__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -2262,21 +2997,34 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
+  {&__pyx_kp_s_, __pyx_k_, sizeof(__pyx_k_), 0, 0, 1, 0},
+  {&__pyx_kp_s_02x, __pyx_k_02x, sizeof(__pyx_k_02x), 0, 0, 1, 0},
+  {&__pyx_kp_s_Ethernet_dst_s, __pyx_k_Ethernet_dst_s, sizeof(__pyx_k_Ethernet_dst_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_Ethernet_src_s, __pyx_k_Ethernet_src_s, sizeof(__pyx_k_Ethernet_src_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_Got_a_packet_of_length_d, __pyx_k_Got_a_packet_of_length_d, sizeof(__pyx_k_Got_a_packet_of_length_d), 0, 0, 1, 0},
+  {&__pyx_kp_s_IP_dst_s, __pyx_k_IP_dst_s, sizeof(__pyx_k_IP_dst_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_IP_src_s, __pyx_k_IP_src_s, sizeof(__pyx_k_IP_src_s), 0, 0, 1, 0},
   {&__pyx_kp_s_Incompatible_checksums_s_vs_0xd4, __pyx_k_Incompatible_checksums_s_vs_0xd4, sizeof(__pyx_k_Incompatible_checksums_s_vs_0xd4), 0, 0, 1, 0},
   {&__pyx_n_s_Pcap, __pyx_k_Pcap, sizeof(__pyx_k_Pcap), 0, 0, 1, 1},
   {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
+  {&__pyx_kp_s_Problem_at_pcap_lookupdev_s, __pyx_k_Problem_at_pcap_lookupdev_s, sizeof(__pyx_k_Problem_at_pcap_lookupdev_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_Received_packet_of_size_d, __pyx_k_Received_packet_of_size_d, sizeof(__pyx_k_Received_packet_of_size_d), 0, 0, 1, 0},
   {&__pyx_kp_s_Sniffing_on_device_s, __pyx_k_Sniffing_on_device_s, sizeof(__pyx_k_Sniffing_on_device_s), 0, 0, 1, 0},
+  {&__pyx_kp_s_This_is_odd_Packet_is_null, __pyx_k_This_is_odd_Packet_is_null, sizeof(__pyx_k_This_is_odd_Packet_is_null), 0, 0, 1, 0},
+  {&__pyx_kp_s_This_is_odd_header_is_null, __pyx_k_This_is_odd_header_is_null, sizeof(__pyx_k_This_is_odd_header_is_null), 0, 0, 1, 0},
+  {&__pyx_kp_s__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 0, 1, 0},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
+  {&__pyx_kp_s_d, __pyx_k_d, sizeof(__pyx_k_d), 0, 0, 1, 0},
   {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
   {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
-  {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
+  {&__pyx_n_s_ipaddress, __pyx_k_ipaddress, sizeof(__pyx_k_ipaddress), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+  {&__pyx_n_s_main_2, __pyx_k_main_2, sizeof(__pyx_k_main_2), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
   {&__pyx_n_s_pcap, __pyx_k_pcap, sizeof(__pyx_k_pcap), 0, 0, 1, 1},
-  {&__pyx_n_s_pcap_lookupdev, __pyx_k_pcap_lookupdev, sizeof(__pyx_k_pcap_lookupdev), 0, 0, 1, 1},
   {&__pyx_kp_s_pcap_open_live_s, __pyx_k_pcap_open_live_s, sizeof(__pyx_k_pcap_open_live_s), 0, 0, 1, 0},
   {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
   {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
@@ -2287,7 +3035,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_pyx_type, __pyx_k_pyx_type, sizeof(__pyx_k_pyx_type), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_unpickle_Pcap, __pyx_k_pyx_unpickle_Pcap, sizeof(__pyx_k_pyx_unpickle_Pcap), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
-  {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
@@ -2299,7 +3046,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 26, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2309,15 +3056,70 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
+  /* "pcap.pyx":14
+ *             i += 256
+ *         out += "%d."%i
+ *     return out[:-1]             # <<<<<<<<<<<<<<
+ * 
+ * cdef char* eth_to_str(unsigned char address[6]):
+ */
+  __pyx_slice__2 = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__2);
+  __Pyx_GIVEREF(__pyx_slice__2);
+
+  /* "pcap.pyx":23
+ *             i += 256
+ *         out += "%02x:"%i
+ *     return out[:-1]             # <<<<<<<<<<<<<<
+ * 
+ * cdef void pcap_handler_cb (u_char * args, const pcap_pkthdr *header, const u_char *packet):
+ */
+  __pyx_slice__2 = PySlice_New(Py_None, __pyx_int_neg_1, Py_None); if (unlikely(!__pyx_slice__2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_slice__2);
+  __Pyx_GIVEREF(__pyx_slice__2);
+
+  /* "pcap.pyx":30
+ *         print("Got a packet of length %d"%header.len)
+ *     else:
+ *         print("This is odd! header is null")             # <<<<<<<<<<<<<<
+ *         return
+ *     if packet is not NULL:
+ */
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_s_This_is_odd_header_is_null); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__3);
+  __Pyx_GIVEREF(__pyx_tuple__3);
+
+  /* "pcap.pyx":39
+ *         ip = <Ip *>(packet + 14)
+ *         print("IP src: %s"%inet_ntoa(ip.ip_src_addr), end='')
+ *         print("\t", end='')             # <<<<<<<<<<<<<<
+ *         print("IP dst: %s"%inet_ntoa(ip.ip_dest_addr), end='')
+ *         print()
+ */
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s__4); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__5);
+  __Pyx_GIVEREF(__pyx_tuple__5);
+
+  /* "pcap.pyx":43
+ *         print()
+ *     else:
+ *         print("This is odd! Packet is null.")             # <<<<<<<<<<<<<<
+ * 
+ * cdef class Pcap:
+ */
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_s_This_is_odd_Packet_is_null); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+
   /* "(tree fragment)":1
  * def __pyx_unpickle_Pcap(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple_)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple_);
-  __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Pcap, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+  __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(3, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Pcap, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -2328,6 +3130,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 static CYTHON_SMALL_CODE int __Pyx_InitGlobals(void) {
   if (__Pyx_InitStrings(__pyx_string_tab) < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_222419149 = PyInt_FromLong(222419149L); if (unlikely(!__pyx_int_222419149)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -2370,15 +3173,15 @@ static int __Pyx_modinit_type_init_code(void) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   __pyx_vtabptr_4pcap_Pcap = &__pyx_vtable_4pcap_Pcap;
-  __pyx_vtable_4pcap_Pcap.main = (PyObject *(*)(struct __pyx_obj_4pcap_Pcap *))__pyx_f_4pcap_4Pcap_main;
-  if (PyType_Ready(&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_vtable_4pcap_Pcap.main = (PyObject *(*)(struct __pyx_obj_4pcap_Pcap *, int __pyx_skip_dispatch))__pyx_f_4pcap_4Pcap_main;
+  if (PyType_Ready(&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __pyx_type_4pcap_Pcap.tp_print = 0;
   if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_4pcap_Pcap.tp_dictoffset && __pyx_type_4pcap_Pcap.tp_getattro == PyObject_GenericGetAttr)) {
     __pyx_type_4pcap_Pcap.tp_getattro = __Pyx_PyObject_GenericGetAttr;
   }
-  if (__Pyx_SetVtable(__pyx_type_4pcap_Pcap.tp_dict, __pyx_vtabptr_4pcap_Pcap) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
-  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Pcap, (PyObject *)&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
-  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  if (__Pyx_SetVtable(__pyx_type_4pcap_Pcap.tp_dict, __pyx_vtabptr_4pcap_Pcap) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyObject_SetAttr(__pyx_m, __pyx_n_s_Pcap, (PyObject *)&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (__Pyx_setup_reduce((PyObject*)&__pyx_type_4pcap_Pcap) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   __pyx_ptype_4pcap_Pcap = &__pyx_type_4pcap_Pcap;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -2582,7 +3385,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
   if (__pyx_module_is_main_pcap) {
-    if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main_2) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
@@ -2609,6 +3412,18 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
+  /* "pcap.pyx":3
+ * from __future__ import print_function
+ * from libpcap cimport *
+ * import ipaddress             # <<<<<<<<<<<<<<
+ * 
+ * #from cpython.mem cimport PyMem_Malloc, PyMem_Realloc, PyMem_Free
+ */
+  __pyx_t_1 = __Pyx_Import(__pyx_n_s_ipaddress, 0, -1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ipaddress, __pyx_t_1) < 0) __PYX_ERR(0, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
   /* "(tree fragment)":1
  * def __pyx_unpickle_Pcap(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
@@ -2620,9 +3435,9 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "pcap.pyx":1
- * #from cpython.mem cimport PyMem_Malloc, PyMem_Realloc, PyMem_Free             # <<<<<<<<<<<<<<
- * #from libc.stdlib cimport malloc, free
- * cdef extern from "pcap.h":
+ * from __future__ import print_function             # <<<<<<<<<<<<<<
+ * from libpcap cimport *
+ * import ipaddress
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2699,30 +3514,102 @@ static PyObject *__Pyx_GetBuiltinName(PyObject *name) {
     return result;
 }
 
-/* PyErrExceptionMatches */
-#if CYTHON_FAST_THREAD_STATE
-static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
-    Py_ssize_t i, n;
-    n = PyTuple_GET_SIZE(tuple);
-#if PY_MAJOR_VERSION >= 3
-    for (i=0; i<n; i++) {
-        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+/* SliceObject */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
+        Py_ssize_t cstart, Py_ssize_t cstop,
+        PyObject** _py_start, PyObject** _py_stop, PyObject** _py_slice,
+        int has_cstart, int has_cstop, CYTHON_UNUSED int wraparound) {
+#if CYTHON_USE_TYPE_SLOTS
+    PyMappingMethods* mp;
+#if PY_MAJOR_VERSION < 3
+    PySequenceMethods* ms = Py_TYPE(obj)->tp_as_sequence;
+    if (likely(ms && ms->sq_slice)) {
+        if (!has_cstart) {
+            if (_py_start && (*_py_start != Py_None)) {
+                cstart = __Pyx_PyIndex_AsSsize_t(*_py_start);
+                if ((cstart == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstart = 0;
+        }
+        if (!has_cstop) {
+            if (_py_stop && (*_py_stop != Py_None)) {
+                cstop = __Pyx_PyIndex_AsSsize_t(*_py_stop);
+                if ((cstop == (Py_ssize_t)-1) && PyErr_Occurred()) goto bad;
+            } else
+                cstop = PY_SSIZE_T_MAX;
+        }
+        if (wraparound && unlikely((cstart < 0) | (cstop < 0)) && likely(ms->sq_length)) {
+            Py_ssize_t l = ms->sq_length(obj);
+            if (likely(l >= 0)) {
+                if (cstop < 0) {
+                    cstop += l;
+                    if (cstop < 0) cstop = 0;
+                }
+                if (cstart < 0) {
+                    cstart += l;
+                    if (cstart < 0) cstart = 0;
+                }
+            } else {
+                if (!PyErr_ExceptionMatches(PyExc_OverflowError))
+                    goto bad;
+                PyErr_Clear();
+            }
+        }
+        return ms->sq_slice(obj, cstart, cstop);
     }
 #endif
-    for (i=0; i<n; i++) {
-        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
-    }
-    return 0;
-}
-static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
-    PyObject *exc_type = tstate->curexc_type;
-    if (exc_type == err) return 1;
-    if (unlikely(!exc_type)) return 0;
-    if (unlikely(PyTuple_Check(err)))
-        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
-    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
-}
+    mp = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(mp && mp->mp_subscript))
 #endif
+    {
+        PyObject* result;
+        PyObject *py_slice, *py_start, *py_stop;
+        if (_py_slice) {
+            py_slice = *_py_slice;
+        } else {
+            PyObject* owned_start = NULL;
+            PyObject* owned_stop = NULL;
+            if (_py_start) {
+                py_start = *_py_start;
+            } else {
+                if (has_cstart) {
+                    owned_start = py_start = PyInt_FromSsize_t(cstart);
+                    if (unlikely(!py_start)) goto bad;
+                } else
+                    py_start = Py_None;
+            }
+            if (_py_stop) {
+                py_stop = *_py_stop;
+            } else {
+                if (has_cstop) {
+                    owned_stop = py_stop = PyInt_FromSsize_t(cstop);
+                    if (unlikely(!py_stop)) {
+                        Py_XDECREF(owned_start);
+                        goto bad;
+                    }
+                } else
+                    py_stop = Py_None;
+            }
+            py_slice = PySlice_New(py_start, py_stop, Py_None);
+            Py_XDECREF(owned_start);
+            Py_XDECREF(owned_stop);
+            if (unlikely(!py_slice)) goto bad;
+        }
+#if CYTHON_USE_TYPE_SLOTS
+        result = mp->mp_subscript(obj, py_slice);
+#else
+        result = PyObject_GetItem(obj, py_slice);
+#endif
+        if (!_py_slice) {
+            Py_DECREF(py_slice);
+        }
+        return result;
+    }
+    PyErr_Format(PyExc_TypeError,
+        "'%.200s' object is unsliceable", Py_TYPE(obj)->tp_name);
+bad:
+    return NULL;
+}
 
 /* PyErrFetchRestore */
 #if CYTHON_FAST_THREAD_STATE
@@ -2745,6 +3632,317 @@ static CYTHON_INLINE void __Pyx_ErrFetchInState(PyThreadState *tstate, PyObject 
     tstate->curexc_type = 0;
     tstate->curexc_value = 0;
     tstate->curexc_traceback = 0;
+}
+#endif
+
+/* WriteUnraisableException */
+static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
+                                  CYTHON_UNUSED int lineno, CYTHON_UNUSED const char *filename,
+                                  int full_traceback, CYTHON_UNUSED int nogil) {
+    PyObject *old_exc, *old_val, *old_tb;
+    PyObject *ctx;
+    __Pyx_PyThreadState_declare
+#ifdef WITH_THREAD
+    PyGILState_STATE state;
+    if (nogil)
+        state = PyGILState_Ensure();
+#ifdef _MSC_VER
+    else state = (PyGILState_STATE)-1;
+#endif
+#endif
+    __Pyx_PyThreadState_assign
+    __Pyx_ErrFetch(&old_exc, &old_val, &old_tb);
+    if (full_traceback) {
+        Py_XINCREF(old_exc);
+        Py_XINCREF(old_val);
+        Py_XINCREF(old_tb);
+        __Pyx_ErrRestore(old_exc, old_val, old_tb);
+        PyErr_PrintEx(1);
+    }
+    #if PY_MAJOR_VERSION < 3
+    ctx = PyString_FromString(name);
+    #else
+    ctx = PyUnicode_FromString(name);
+    #endif
+    __Pyx_ErrRestore(old_exc, old_val, old_tb);
+    if (!ctx) {
+        PyErr_WriteUnraisable(Py_None);
+    } else {
+        PyErr_WriteUnraisable(ctx);
+        Py_DECREF(ctx);
+    }
+#ifdef WITH_THREAD
+    if (nogil)
+        PyGILState_Release(state);
+#endif
+}
+
+/* PyCFunctionFastCall */
+#if CYTHON_FAST_PYCCALL
+static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
+    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
+    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
+    PyObject *self = PyCFunction_GET_SELF(func);
+    int flags = PyCFunction_GET_FLAGS(func);
+    assert(PyCFunction_Check(func));
+    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
+    assert(nargs >= 0);
+    assert(nargs == 0 || args != NULL);
+    /* _PyCFunction_FastCallDict() must not be called with an exception set,
+       because it may clear it (directly or indirectly) and so the
+       caller loses its exception */
+    assert(!PyErr_Occurred());
+    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
+        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
+    } else {
+        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
+    }
+}
+#endif
+
+/* PyFunctionFastCall */
+#if CYTHON_FAST_PYCALL
+static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
+                                               PyObject *globals) {
+    PyFrameObject *f;
+    PyThreadState *tstate = __Pyx_PyThreadState_Current;
+    PyObject **fastlocals;
+    Py_ssize_t i;
+    PyObject *result;
+    assert(globals != NULL);
+    /* XXX Perhaps we should create a specialized
+       PyFrame_New() that doesn't take locals, but does
+       take builtins without sanity checking them.
+       */
+    assert(tstate != NULL);
+    f = PyFrame_New(tstate, co, globals, NULL);
+    if (f == NULL) {
+        return NULL;
+    }
+    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
+    for (i = 0; i < na; i++) {
+        Py_INCREF(*args);
+        fastlocals[i] = *args++;
+    }
+    result = PyEval_EvalFrameEx(f,0);
+    ++tstate->recursion_depth;
+    Py_DECREF(f);
+    --tstate->recursion_depth;
+    return result;
+}
+#if 1 || PY_VERSION_HEX < 0x030600B1
+static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs) {
+    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
+    PyObject *globals = PyFunction_GET_GLOBALS(func);
+    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
+    PyObject *closure;
+#if PY_MAJOR_VERSION >= 3
+    PyObject *kwdefs;
+#endif
+    PyObject *kwtuple, **k;
+    PyObject **d;
+    Py_ssize_t nd;
+    Py_ssize_t nk;
+    PyObject *result;
+    assert(kwargs == NULL || PyDict_Check(kwargs));
+    nk = kwargs ? PyDict_Size(kwargs) : 0;
+    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
+        return NULL;
+    }
+    if (
+#if PY_MAJOR_VERSION >= 3
+            co->co_kwonlyargcount == 0 &&
+#endif
+            likely(kwargs == NULL || nk == 0) &&
+            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
+        if (argdefs == NULL && co->co_argcount == nargs) {
+            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
+            goto done;
+        }
+        else if (nargs == 0 && argdefs != NULL
+                 && co->co_argcount == Py_SIZE(argdefs)) {
+            /* function called with no arguments, but all parameters have
+               a default value: use default values as arguments .*/
+            args = &PyTuple_GET_ITEM(argdefs, 0);
+            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
+            goto done;
+        }
+    }
+    if (kwargs != NULL) {
+        Py_ssize_t pos, i;
+        kwtuple = PyTuple_New(2 * nk);
+        if (kwtuple == NULL) {
+            result = NULL;
+            goto done;
+        }
+        k = &PyTuple_GET_ITEM(kwtuple, 0);
+        pos = i = 0;
+        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
+            Py_INCREF(k[i]);
+            Py_INCREF(k[i+1]);
+            i += 2;
+        }
+        nk = i / 2;
+    }
+    else {
+        kwtuple = NULL;
+        k = NULL;
+    }
+    closure = PyFunction_GET_CLOSURE(func);
+#if PY_MAJOR_VERSION >= 3
+    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
+#endif
+    if (argdefs != NULL) {
+        d = &PyTuple_GET_ITEM(argdefs, 0);
+        nd = Py_SIZE(argdefs);
+    }
+    else {
+        d = NULL;
+        nd = 0;
+    }
+#if PY_MAJOR_VERSION >= 3
+    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
+                               args, nargs,
+                               k, (int)nk,
+                               d, (int)nd, kwdefs, closure);
+#else
+    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
+                               args, nargs,
+                               k, (int)nk,
+                               d, (int)nd, closure);
+#endif
+    Py_XDECREF(kwtuple);
+done:
+    Py_LeaveRecursiveCall();
+    return result;
+}
+#endif
+#endif
+
+/* PyObjectCall */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
+    PyObject *result;
+    ternaryfunc call = func->ob_type->tp_call;
+    if (unlikely(!call))
+        return PyObject_Call(func, arg, kw);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = (*call)(func, arg, kw);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
+/* PyObjectCallMethO */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
+    PyObject *self, *result;
+    PyCFunction cfunc;
+    cfunc = PyCFunction_GET_FUNCTION(func);
+    self = PyCFunction_GET_SELF(func);
+    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
+        return NULL;
+    result = cfunc(self, arg);
+    Py_LeaveRecursiveCall();
+    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
+        PyErr_SetString(
+            PyExc_SystemError,
+            "NULL result without error in PyObject_Call");
+    }
+    return result;
+}
+#endif
+
+/* PyObjectCallOneArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_New(1);
+    if (unlikely(!args)) return NULL;
+    Py_INCREF(arg);
+    PyTuple_SET_ITEM(args, 0, arg);
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, &arg, 1);
+    }
+#endif
+    if (likely(PyCFunction_Check(func))) {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_O)) {
+            return __Pyx_PyObject_CallMethO(func, arg);
+#if CYTHON_FAST_PYCCALL
+        } else if (PyCFunction_GET_FLAGS(func) & METH_FASTCALL) {
+            return __Pyx_PyCFunction_FastCall(func, &arg, 1);
+#endif
+        }
+    }
+    return __Pyx__PyObject_CallOneArg(func, arg);
+}
+#else
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *result;
+    PyObject *args = PyTuple_Pack(1, arg);
+    if (unlikely(!args)) return NULL;
+    result = __Pyx_PyObject_Call(func, args, NULL);
+    Py_DECREF(args);
+    return result;
+}
+#endif
+
+/* PyObjectCallNoArg */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+#if CYTHON_FAST_PYCALL
+    if (PyFunction_Check(func)) {
+        return __Pyx_PyFunction_FastCall(func, NULL, 0);
+    }
+#endif
+#ifdef __Pyx_CyFunction_USED
+    if (likely(PyCFunction_Check(func) || __Pyx_CyFunction_Check(func)))
+#else
+    if (likely(PyCFunction_Check(func)))
+#endif
+    {
+        if (likely(PyCFunction_GET_FLAGS(func) & METH_NOARGS)) {
+            return __Pyx_PyObject_CallMethO(func, NULL);
+        }
+    }
+    return __Pyx_PyObject_Call(func, __pyx_empty_tuple, NULL);
+}
+#endif
+
+/* PyErrExceptionMatches */
+#if CYTHON_FAST_THREAD_STATE
+static int __Pyx_PyErr_ExceptionMatchesTuple(PyObject *exc_type, PyObject *tuple) {
+    Py_ssize_t i, n;
+    n = PyTuple_GET_SIZE(tuple);
+#if PY_MAJOR_VERSION >= 3
+    for (i=0; i<n; i++) {
+        if (exc_type == PyTuple_GET_ITEM(tuple, i)) return 1;
+    }
+#endif
+    for (i=0; i<n; i++) {
+        if (__Pyx_PyErr_GivenExceptionMatches(exc_type, PyTuple_GET_ITEM(tuple, i))) return 1;
+    }
+    return 0;
+}
+static CYTHON_INLINE int __Pyx_PyErr_ExceptionMatchesInState(PyThreadState* tstate, PyObject* err) {
+    PyObject *exc_type = tstate->curexc_type;
+    if (exc_type == err) return 1;
+    if (unlikely(!exc_type)) return 0;
+    if (unlikely(PyTuple_Check(err)))
+        return __Pyx_PyErr_ExceptionMatchesTuple(exc_type, err);
+    return __Pyx_PyErr_GivenExceptionMatches(exc_type, err);
 }
 #endif
 
@@ -3032,168 +4230,6 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
     return value;
 }
 
-/* PyCFunctionFastCall */
-#if CYTHON_FAST_PYCCALL
-static CYTHON_INLINE PyObject * __Pyx_PyCFunction_FastCall(PyObject *func_obj, PyObject **args, Py_ssize_t nargs) {
-    PyCFunctionObject *func = (PyCFunctionObject*)func_obj;
-    PyCFunction meth = PyCFunction_GET_FUNCTION(func);
-    PyObject *self = PyCFunction_GET_SELF(func);
-    int flags = PyCFunction_GET_FLAGS(func);
-    assert(PyCFunction_Check(func));
-    assert(METH_FASTCALL == (flags & ~(METH_CLASS | METH_STATIC | METH_COEXIST | METH_KEYWORDS | METH_STACKLESS)));
-    assert(nargs >= 0);
-    assert(nargs == 0 || args != NULL);
-    /* _PyCFunction_FastCallDict() must not be called with an exception set,
-       because it may clear it (directly or indirectly) and so the
-       caller loses its exception */
-    assert(!PyErr_Occurred());
-    if ((PY_VERSION_HEX < 0x030700A0) || unlikely(flags & METH_KEYWORDS)) {
-        return (*((__Pyx_PyCFunctionFastWithKeywords)(void*)meth)) (self, args, nargs, NULL);
-    } else {
-        return (*((__Pyx_PyCFunctionFast)(void*)meth)) (self, args, nargs);
-    }
-}
-#endif
-
-/* PyFunctionFastCall */
-#if CYTHON_FAST_PYCALL
-static PyObject* __Pyx_PyFunction_FastCallNoKw(PyCodeObject *co, PyObject **args, Py_ssize_t na,
-                                               PyObject *globals) {
-    PyFrameObject *f;
-    PyThreadState *tstate = __Pyx_PyThreadState_Current;
-    PyObject **fastlocals;
-    Py_ssize_t i;
-    PyObject *result;
-    assert(globals != NULL);
-    /* XXX Perhaps we should create a specialized
-       PyFrame_New() that doesn't take locals, but does
-       take builtins without sanity checking them.
-       */
-    assert(tstate != NULL);
-    f = PyFrame_New(tstate, co, globals, NULL);
-    if (f == NULL) {
-        return NULL;
-    }
-    fastlocals = __Pyx_PyFrame_GetLocalsplus(f);
-    for (i = 0; i < na; i++) {
-        Py_INCREF(*args);
-        fastlocals[i] = *args++;
-    }
-    result = PyEval_EvalFrameEx(f,0);
-    ++tstate->recursion_depth;
-    Py_DECREF(f);
-    --tstate->recursion_depth;
-    return result;
-}
-#if 1 || PY_VERSION_HEX < 0x030600B1
-static PyObject *__Pyx_PyFunction_FastCallDict(PyObject *func, PyObject **args, int nargs, PyObject *kwargs) {
-    PyCodeObject *co = (PyCodeObject *)PyFunction_GET_CODE(func);
-    PyObject *globals = PyFunction_GET_GLOBALS(func);
-    PyObject *argdefs = PyFunction_GET_DEFAULTS(func);
-    PyObject *closure;
-#if PY_MAJOR_VERSION >= 3
-    PyObject *kwdefs;
-#endif
-    PyObject *kwtuple, **k;
-    PyObject **d;
-    Py_ssize_t nd;
-    Py_ssize_t nk;
-    PyObject *result;
-    assert(kwargs == NULL || PyDict_Check(kwargs));
-    nk = kwargs ? PyDict_Size(kwargs) : 0;
-    if (Py_EnterRecursiveCall((char*)" while calling a Python object")) {
-        return NULL;
-    }
-    if (
-#if PY_MAJOR_VERSION >= 3
-            co->co_kwonlyargcount == 0 &&
-#endif
-            likely(kwargs == NULL || nk == 0) &&
-            co->co_flags == (CO_OPTIMIZED | CO_NEWLOCALS | CO_NOFREE)) {
-        if (argdefs == NULL && co->co_argcount == nargs) {
-            result = __Pyx_PyFunction_FastCallNoKw(co, args, nargs, globals);
-            goto done;
-        }
-        else if (nargs == 0 && argdefs != NULL
-                 && co->co_argcount == Py_SIZE(argdefs)) {
-            /* function called with no arguments, but all parameters have
-               a default value: use default values as arguments .*/
-            args = &PyTuple_GET_ITEM(argdefs, 0);
-            result =__Pyx_PyFunction_FastCallNoKw(co, args, Py_SIZE(argdefs), globals);
-            goto done;
-        }
-    }
-    if (kwargs != NULL) {
-        Py_ssize_t pos, i;
-        kwtuple = PyTuple_New(2 * nk);
-        if (kwtuple == NULL) {
-            result = NULL;
-            goto done;
-        }
-        k = &PyTuple_GET_ITEM(kwtuple, 0);
-        pos = i = 0;
-        while (PyDict_Next(kwargs, &pos, &k[i], &k[i+1])) {
-            Py_INCREF(k[i]);
-            Py_INCREF(k[i+1]);
-            i += 2;
-        }
-        nk = i / 2;
-    }
-    else {
-        kwtuple = NULL;
-        k = NULL;
-    }
-    closure = PyFunction_GET_CLOSURE(func);
-#if PY_MAJOR_VERSION >= 3
-    kwdefs = PyFunction_GET_KW_DEFAULTS(func);
-#endif
-    if (argdefs != NULL) {
-        d = &PyTuple_GET_ITEM(argdefs, 0);
-        nd = Py_SIZE(argdefs);
-    }
-    else {
-        d = NULL;
-        nd = 0;
-    }
-#if PY_MAJOR_VERSION >= 3
-    result = PyEval_EvalCodeEx((PyObject*)co, globals, (PyObject *)NULL,
-                               args, nargs,
-                               k, (int)nk,
-                               d, (int)nd, kwdefs, closure);
-#else
-    result = PyEval_EvalCodeEx(co, globals, (PyObject *)NULL,
-                               args, nargs,
-                               k, (int)nk,
-                               d, (int)nd, closure);
-#endif
-    Py_XDECREF(kwtuple);
-done:
-    Py_LeaveRecursiveCall();
-    return result;
-}
-#endif
-#endif
-
-/* PyObjectCall */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call(PyObject *func, PyObject *arg, PyObject *kw) {
-    PyObject *result;
-    ternaryfunc call = func->ob_type->tp_call;
-    if (unlikely(!call))
-        return PyObject_Call(func, arg, kw);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = (*call)(func, arg, kw);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
-    }
-    return result;
-}
-#endif
-
 /* PyObjectCall2Args */
 static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
     PyObject *args, *result = NULL;
@@ -3222,66 +4258,6 @@ static CYTHON_UNUSED PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyOb
 done:
     return result;
 }
-
-/* PyObjectCallMethO */
-#if CYTHON_COMPILING_IN_CPYTHON
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallMethO(PyObject *func, PyObject *arg) {
-    PyObject *self, *result;
-    PyCFunction cfunc;
-    cfunc = PyCFunction_GET_FUNCTION(func);
-    self = PyCFunction_GET_SELF(func);
-    if (unlikely(Py_EnterRecursiveCall((char*)" while calling a Python object")))
-        return NULL;
-    result = cfunc(self, arg);
-    Py_LeaveRecursiveCall();
-    if (unlikely(!result) && unlikely(!PyErr_Occurred())) {
-        PyErr_SetString(
-            PyExc_SystemError,
-            "NULL result without error in PyObject_Call");
-    }
-    return result;
-}
-#endif
-
-/* PyObjectCallOneArg */
-#if CYTHON_COMPILING_IN_CPYTHON
-static PyObject* __Pyx__PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-    PyObject *result;
-    PyObject *args = PyTuple_New(1);
-    if (unlikely(!args)) return NULL;
-    Py_INCREF(arg);
-    PyTuple_SET_ITEM(args, 0, arg);
-    result = __Pyx_PyObject_Call(func, args, NULL);
-    Py_DECREF(args);
-    return result;
-}
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-#if CYTHON_FAST_PYCALL
-    if (PyFunction_Check(func)) {
-        return __Pyx_PyFunction_FastCall(func, &arg, 1);
-    }
-#endif
-    if (likely(PyCFunction_Check(func))) {
-        if (likely(PyCFunction_GET_FLAGS(func) & METH_O)) {
-            return __Pyx_PyObject_CallMethO(func, arg);
-#if CYTHON_FAST_PYCCALL
-        } else if (PyCFunction_GET_FLAGS(func) & METH_FASTCALL) {
-            return __Pyx_PyCFunction_FastCall(func, &arg, 1);
-#endif
-        }
-    }
-    return __Pyx__PyObject_CallOneArg(func, arg);
-}
-#else
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-    PyObject *result;
-    PyObject *args = PyTuple_Pack(1, arg);
-    if (unlikely(!args)) return NULL;
-    result = __Pyx_PyObject_Call(func, args, NULL);
-    Py_DECREF(args);
-    return result;
-}
-#endif
 
 /* RaiseException */
 #if PY_MAJOR_VERSION < 3
@@ -3920,111 +4896,67 @@ bad:
         return (target_type) value;\
     }
 
-/* Print */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static PyObject *__Pyx_GetStdout(void) {
-    PyObject *f = PySys_GetObject((char *)"stdout");
-    if (!f) {
-        PyErr_SetString(PyExc_RuntimeError, "lost sys.stdout");
-    }
-    return f;
-}
-static int __Pyx_Print(PyObject* f, PyObject *arg_tuple, int newline) {
-    int i;
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    for (i=0; i < PyTuple_GET_SIZE(arg_tuple); i++) {
-        PyObject* v;
-        if (PyFile_SoftSpace(f, 1)) {
-            if (PyFile_WriteString(" ", f) < 0)
-                goto error;
-        }
-        v = PyTuple_GET_ITEM(arg_tuple, i);
-        if (PyFile_WriteObject(v, f, Py_PRINT_RAW) < 0)
-            goto error;
-        if (PyString_Check(v)) {
-            char *s = PyString_AsString(v);
-            Py_ssize_t len = PyString_Size(v);
-            if (len > 0) {
-                switch (s[len-1]) {
-                    case ' ': break;
-                    case '\f': case '\r': case '\n': case '\t': case '\v':
-                        PyFile_SoftSpace(f, 0);
-                        break;
-                    default:  break;
-                }
-            }
-        }
-    }
-    if (newline) {
-        if (PyFile_WriteString("\n", f) < 0)
-            goto error;
-        PyFile_SoftSpace(f, 0);
-    }
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-}
-#else
-static int __Pyx_Print(PyObject* stream, PyObject *arg_tuple, int newline) {
-    PyObject* kwargs = 0;
-    PyObject* result = 0;
-    PyObject* end_string;
-    if (unlikely(!__pyx_print)) {
-        __pyx_print = PyObject_GetAttr(__pyx_b, __pyx_n_s_print);
-        if (!__pyx_print)
-            return -1;
-    }
-    if (stream) {
-        kwargs = PyDict_New();
-        if (unlikely(!kwargs))
-            return -1;
-        if (unlikely(PyDict_SetItem(kwargs, __pyx_n_s_file, stream) < 0))
-            goto bad;
-        if (!newline) {
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                goto bad;
-            if (PyDict_SetItem(kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                goto bad;
-            }
-            Py_DECREF(end_string);
-        }
-    } else if (!newline) {
-        if (unlikely(!__pyx_print_kwargs)) {
-            __pyx_print_kwargs = PyDict_New();
-            if (unlikely(!__pyx_print_kwargs))
-                return -1;
-            end_string = PyUnicode_FromStringAndSize(" ", 1);
-            if (unlikely(!end_string))
-                return -1;
-            if (PyDict_SetItem(__pyx_print_kwargs, __pyx_n_s_end, end_string) < 0) {
-                Py_DECREF(end_string);
-                return -1;
-            }
-            Py_DECREF(end_string);
-        }
-        kwargs = __pyx_print_kwargs;
-    }
-    result = PyObject_Call(__pyx_print, arg_tuple, kwargs);
-    if (unlikely(kwargs) && (kwargs != __pyx_print_kwargs))
-        Py_DECREF(kwargs);
-    if (!result)
-        return -1;
-    Py_DECREF(result);
-    return 0;
-bad:
-    if (kwargs != __pyx_print_kwargs)
-        Py_XDECREF(kwargs);
-    return -1;
-}
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
+    const int neg_one = (int) ((int) 0 - (int) 1), const_zero = (int) 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
 #endif
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+    }
+}
+
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyInt_From_unsigned_int(unsigned int value) {
+    const unsigned int neg_one = (unsigned int) ((unsigned int) 0 - (unsigned int) 1), const_zero = (unsigned int) 0;
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(unsigned int) < sizeof(long)) {
+            return PyInt_FromLong((long) value);
+        } else if (sizeof(unsigned int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(unsigned int) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(unsigned int) <= sizeof(long)) {
+            return PyInt_FromLong((long) value);
+#ifdef HAVE_LONG_LONG
+        } else if (sizeof(unsigned int) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+#endif
+        }
+    }
+    {
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        unsigned char *bytes = (unsigned char *)&value;
+        return _PyLong_FromByteArray(bytes, sizeof(unsigned int),
+                                     little, !is_unsigned);
+    }
+}
 
 /* CIntToPy */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value) {
@@ -4245,43 +5177,6 @@ raise_neg_overflow:
         "can't convert negative value to long");
     return (long) -1;
 }
-
-/* PrintOne */
-#if !CYTHON_COMPILING_IN_PYPY && PY_MAJOR_VERSION < 3
-static int __Pyx_PrintOne(PyObject* f, PyObject *o) {
-    if (!f) {
-        if (!(f = __Pyx_GetStdout()))
-            return -1;
-    }
-    Py_INCREF(f);
-    if (PyFile_SoftSpace(f, 0)) {
-        if (PyFile_WriteString(" ", f) < 0)
-            goto error;
-    }
-    if (PyFile_WriteObject(o, f, Py_PRINT_RAW) < 0)
-        goto error;
-    if (PyFile_WriteString("\n", f) < 0)
-        goto error;
-    Py_DECREF(f);
-    return 0;
-error:
-    Py_DECREF(f);
-    return -1;
-    /* the line below is just to avoid C compiler
-     * warnings about unused functions */
-    return __Pyx_Print(f, NULL, 0);
-}
-#else
-static int __Pyx_PrintOne(PyObject* stream, PyObject *o) {
-    int res;
-    PyObject* arg_tuple = PyTuple_Pack(1, o);
-    if (unlikely(!arg_tuple))
-        return -1;
-    res = __Pyx_Print(stream, arg_tuple, 1);
-    Py_DECREF(arg_tuple);
-    return res;
-}
-#endif
 
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
