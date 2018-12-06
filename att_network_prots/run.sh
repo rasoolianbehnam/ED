@@ -1,2 +1,2 @@
 clear && clear 
-javac *.java && java PortForwardingProxy 9981 localhost 22
+javac *.java && java SocksProxy 9981
