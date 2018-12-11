@@ -13,28 +13,12 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-	<dependency>
-            <groupId>org.deeplearning4j</groupId>
-            <artifactId>deeplearning4j-cuda-9.0</artifactId>
-            <version>${dl4j.version}</version>
-        </dependency>
 	<dependency>
             <groupId>org.nd4j</groupId>
-            <artifactId>nd4j-cuda-9.0</artifactId>
+            <artifactId>nd4j-native-platform</artifactId>
             <version>${dl4j.version}</version>
-        </dependency>
-	<dependency>
-            <groupId>org.datavec</groupId>
-            <artifactId>datavec-api</artifactId>
-            <version>${dl4j.version}</version>
-        </dependency>
-    </dependencies>
+    </dependency>
+</dependencies>
 
     <build>
         <plugins>
