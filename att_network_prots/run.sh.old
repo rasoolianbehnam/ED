@@ -1,0 +1,3 @@
+clear && clear
+#python setup.py build_ext --inplace
+gcc port_forwarding.c -o port_forwarding.out
