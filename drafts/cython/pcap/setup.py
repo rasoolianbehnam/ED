@@ -5,8 +5,6 @@ import sys
 
 setup(
     ext_modules = cythonize([
-        #Extension("queue", ["queue.pyx"]), 
-        #Extension("stdlib_test", ["stdlib_test.pyx"]),
-        Extension("port_forwarding_lib", ["port_forwarding_lib.pyx"])
+        Extension("pcap", ["pcap.pyx"], libraries=["pcap"])
             ])
 )

@@ -3,6 +3,8 @@ import threading
 import sys
 import time
 
+sem = threading.Semaphore()
+
 def hexdump(src, length=16):
     result = []
     digits = 4 if isinstance(src, unicode) else 2
@@ -26,6 +28,20 @@ def receive_from(conn):
         pass
     return buffer
 
+def send_and_receive(conn1, conn2):
+    buffer = ""
+    try:
+        while True:
+            data = conn1.recv(4096)
+            if not data or len(data) < 1:
+                break
+            conn2.send(data)
+            hexdump(data)
+            #buffer += data
+    except:
+        pass
+    return buffer
+
 
 def request_handler(buffer):
     return buffer
@@ -33,44 +49,23 @@ def request_handler(buffer):
 def response_handler(buffer):
     return buffer
 
-def proxy_handler(client_socket,remote_host,remote_port,receive_first,run_event):
+def proxy_handler(client_socket,remote_socket,receive_first,run_event):
     now = 0
-    remote_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    remote_socket.connect((remote_host, remote_port))
-    if receive_first:
-        remote_buffer = receive_from(remote_socket)
-        hexdump(remote_buffer)
-        remote_buffer = response_handler(remote_buffer)
-        if len(remote_buffer):
-            print "[<==] Sending %d bytes to local_host." %  len(remote_buffer)
-            client_socket.send(remote_buffer)
-    while True:
-        local_buffer = receive_from(client_socket)
-        if len(local_buffer):
-            now = 0
+    try:
+        while True:
+            local_buffer = send_and_receive(client_socket, remote_socket)
+            sem.acquire()
             print "[==>] Received %d bytes from local_host." % len(local_buffer)
-            hexdump(local_buffer)
-            local_buffer = request_handler(local_buffer)
-            remote_socket.send(local_buffer)
-            print "[==>] Sent to remote."
-        remote_buffer = receive_from(remote_socket)
-        if len(remote_buffer):
-            now = 0
-            print "[<==] Received %d bytes from remote." % len(remote_buffer)
-            hexdump(remote_buffer)
-            remote_buffer = response_handler(remote_buffer)
-
-            client_socket.send(remote_buffer)
-            print "[<==] Sent to local_host."
-        if not len(local_buffer) or not len(remote_buffer) or run_event.is_set():
-            if not now:
-                now = time.time()
-            else:
-                if (time.time() - now) > 3:
-                    print "[*] No more data. Closing connections."
-                    client_socket.close()
-                    remote_socket.close()
-                    break
+            #hexdump(local_buffer)
+            sem.release()
+            if run_event.is_set():
+                break
+    except Exception as ex:
+        sem.acquire()
+        print "Exception occured"
+        print ex
+        sem.release()
+        return
 
 
 def server_loop(local_host, local_port, remote_host, remote_port, receive_first):
@@ -90,25 +85,36 @@ def server_loop(local_host, local_port, remote_host, remote_port, receive_first)
     run_event.set()
 
     proxy_thread = None
+    client_socket = None
+    remote_socket = None
     try:
         while True:
-            try:
-                client_socket, addr = server.accept()
-            except Exception as ex:
-                if str(ex) == "timed out":
-                    continue
-                else:
-                    sys.exit(0)
+            client_socket, addr = server.accept()
 
-            print "[==>] Received incoming connection from %s:%d" %\
+            print "[<==>] Received incoming connection from %s:%d" %\
                     (addr[0], addr[1])
-            proxy_thread = threading.Thread(target=proxy_handler,args=(client_socket,remote_host,remote_port,receive_first,run_event))
+            remote_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            remote_socket.connect((remote_host, remote_port))
+
+            proxy_thread = threading.Thread(
+                    target=proxy_handler,
+                    args=(client_socket,remote_socket,receive_first,run_event)
+                    )
             proxy_thread.start()
+            remote_buffer = send_and_receive(remote_socket, client_socket)
+            sem.acquire()
+            print "[<==] Received %d bytes from remote_host." % len(remote_buffer)
+            #hexdump(remote_buffer)
+            sem.release()
+
     except KeyboardInterrupt:
         print("[*] Shutting down all connections...")
         run_event.clear()
         if proxy_thread:
             proxy_thread.join()
+        if remote_socket:
+            remote_socket.close()
+            client_socket.close()
         sys.exit()
 
 
@@ -129,11 +135,7 @@ def main(argv):
     else:
         receive_first = False
 
-    try:
-        server_loop(local_host, local_port, remote_host, remote_port, receive_first)
-    except KeyboardInterrupt:
-        print("[*] Shutting down the proxy...")
-        run_event.clear()
+    server_loop(local_host, local_port, remote_host, remote_port, receive_first)
 
 if __name__=='__main__':
     main(sys.argv)
