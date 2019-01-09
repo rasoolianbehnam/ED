@@ -14,8 +14,8 @@ from org.nd4j.linalg.factory import Nd4j
 
 
 N = 10000
-a = Nd4j.rand(N, N)
-b = Nd4j.rand(N, N)
+a = Nd4j.ones(N, N)
+b = Nd4j.ones(N, N)
 now = time.time()
 a.mmul(b)
 print "time taken: ", time.time() - now

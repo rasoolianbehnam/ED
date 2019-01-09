@@ -12,13 +12,22 @@
         <dl4j.version>1.0.0-beta</dl4j.version>
     </properties>
 
-    <dependencies>
+<dependencies>
     <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>nd4j-native-platform</artifactId>
             <version>${dl4j.version}</version>
     </dependency>
-
+    <dependency>
+             <groupId>org.deeplearning4j</groupId>
+             <artifactId>deeplearning4j-core</artifactId>
+             <version>${dl4j.version}</version>
+     </dependency>
+     <dependency>
+             <groupId>org.datavec</groupId>
+             <artifactId>datavec-spark_2.11</artifactId>
+             <version>${dl4j.version}_spark_2</version>
+     </dependency>
 </dependencies>
 
     <build>
