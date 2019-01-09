@@ -5,7 +5,7 @@ import threading
 import os
 import time
 
-parallel_requests = 15
+parallel_requests = 8
 curl = "curl 'https://s20.7fuc.xyz/hls/qvsbcngfn7blgwsztrtka66tjmpr76uxm242ukcoqcyzewtljstdxp6tjuga/seg-6290-v1-a1.jpg' -H 'origin: https://putlocker9.nl' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.99' -H 'accept: */*' -H 'referer: https://putlocker9.nl/film/the-predator-2018-1080p.64463/watching.html' -H 'authority: s20.7fuc.xyz' --compressed"
 max_style = False
 

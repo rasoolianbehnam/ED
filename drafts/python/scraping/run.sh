@@ -15,7 +15,7 @@ filename="${filename%.*}"
 
 case $extension in
 "py")
-    python $1 "curl 'https://s15.6ppwk.site/hls/qvsbc55bnhblgwsztqoka2wsjnamcrul7psxwn47t4ewxxodclqc5pnjffrq/seg-(36)-v1-a1.jpg' -H 'origin: https://putlocker9.nl' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36 OPR/56.0.3051.116' -H 'accept: */*' -H 'referer: https://putlocker9.nl/film/watchmen-2009-1080p/watching.html?episode_id=12210&s=oserver' -H 'authority: s15.6ppwk.site' --compressed" %d 11131 8
+    python $1 "curl 'https://stream-2-1.loadshare.org/stream/VideoID-paUdS4HH/tB-VvD_N4r8SqzCvaHLkHZo8yFG5ozkVhABiEzjOEFsdImHUiO69O5FNd907lQ75muVCsGNMLndbpFnA4KJZ1-qNO7oU8DtbOaewDfi_a4AYiS_UatMw6UQva_8w5WTinD1ltER7_S3oon6rY8sQOQ/seg-(1593)-f2-v1-a1.ts?token=ip=97.80.234.110~st=1546656494~exp=1546670894~acl=/*~hmac=ea3c46c42b007a01f714d2539f0739f42ffbdb7adabc45355a115fb815eb5609' -H 'origin: https://putlocker.digital' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.106' -H 'accept: */*' -H 'referer: https://putlocker.digital/movie/everybody-knows-todos-lo-saben/DeGXXMD7/bGojtTlZ-watch-online-free.html' -H 'authority: stream-2-1.loadshare.org' --compressed" %d 524 8
 
     ;;
 "c")
