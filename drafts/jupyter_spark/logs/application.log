@@ -4762,3 +4762,51 @@ Score at iteration 80 is 2.280232089717299
                 
 Score at iteration 90 is 2.4204268132483002
 
+2019-01-10 09:21:16,707 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-12
+                
+Loaded [CpuBackend] backend
+
+2019-01-10 09:21:17,865 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-12
+                
+Number of threads used for NativeOps: 4
+
+2019-01-10 09:21:18,260 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-12
+                
+Number of threads used for BLAS: 4
+
+2019-01-10 09:21:18,263 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-12
+                
+Backend used: [CPU]; OS: [Linux]
+
+2019-01-10 09:21:18,263 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-12
+                
+Cores: [8]; Memory: [4.3GB];
+
+2019-01-10 09:21:18,263 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-12
+                
+Blas vendor: [MKL]
+
+2019-01-10 09:21:18,430 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-12
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-10 09:21:22,866 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-14
+                
+Score at iteration 0 is 6.724119586868734
+
+2019-01-10 09:21:25,872 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-14
+                
+Score at iteration 10 is 3.4469648938166895
+
+2019-01-10 09:21:28,977 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-14
+                
+Score at iteration 20 is 3.1301690142491303
+
+2019-01-10 09:21:31,031 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-14
+                
+Score at iteration 30 is 2.454373991872006
+
+2019-01-10 09:21:33,210 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-14
+                
+Score at iteration 40 is 2.51874869387573
+
