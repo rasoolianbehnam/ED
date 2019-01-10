@@ -4690,3 +4690,75 @@ Score at iteration 30 is 2.454373991872006
                 
 Score at iteration 40 is 2.51874869387573
 
+2019-01-09 19:08:36,740 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-3
+                
+Loaded [CpuBackend] backend
+
+2019-01-09 19:08:38,530 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-3
+                
+Number of threads used for NativeOps: 2
+
+2019-01-09 19:08:38,781 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-3
+                
+Number of threads used for BLAS: 2
+
+2019-01-09 19:08:38,794 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-3
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2019-01-09 19:08:38,794 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-3
+                
+Cores: [4]; Memory: [0.9GB];
+
+2019-01-09 19:08:38,794 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-3
+                
+Blas vendor: [MKL]
+
+2019-01-09 19:08:39,078 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-3
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-09 19:08:39,265 - [INFO] - from org.deeplearning4j.base.MnistFetcher in pool-4-thread-3
+                
+Downloading MNIST...
+
+2019-01-09 19:12:04,158 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-10
+                
+Score at iteration 0 is 6.724102584218065
+
+2019-01-09 19:12:07,827 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-10
+                
+Score at iteration 10 is 3.4469664196607472
+
+2019-01-09 19:12:10,802 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-10
+                
+Score at iteration 20 is 3.130182747159287
+
+2019-01-09 19:12:13,494 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-10
+                
+Score at iteration 30 is 2.454385762962058
+
+2019-01-09 19:12:16,122 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-10
+                
+Score at iteration 40 is 2.518729729360114
+
+2019-01-09 19:12:54,113 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-2
+                
+Score at iteration 50 is 2.382739124474964
+
+2019-01-09 19:12:56,948 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-2
+                
+Score at iteration 60 is 2.1317581155584646
+
+2019-01-09 19:12:59,497 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-2
+                
+Score at iteration 70 is 2.6220117440349346
+
+2019-01-09 19:13:01,971 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-2
+                
+Score at iteration 80 is 2.280232089717299
+
+2019-01-09 19:13:04,644 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-2
+                
+Score at iteration 90 is 2.4204268132483002
+
