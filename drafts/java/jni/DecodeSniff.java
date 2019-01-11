@@ -90,7 +90,7 @@ public class DecodeSniff {
             ip_dest_addr = p.getByteArray(offset+16, 4); 
         }
 
-        public final    List<String> getFieldOrder() {
+        public final List<String> getFieldOrder() {
             List<String> fields = new ArrayList<String>(super.getFieldOrder());
             fields.addAll(Arrays.asList(new String[] {"ip_version_and_header_length", "ip_tos",
             "ip_len", "ip_id", "ip_frag_offset", "ip_ttl", "ip_type", "ip_checksum", "ip_src_addr", "ip_dest_addr"}));
