@@ -8,9 +8,11 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public interface CLibrary extends Library {
-    CLibrary INSTANCE = (CLibrary)
-        Native.load((Platform.isWindows() ? "msvcrt" : "c"), CLibrary.class); 
-    void printf(String format, Object... args);
+object  Mardas extends App{
+    //CLibrary.INSTANCE.printf("Hello, World\n");
+    val buff: Array[Char] = new Array[Char](100);
+    val device = CLibrary.INSTANCE.pcap_lookupdev(buff);
+    println(device)
 }
+
+
