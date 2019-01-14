@@ -4810,3 +4810,175 @@ Score at iteration 30 is 2.454373991872006
                 
 Score at iteration 40 is 2.51874869387573
 
+2019-01-12 18:39:36,123 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-117
+                
+Loaded [CpuBackend] backend
+
+2019-01-12 18:39:38,285 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-117
+                
+Number of threads used for NativeOps: 2
+
+2019-01-12 18:39:38,542 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-117
+                
+Number of threads used for BLAS: 2
+
+2019-01-12 18:39:38,555 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-117
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2019-01-12 18:39:38,555 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-117
+                
+Cores: [4]; Memory: [0.9GB];
+
+2019-01-12 18:39:38,555 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-117
+                
+Blas vendor: [MKL]
+
+2019-01-12 18:39:38,946 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-117
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-12 19:07:27,132 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-8
+                
+Loaded [CpuBackend] backend
+
+2019-01-12 19:07:29,049 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-8
+                
+Number of threads used for NativeOps: 2
+
+2019-01-12 19:07:29,292 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-8
+                
+Number of threads used for BLAS: 2
+
+2019-01-12 19:07:29,308 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-8
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2019-01-12 19:07:29,308 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-8
+                
+Cores: [4]; Memory: [0.9GB];
+
+2019-01-12 19:07:29,309 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-8
+                
+Blas vendor: [MKL]
+
+2019-01-12 19:07:29,685 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-8
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-12 19:07:42,612 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-5
+                
+Score at iteration 0 is 6.724102584218065
+
+2019-01-12 19:07:46,178 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-5
+                
+Score at iteration 10 is 3.4469664196607472
+
+2019-01-12 19:07:49,108 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-5
+                
+Score at iteration 20 is 3.130182747159287
+
+2019-01-12 19:07:52,828 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-5
+                
+Score at iteration 30 is 2.454385762962058
+
+2019-01-12 19:07:56,049 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-5
+                
+Score at iteration 40 is 2.518729729360114
+
+2019-01-12 19:15:46,516 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-4
+                
+Loaded [CpuBackend] backend
+
+2019-01-12 19:15:48,284 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-4
+                
+Number of threads used for NativeOps: 2
+
+2019-01-12 19:15:48,532 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-4
+                
+Number of threads used for BLAS: 2
+
+2019-01-12 19:15:48,547 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-4
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2019-01-12 19:15:48,547 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-4
+                
+Cores: [4]; Memory: [0.9GB];
+
+2019-01-12 19:15:48,548 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-4
+                
+Blas vendor: [MKL]
+
+2019-01-12 19:15:48,877 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-4
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-12 19:15:52,454 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 0 is 6.724102584218065
+
+2019-01-12 19:15:56,367 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 10 is 3.4469664196607472
+
+2019-01-12 19:15:59,352 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 20 is 3.130182747159287
+
+2019-01-12 19:16:02,119 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 30 is 2.454385762962058
+
+2019-01-12 19:16:04,776 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 40 is 2.518729729360114
+
+2019-01-12 20:34:05,790 - [INFO] - from org.nd4j.linalg.factory.Nd4jBackend in pool-4-thread-1
+                
+Loaded [CpuBackend] backend
+
+2019-01-12 20:34:07,448 - [INFO] - from org.nd4j.nativeblas.NativeOpsHolder in pool-4-thread-1
+                
+Number of threads used for NativeOps: 2
+
+2019-01-12 20:34:07,689 - [INFO] - from org.nd4j.nativeblas.Nd4jBlas in pool-4-thread-1
+                
+Number of threads used for BLAS: 2
+
+2019-01-12 20:34:07,698 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-1
+                
+Backend used: [CPU]; OS: [Mac OS X]
+
+2019-01-12 20:34:07,698 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-1
+                
+Cores: [4]; Memory: [0.9GB];
+
+2019-01-12 20:34:07,698 - [INFO] - from org.nd4j.linalg.api.ops.executioner.DefaultOpExecutioner in pool-4-thread-1
+                
+Blas vendor: [MKL]
+
+2019-01-12 20:34:08,022 - [INFO] - from org.deeplearning4j.nn.multilayer.MultiLayerNetwork in pool-4-thread-1
+                
+Starting MultiLayerNetwork with WorkspaceModes set to [training: ENABLED; inference: ENABLED], cacheMode set to [NONE]
+
+2019-01-12 20:34:12,331 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 0 is 6.724102584218065
+
+2019-01-12 20:34:15,954 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 10 is 3.4469664196607472
+
+2019-01-12 20:34:19,046 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 20 is 3.130182747159287
+
+2019-01-12 20:34:21,853 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 30 is 2.454385762962058
+
+2019-01-12 20:34:25,416 - [INFO] - from org.deeplearning4j.optimize.listeners.ScoreIterationListener in pool-4-thread-7
+                
+Score at iteration 40 is 2.518729729360114
+
