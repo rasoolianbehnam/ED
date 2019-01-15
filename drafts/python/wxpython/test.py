@@ -1,0 +1,48 @@
+import wx
+import cv2
+from scipy.misc import imresize
+
+class ShowCapture(wx.Panel):
+    def __init__(self, parent, capture, size=(640, 480), fps=15):
+        wx.Panel.__init__(self, parent)
+
+        self.size = size
+        self.capture = capture
+        ret, frame = self.capture.read()
+        frame = cv2.resize(frame, self.size)
+
+        height, width = frame.shape[:2]
+        parent.SetSize((width, height))
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+        self.bmp = wx.BitmapFromBuffer(width, height, frame)
+
+        self.timer = wx.Timer(self)
+        self.timer.Start(1000./fps)
+
+        self.Bind(wx.EVT_PAINT, self.OnPaint)
+        self.Bind(wx.EVT_TIMER, self.NextFrame)
+
+
+    def OnPaint(self, evt):
+        dc = wx.BufferedPaintDC(self)
+        dc.DrawBitmap(self.bmp, 0, 0)
+
+    def NextFrame(self, event):
+        ret, frame = self.capture.read()
+        frame = cv2.resize(frame, self.size)
+        if ret:
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            self.bmp.CopyFromBuffer(frame)
+            self.Refresh()
+
+capture = cv2.VideoCapture()
+capture.open('/home/bzr0014/Pictures/Meysam/20160903_162930.mp4')
+capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+
+app = wx.App()
+frame = wx.Frame(None)
+cap = ShowCapture(frame, capture)
+frame.Show()
+app.MainLoop()
