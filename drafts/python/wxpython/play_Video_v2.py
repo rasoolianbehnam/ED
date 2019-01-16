@@ -88,8 +88,8 @@ class Example(wx.Frame):
 
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self.video_panel = ShowCapture(panel, self.capture)
-        vbox.Add(self.video_panel, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
+        video_panel = ShowCapture(panel, self.capture)
+        vbox.Add(video_panel, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
 
 
         hbox0    = wx.BoxSizer(wx.HORIZONTAL)
