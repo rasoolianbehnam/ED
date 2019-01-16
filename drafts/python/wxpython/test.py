@@ -6,12 +6,6 @@ pause = False
 APP_PAUSE   = 1
 APP_CLOSE   = 2
 
-capture = cv2.VideoCapture()
-capture.open('/home/bzr0014/Videos/720')
-capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
-numFrames = capture.get(cv2.CAP_PROP_FRAME_COUNT)
-
 fields = dict([("field%02d"%i, "field%02d_default"%i) for i in range(1, 5+1)])
 print(fields)
 
@@ -56,7 +50,13 @@ class Example(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(Example, self).__init__(*args, **kwargs)
         self.texts = {}
+        self.capture = cv2.VideoCapture()
+        self.capture.open('/home/bzr0014/Videos/720')
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+        self.numFrames = self.capture.get(cv2.CAP_PROP_FRAME_COUNT)
         self.InitUI()
+
 
     def createMenu(self, ID, shortcutText, fun):
         fileMenu = wx.Menu()
@@ -88,7 +88,7 @@ class Example(wx.Frame):
 
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        video_panel = ShowCapture(panel, capture)
+        video_panel = ShowCapture(panel, self.capture)
         vbox.Add(video_panel, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
 
 
@@ -157,28 +157,28 @@ class Example(wx.Frame):
 
 
     def onFastBackward(self, e):
-        currentPos = capture.get(cv2.CAP_PROP_POS_FRAMES)
+        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
         nextPos    = currentPos-20
-        capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
-        print("%2f/%2f"%(nextPos,numFrames))
+        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
+        print("%2f/%2f"%(nextPos,self.numFrames))
 
     def onFastFastBackward(self, e):
-        currentPos = capture.get(cv2.CAP_PROP_POS_FRAMES)
-        nextPos    = currentPos-numFrames/100
-        capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
-        print("%2f/%2f"%(nextPos,numFrames))
+        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        nextPos    = currentPos-self.numFrames/100
+        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
+        print("%2f/%2f"%(nextPos,self.numFrames))
 
     def onFastForward(self, e):
-        currentPos = capture.get(cv2.CAP_PROP_POS_FRAMES)
+        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
         nextPos    = currentPos+20
-        capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < numFrames else currentPos)
-        print("%2f/%2f"%(nextPos,numFrames))
+        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.numFrames else currentPos)
+        print("%2f/%2f"%(nextPos,self.numFrames))
 
     def onFastFastForward(self, e):
-        currentPos = capture.get(cv2.CAP_PROP_POS_FRAMES)
-        nextPos    = currentPos+numFrames/100
-        capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < numFrames else currentPos)
-        print("%2f/%2f"%(nextPos,numFrames))
+        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        nextPos    = currentPos+self.numFrames/100
+        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.numFrames else currentPos)
+        print("%2f/%2f"%(nextPos,self.numFrames))
 
     def onClear(self, e):
         for key, t  in self.texts.items():
