@@ -7,7 +7,7 @@ APP_PAUSE   = 1
 APP_CLOSE   = 2
 APP_OPEN    = 3
 
-fields = dict([("field%02d"%i, "field%02d_default"%i) for i in range(1, 5+1)])
+fields = dict([("field%02d"%i, "field%02d_default"%i) for i in range(1, 4+1)])
 
 class ShowCapture(wx.Panel):
     def __init__(self, parent, size=(640, 480), fps=15):
@@ -20,24 +20,34 @@ class ShowCapture(wx.Panel):
         self.timer.Start(1000./fps)
 
     def StartCapture(self, path=None):
+        global pause
         if path is None:
             return
         self.capture = cv2.VideoCapture()
         self.capture.open(path)
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.GetSize()[0])
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.GetSize()[1])
         self.numFrames = self.capture.get(cv2.CAP_PROP_FRAME_COUNT)
 
         ret, frame = self.capture.read()
-        frame = cv2.resize(frame, self.size)
+        frame = cv2.resize(frame, tuple(self.GetSize()))
 
         height, width = frame.shape[:2]
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-        self.bmp = wx.BitmapFromBuffer(width, height, frame)
+        self.bmp = wx.Bitmap(width, height)
         self.Bind(wx.EVT_PAINT, self.OnPaint)
         self.Bind(wx.EVT_TIMER, self.NextFrame)
 
+        #self.Bind(wx.EVT_SIZE, self.OnSize)
+        pause = False
+
+
+    #Not working. Deactivated
+    def OnSize(self, event):
+        height, width = self.GetSize()
+        self.bmp = wx.Bitmap(height, width)
+        event.Skip()
 
     def OnPaint(self, evt):
         dc = wx.BufferedPaintDC(self)
@@ -48,7 +58,9 @@ class ShowCapture(wx.Panel):
         if pause:
             return
         ret, frame = self.capture.read()
-        frame = cv2.resize(frame, self.size)
+        height, width = self.GetSize()
+        frame = cv2.resize(frame, (height, width))
+        self.bmp = wx.Bitmap(height, width)
         if ret:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             self.bmp.CopyFromBuffer(frame)
@@ -86,7 +98,7 @@ class Example(wx.Frame):
         self.SetMenuBar(menubar)
 
         self.SetSize((640, 480))
-        self.SetTitle('Simple menu')
+        self.SetTitle('Ergonaut')
         self.Centre()
 
         panel = wx.Panel(self)
@@ -201,7 +213,7 @@ class Example(wx.Frame):
         pause = not pause
 
     def onOpen(self, event):
-        wildcard = "MP4 files (*.mp4)|*.mp4|*.mpeg"
+        wildcard = "MP4 files (*.mp4)|*.mp4"
         dialog = wx.FileDialog(self, "Open Text Files", wildcard=wildcard,
                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
 
