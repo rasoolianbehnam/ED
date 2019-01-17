@@ -5,16 +5,29 @@ pause = False
 
 APP_PAUSE   = 1
 APP_CLOSE   = 2
+APP_OPEN    = 3
 
 fields = dict([("field%02d"%i, "field%02d_default"%i) for i in range(1, 5+1)])
-print(fields)
 
 class ShowCapture(wx.Panel):
-    def __init__(self, parent, capture, size=(640, 480), fps=15):
+    def __init__(self, parent, size=(640, 480), fps=15):
         wx.Panel.__init__(self, parent)
 
         self.size = size
-        self.capture = capture
+        self.capture = None
+
+        self.timer = wx.Timer(self)
+        self.timer.Start(1000./fps)
+
+    def StartCapture(self, path=None):
+        if path is None:
+            return
+        self.capture = cv2.VideoCapture()
+        self.capture.open(path)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
+        self.numFrames = self.capture.get(cv2.CAP_PROP_FRAME_COUNT)
+
         ret, frame = self.capture.read()
         frame = cv2.resize(frame, self.size)
 
@@ -22,10 +35,6 @@ class ShowCapture(wx.Panel):
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         self.bmp = wx.BitmapFromBuffer(width, height, frame)
-
-        self.timer = wx.Timer(self)
-        self.timer.Start(1000./fps)
-
         self.Bind(wx.EVT_PAINT, self.OnPaint)
         self.Bind(wx.EVT_TIMER, self.NextFrame)
 
@@ -50,19 +59,15 @@ class Example(wx.Frame):
     def __init__(self, *args, **kwargs):
         super(Example, self).__init__(*args, **kwargs)
         self.texts = {}
-        self.capture = cv2.VideoCapture()
-        self.capture.open('/home/bzr0014/Videos/720')
-        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
-        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
-        self.numFrames = self.capture.get(cv2.CAP_PROP_FRAME_COUNT)
         self.InitUI()
 
 
-    def createMenu(self, ID, shortcutText, fun):
+    def createMenu(self, IDs, shortcutTexts, funs):
         fileMenu = wx.Menu()
-        qmi = wx.MenuItem(fileMenu, ID, shortcutText)
-        fileMenu.Append(qmi)
-        self.Bind(wx.EVT_MENU, fun, id=ID)
+        for ID, shortcutText, fun in zip(IDs, shortcutTexts, funs):
+            qmi = wx.MenuItem(fileMenu, ID, shortcutText)
+            fileMenu.Append(qmi)
+            self.Bind(wx.EVT_MENU, fun, id=ID)
         return fileMenu
 
     def InitUI(self):
@@ -71,10 +76,11 @@ class Example(wx.Frame):
         menubar     = wx.MenuBar()
 
         menubar.Append(
-            self.createMenu(APP_CLOSE, '&Quit\tCtrl+Q', self.onClose),
+            self.createMenu([APP_CLOSE, APP_OPEN], ['&Quit\tCtrl+Q', '&Open\tCtrl+O'], [self.onClose, self.onOpen]),
             '&File')
+
         menubar.Append(
-            self.createMenu(APP_PAUSE, '&Pause\tCtrl+Space', self.onPause),
+            self.createMenu([APP_PAUSE], ['&Pause\tCtrl+Space'], [self.onPause]),
             '&Playback')
 
         self.SetMenuBar(menubar)
@@ -88,7 +94,7 @@ class Example(wx.Frame):
 
         vbox = wx.BoxSizer(wx.VERTICAL)
 
-        self.video_panel = ShowCapture(panel, self.capture)
+        self.video_panel = ShowCapture(panel)
         vbox.Add(self.video_panel, wx.ID_ANY, wx.EXPAND | wx.ALL, 10)
 
 
@@ -157,28 +163,29 @@ class Example(wx.Frame):
 
 
     def onFastBackward(self, e):
-        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        currentPos = self.video_panel.capture.get(cv2.CAP_PROP_POS_FRAMES)
         nextPos    = currentPos-20
-        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
-        print("%2f/%2f"%(nextPos,self.numFrames))
+        self.video_panel.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
+        print("%2f/%2f"%(nextPos,self.video_panel.numFrames))
 
     def onFastFastBackward(self, e):
-        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
-        nextPos    = currentPos-self.numFrames/100
-        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
-        print("%2f/%2f"%(nextPos,self.numFrames))
+        currentPos = self.video_panel.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        nextPos    = currentPos-self.video_panel.numFrames/100
+        self.video_panel.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos > 0 else 0)
+        print("%2f/%2f"%(nextPos,self.video_panel.numFrames))
 
     def onFastForward(self, e):
-        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        print(e)
+        currentPos = self.video_panel.capture.get(cv2.CAP_PROP_POS_FRAMES)
         nextPos    = currentPos+20
-        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.numFrames else currentPos)
-        print("%2f/%2f"%(nextPos,self.numFrames))
+        self.video_panel.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.video_panel.numFrames else currentPos)
+        print("%2f/%2f"%(nextPos,self.video_panel.numFrames))
 
     def onFastFastForward(self, e):
-        currentPos = self.capture.get(cv2.CAP_PROP_POS_FRAMES)
-        nextPos    = currentPos+self.numFrames/100
-        self.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.numFrames else currentPos)
-        print("%2f/%2f"%(nextPos,self.numFrames))
+        currentPos = self.video_panel.capture.get(cv2.CAP_PROP_POS_FRAMES)
+        nextPos    = currentPos+self.video_panel.numFrames/100
+        self.video_panel.capture.set(cv2.CAP_PROP_POS_FRAMES, int(nextPos) if nextPos < self.video_panel.numFrames else currentPos)
+        print("%2f/%2f"%(nextPos,self.video_panel.numFrames))
 
     def onClear(self, e):
         for key, t  in self.texts.items():
@@ -192,6 +199,17 @@ class Example(wx.Frame):
     def onPause(self, e):
         global pause
         pause = not pause
+
+    def onOpen(self, event):
+        wildcard = "MP4 files (*.mp4)|*.mp4|*.mpeg"
+        dialog = wx.FileDialog(self, "Open Text Files", wildcard=wildcard,
+                               style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+
+        if dialog.ShowModal() == wx.ID_CANCEL:
+            return
+
+        path = dialog.GetPath()
+        self.video_panel.StartCapture(path)
 
     def onClose(self, e):
         self.Close()
