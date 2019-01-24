@@ -1,0 +1,118 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:3:12: object nd4s is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4s.Implicits._[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:4:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.factory.Nd4j[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:5:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.api.ndarray.INDArray[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:6:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.api.ndarray.INDArray[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:7:12: object datavec is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.datavec.image.loader.NativeImageLoader[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:10:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.indexing.NDArrayIndex[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:11:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.indexing.INDArrayIndex[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:12:12: object nd4j is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.nd4j.linalg.indexing.SpecifiedIndex[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:14:12: object bytedeco is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.bytedeco.javacpp.opencv_highgui[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:15:12: object bytedeco is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.bytedeco.javacpp.opencv_core._[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:16:12: object bytedeco is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.bytedeco.javacpp.opencv_core[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:17:12: object bytedeco is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.bytedeco.javacpp.opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:22:21: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def resize(img: Mat, s: (Int, Int)) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:24:27: not found: type Size[0m
+[0m[[0m[31merror[0m] [0m[0m        val newSize = new Size(s._1, s._2)[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:25:24: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m        val img3 = new Mat(newSize)[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:26:9: not found: value opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.resize(img, img3, newSize)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:29:24: not found: type INDArray[0m
+[0m[[0m[31merror[0m] [0m[0m    def asImage(image: INDArray): BufferedImage = {[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:31:14: recursive value x$1 needs type[0m
+[0m[[0m[31merror[0m] [0m[0m        val (w, h, d) = shape match {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:50:31: recursive value x$2 needs type[0m
+[0m[[0m[31merror[0m] [0m[0m                    val Array(r, g, b) = img.get(NDArrayIndex.all(), [0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:59:24: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def asImage(image: Mat): BufferedImage = asImage(asMatrix(image))[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:72:23: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def asMatrix(img: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:74:26: not found: type NativeImageLoader[0m
+[0m[[0m[31merror[0m] [0m[0m        val loader = new NativeImageLoader(h, w)[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:61:20: not found: type INDArray[0m
+[0m[[0m[31merror[0m] [0m[0m    def asMat(img: INDArray) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:69:26: not found: type NativeImageLoader[0m
+[0m[[0m[31merror[0m] [0m[0m        val loader = new NativeImageLoader(h, w)[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:77:20: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def erode(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:77:33: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def erode(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:79:9: not found: value opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.erode(img, output, kernel)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:82:21: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def dilate(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:82:34: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def dilate(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:84:9: not found: value opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.dilate(img, output, kernel)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:87:23: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def filter2D(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:87:36: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def filter2D(img: Mat, kernel: Mat) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:89:9: not found: value opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.filter2D(img, output, -1, kernel)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:92:27: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m    def GaussianBlur(img: Mat, ksize: (Int, Int), sigmaX: Double) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:94:9: not found: value opencv_imgproc[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.GaussianBlur(img, output, new Size(ksize._1, ksize._2), sigmaX)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:94:54: not found: type Size[0m
+[0m[[0m[31merror[0m] [0m[0m        opencv_imgproc.GaussianBlur(img, output, new Size(ksize._1, ksize._2), sigmaX)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:97:22: not found: type INDArray[0m
+[0m[[0m[31merror[0m] [0m[0m    def nonZero(img: INDArray) = {[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:100:28: not found: type Mat[0m
+[0m[[0m[31merror[0m] [0m[0m        val vertices = new Mat()[0m
+[0m[[0m[31merror[0m] [0m[0m                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/behnamrasoolian/git/exploit_devel/drafts/scala/cv2.scala:101:9: not found: value findNonZero[0m
+[0m[[0m[31merror[0m] [0m[0m        findNonZero(matrix, vertices)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m39 errors found[0m
