@@ -6,9 +6,9 @@ import os
 import time
 
 parallel_requests = 8
-curl_template = "curl 'https://stream-2-1.loadshare.org/stream/VideoID-1TH7WFHD/9mBPaYgHDTRXpECnTJpN5Ed7XmiG1yPmu7Em98dP7B9rSs9NpRP3BmGfEcmOG6NNcp_TtqsTDwqA91n8jijZuak-vw2tbrNwZeeytk3924oyRVtQGBKApJEWse8mB2QENAY6QY9rzS3dpz1BP9tO0w/seg-%d-f2-v1-a1.ts?token=ip=97.80.236.60~st=1548905759~exp=1548920159~acl=/*~hmac=b258f52f550178727e5ef807054c0ffe40611ac26bee6a0839f9970b6f83c3a5' -H 'origin: https://putlocker.digital' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.116' -H 'accept: */*' -H 'referer: https://putlocker.digital/tv-series/stranger-things-season-1/7JacmszI/SkZZQhn5/MsfycXmr-watch-online-free.html' -H 'authority: stream-2-1.loadshare.org' --compressed"
+curl_template = "curl 'https://stream-2-1.loadshare.org/stream/VideoID-W1fBIr6B/pdSyAer7bsEne8_v5rUc4myTbpkhgJJRs8BYBdKnC3N8JJt4tKPGyRu5SpgOKib5g93JmL4ThIUlX_YQgCk4H1aE6wn3hamTO9K5P0eKBJK1Wjzs-lL3iCA99bt8FcUyppGiNfta6-HFJueuonZIUQ/seg-%d-f2-v1-a1.ts?token=ip=97.80.236.60~st=1548995116~exp=1549009516~acl=/*~hmac=84d1903fdfd38df4a5bded99fa981ad7680956d42d29d56f568d89ab5f23d6f1' -H 'origin: https://putlocker.digital' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.116' -H 'accept: */*' -H 'referer: https://putlocker.digital/tv-series/stranger-things-season-1/7JacmszI/Pk50aOSK/B1cDntfr-watch-online-free.html' -H 'authority: stream-2-1.loadshare.org' --compressed"
 min_num = 1
-max_num = 100
+max_num = 645
 
 url_regex = re.compile(r'\'.*?\'')
 url = url_regex.search(curl_template).group(0)[1:-1]
