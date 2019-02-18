@@ -50,7 +50,7 @@ class ShowCapture(wx.Panel):
         #self.running_total = wx.StaticText(self)
         #main_sizer.Add(self.running_total, 0, wx.ALIGN_RIGHT)
 
-    def ResetImage(self, scale=1):
+    def ResetImage(self, printAnswer=False, scale=1):
         M, N = self.size
         pad = 0
         self.img = np.zeros((M + pad, N + pad, 3)).astype(np.uint8)
@@ -86,7 +86,7 @@ class ShowCapture(wx.Panel):
                 self.correct = 'B' if digit % 2 else 'N'
 
             #for test cases, the correct answer is shown
-            if self.mode == 'test':
+            if printAnswer:
                 cv2.putText(self.img, 'Correct answer: %s'%self.correct, (100, 500), font, 1, 255, 4*scale, cv2.LINE_AA)
         #cv2.putText(self.img, 'Current answer: %s'%self.correct, (500, 600), font, .2, 255, 1*scale, cv2.LINE_AA)
 
@@ -107,6 +107,9 @@ class ShowCapture(wx.Panel):
             #reset answer
             #for test cases, the correct answer is shown
             if self.mode == 'test':
+                print(time.time()-self.start)
+                if time.time() - self.start > episode_length / 5:
+                    self.ResetImage(printAnswer=True)
                 if self.episode == num_test_episodes:
                     self.mode = 'wait'
             elif self.mode == 'wait':
