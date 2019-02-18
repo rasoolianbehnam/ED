@@ -36,7 +36,7 @@ class ShowCapture(wx.Panel):
             self.Refresh()
 
 capture = cv2.VideoCapture()
-capture.open('/Users/behnamrasoolian/Movies/Only.Lovers.Left.Alive.2013.720p.BluRay.x264.YIFY.mp4')
+capture.open('home/bzr0014/Videos/720')
 capture.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
 capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
 
