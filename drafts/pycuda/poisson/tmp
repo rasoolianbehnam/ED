@@ -1,0 +1,38 @@
+__global__ void before_poisson_cu(int imax, int jmax, int kmax, float* ne,float* ni, float *g, float* g_temp, float *values) {
+
+    int index_x = threadIdx.x + blockDim.x * blockIdx.x;
+    int stride_x = blockDim.x * gridDim.x;
+    int  n1=imax+3, n2 = jmax+3, n3 = kmax+3,i,j,k,myTime,kk,I,N,s1;
+    N=n1*n2*n3;
+    float qi = values[0];
+float qe = values[1];
+float w = values[10];
+float eps0 = values[11];
+float h = values[24];
+
+    for (int I=index_x; I<N; I+=stride_x) g_temp[I] = w*h*h*g[I]/6.;
+    for (int I=index_x; I<N; I+=stride_x) {
+        int k = I % n3;
+        int s1 = (I - k) / n3;
+        int j = s1 % n2;
+        int i = (s1 - j) / n2;
+        if (i >= 1 && i < imax-1
+                && j >= 1 && j < jmax-1
+                && k >= 1 && k < kmax-1) {
+            g_temp[I] += w/6.*(g_temp[I-1]+g_temp[I-n3]+g_temp[I-n3*n2]);
+        }
+        else {
+            g_temp[I] = 0;
+        }
+    }
+
+      for ( I = index_x; I < N; I += stride_x) {
+         k = I % n3;
+         s1 = (I - k) / n3;
+         j = s1 % n2;
+         i = (s1 - j) / n2;
+        if (i * j * k == 0 || i >= imax-1 || j >= jmax-1 || k >= kmax-1) continue;
+        g[k + n3 * (j + n2 * (i))]=-(ne[k + n3 * (j + n2 * (i))]*qe+ni[k + n3 * (j + n2 * (i))]*qi)/eps0;
+    }
+
+}
