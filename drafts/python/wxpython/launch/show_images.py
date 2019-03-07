@@ -4,13 +4,13 @@ try:
     import wx
     print("wx is installed")
 except:
-    os.system('pip install wxpython')
+    os.system('pip install --user wxpython')
 
 try:
     import cv2
     print("cv2 is installed")
 except:
-    os.system('pip install opencv-python')
+    os.system('pip install --user opencv-python')
 
 
 import wx
