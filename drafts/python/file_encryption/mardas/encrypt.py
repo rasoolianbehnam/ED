@@ -32,7 +32,7 @@ def encrypt(file, password=None):
         with open(dirname + "/." + basename + '.hash', 'w') as f:
             f.write(hash + '\r\n')
         os.remove(file)
-    print("[*] Finished encryptiion of %s."%file)
+    print("[*] Finished encryptiion.")
 
 if __name__=="__main__":
     if len(sys.argv) < 2:

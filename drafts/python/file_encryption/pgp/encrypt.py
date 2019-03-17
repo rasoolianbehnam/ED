@@ -1,4 +1,3 @@
-from file_encryption import *
 import getpass
 import sys, os
 
@@ -11,28 +10,26 @@ def get_pass():
     if (password != password2):
         print("[!] Passwords don't match")
         sys.exit(0)
-    remaining_len = 16 - (len(password) % 16)
-    return password + '*'*remaining_len
+    return password
 
 def encrypt_dir(dir):
     password = get_pass()
     for d, p, f in os.walk(dir):
         for ff in f:
+            if ff.endswith(".gpg"):
+                continue
             file = "%s/%s"%(d, ff)
             encrypt(file, password=password)
 
 def encrypt(file, password=None):
     if password is None:
         password = get_pass()
-    out = encrypt_file(password, file)
-    if (out is not None):
-        hash = md5(file)
-        dirname  = os.path.dirname(file)
-        basename = os.path.basename(file)
-        with open(dirname + "/." + basename + '.hash', 'w') as f:
-            f.write(hash + '\r\n')
+    command = 'gpg --batch --passphrase "%s" -c "%s"'%(password, file)
+    if os.system(command) == 0:
         os.remove(file)
-    print("[*] Finished encryptiion of %s."%file)
+    else:
+        sys.exit(0)
+    print("Finished encrypting file %s"%file)
 
 if __name__=="__main__":
     if len(sys.argv) < 2:
