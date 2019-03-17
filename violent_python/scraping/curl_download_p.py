@@ -6,9 +6,9 @@ import os
 import time
 
 parallel_requests = 8
-curl_template = "curl 'https://stream-4-1.loadshare.org/stream/VideoID-UJkNDYAO/o5mj3wCDdtxcnZ5hAPd5DIaK-fzm9HXokOuE5Yl8pd6lYls-NvIepYeA8b02xIgISq5YUdFYF8A-s7OXuVN7SxghrIYdbGo81dvPqWkS8mJOvmE4BrurtM1TavSzODrOYG-qzUjuUXC991HcacggPA/seg-%d-f2-v1-a1.ts?token=ip=97.80.236.60~st=1548981865~exp=1548996265~acl=/*~hmac=248a26cfb1fa436c16346af7a9fb243f77d254e759594db556ec3b822ae5afeb' -H 'origin: https://putlocker.digital' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 OPR/57.0.3098.116' -H 'accept: */*' -H 'referer: https://putlocker.digital/tv-series/stranger-things-season-1/7JacmszI/MFtMkcnM/3pggJlyW-watch-online-free.html' -H 'authority: stream-4-1.loadshare.org' --compressed"
+curl_template = r"""curl 'https://cdn.mcloud.to/stream/sf:i0:q2:h0:p27:l2/_h0HZ5BuXOaXOOquDAB7Wg/1551718800/i/c/a/6vnpj7/hls/480/480-%04d.ts' -H 'origin: https://mcloud.to' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.9' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36 OPR/58.0.3135.79' -H 'accept: */*' -H 'referer: https://mcloud.to/embed/@6@37OW3CPA7IP65?sub.file=https%%253A%%252F%%252Fwww6.putlockertv.to%%252Fsubtitle%%252F41652.vtt&ui=rQxi7arr6OYCmI2Gb9QCsJJcqoaXNIvKxzKsUtk%%3D&autostart=true' -H 'authority: cdn.mcloud.to' -H 'cookie: __cfduid=d472dd19f8ae9d2eea7f199c48694c88b1548558742; _ga=GA1.2.1666346265.1548558744; _gid=GA1.2.907929214.1551645496' --compressed"""
 min_num = 1
-max_num = 493
+max_num = 4240
 
 url_regex = re.compile(r'\'.*?\'')
 url = url_regex.search(curl_template).group(0)[1:-1]
@@ -36,10 +36,10 @@ def test():
         curl_command = curl_template%a
         file_name    = file_name_template%a
         try:
+            print('%s'%curl_command)
             output = subprocess.check_output(\
                     "%s > %s"%(curl_command, file_name), 
                     stderr=subprocess.STDOUT, shell=True)
-            print('%s'%curl_command)
         except subprocess.CalledProcessError as ex:
             pass
             #print('Error for %s'%url)

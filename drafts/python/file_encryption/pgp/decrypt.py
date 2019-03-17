@@ -1,5 +1,7 @@
 import getpass
 import sys, os
+import shutil
+import base64
 
 def printUsage():
     print("USAGE: python %s <filename>" % (sys.argv[0]))
@@ -21,12 +23,15 @@ def decrypt_dir(dir):
 def decrypt(file, password=None):
     if password is None:
         password = get_pass()
-    out_file = file[:-4].
-    command = 'gpg --batch --passphrase "%s" -o "%s" -d "%s"'%(password, out_file, file)
+    out_file = file[:-4]
+    dirname  = os.path.dirname(out_file)
+    basename = os.path.basename(out_file)
+    command = 'gpg --batch --passphrase "%s" -o "%s/%s" -d "%s"'%(password, dirname, basename[::-1], file)
     #print(command)
     #command = "gpg --batch --passphrase %s -c %s"%(password, file)
     if os.system(command) == 0:
         os.remove(file)
+        #shutil.move(out_file, "%s/%s"%(dirname, basename[::-1]))
     else:
         sys.exit(0)
 

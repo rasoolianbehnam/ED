@@ -1,5 +1,7 @@
 import getpass
 import sys, os
+import shutil
+import base64
 
 def printUsage():
     print("USAGE: python %s <filename>" % (sys.argv[0]))
@@ -24,10 +26,15 @@ def encrypt_dir(dir):
 def encrypt(file, password=None):
     if password is None:
         password = get_pass()
-    command = 'gpg --batch --passphrase "%s" -c "%s"'%(password, file)
-    if os.system(command) == 0:
+    dirname  = os.path.dirname(file)
+    basename = os.path.basename(file)
+    command = 'gpg --batch --passphrase "%s" -o "%s/%s.gpg" -c "%s"'%(password, dirname, basename[::-1], file)
+    code = os.system(command)
+    if  code == 0:
         os.remove(file)
+        #shutil.move("%s.gpg"%file, "%s/%s.gpg"%(dirname, basename[::-1]))
     else:
+        print(code)
         sys.exit(0)
     print("Finished encrypting file %s"%file)
 
