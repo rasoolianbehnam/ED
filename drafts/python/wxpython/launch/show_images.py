@@ -25,7 +25,7 @@ import time
 import logging
 
 num_test_episodes = 3
-num_episodes = 5
+num_episodes = 300
 episode_length = 2
 
 class ShowCapture(wx.Panel):
